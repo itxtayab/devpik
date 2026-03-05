@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef, useMemo } from "react";
+import { useState, useEffect, useCallback, useRef, useMemo, Fragment } from "react";
 import {
     Copy, CheckCheck, Trash2, Wand2, Download, Upload,
     ChevronRight, ChevronDown, Search, X, FileJson, ToggleLeft,
     ToggleRight, Braces, ListTree, WrapText, Minimize2, FileCode,
-    AlertTriangle, ChevronUp, Wrench, Sparkles, Info
+    AlertTriangle, ChevronUp, Wrench, Sparkles, Info, ChevronsUpDown,
+    FoldVertical, UnfoldVertical
 } from "lucide-react";
 
 // ─── Conversion Helpers ──────────────────────────────────────────────────────
@@ -173,6 +174,253 @@ function highlightJson(json: string): string {
 
 function escapeHtml(s: string): string {
     return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+// ─── Collapsible JSON Code View ──────────────────────────────────────────────
+
+interface JsonLine {
+    lineNumber: number;
+    content: string; // HTML-highlighted content for the line
+    indent: number;
+    foldable: boolean;
+    foldId: string; // unique id for this foldable region
+    foldEnd?: number; // line number where this fold ends
+}
+
+function buildCollapsibleLines(
+    obj: any,
+    indent: number,
+    lineCounter: { current: number },
+    parentKey?: string,
+    isLast?: boolean,
+    pathPrefix?: string
+): JsonLine[] {
+    const lines: JsonLine[] = [];
+    const pad = "  ".repeat(indent);
+    const comma = isLast === false ? "," : "";
+    const prefix = parentKey !== undefined ? `<span class="text-blue-600 dark:text-blue-400 font-semibold">"${escapeHtml(parentKey)}"</span>: ` : "";
+
+    if (obj === null) {
+        lines.push({
+            lineNumber: lineCounter.current++,
+            content: `${pad}${prefix}<span class="text-rose-500 dark:text-rose-400 italic">null</span>${comma}`,
+            indent,
+            foldable: false,
+            foldId: `${pathPrefix ?? "$"}-null`,
+        });
+    } else if (typeof obj === "string") {
+        const escaped = escapeHtml(obj);
+        lines.push({
+            lineNumber: lineCounter.current++,
+            content: `${pad}${prefix}<span class="text-emerald-600 dark:text-emerald-400">"${escaped}"</span>${comma}`,
+            indent,
+            foldable: false,
+            foldId: `${pathPrefix ?? "$"}-str`,
+        });
+    } else if (typeof obj === "number") {
+        lines.push({
+            lineNumber: lineCounter.current++,
+            content: `${pad}${prefix}<span class="text-violet-600 dark:text-violet-400">${obj}</span>${comma}`,
+            indent,
+            foldable: false,
+            foldId: `${pathPrefix ?? "$"}-num`,
+        });
+    } else if (typeof obj === "boolean") {
+        lines.push({
+            lineNumber: lineCounter.current++,
+            content: `${pad}${prefix}<span class="text-amber-600 dark:text-amber-400">${obj}</span>${comma}`,
+            indent,
+            foldable: false,
+            foldId: `${pathPrefix ?? "$"}-bool`,
+        });
+    } else if (Array.isArray(obj)) {
+        const foldId = pathPrefix ?? "$-arr";
+        const startLine = lineCounter.current;
+        lines.push({
+            lineNumber: lineCounter.current++,
+            content: `${pad}${prefix}[`,
+            indent,
+            foldable: obj.length > 0,
+            foldId,
+        });
+        for (let i = 0; i < obj.length; i++) {
+            const childPath = `${pathPrefix ?? "$"}[${i}]`;
+            lines.push(
+                ...buildCollapsibleLines(obj[i], indent + 1, lineCounter, undefined, i === obj.length - 1, childPath)
+            );
+        }
+        const endLine = lineCounter.current;
+        lines.push({
+            lineNumber: lineCounter.current++,
+            content: `${pad}]${comma}`,
+            indent,
+            foldable: false,
+            foldId: `${foldId}-end`,
+        });
+        // Set foldEnd on the opening line
+        if (obj.length > 0) {
+            lines[lines.length - obj.reduce((acc: number, _, i) => {
+                return acc; // We'll set it differently
+            }, 0)]; // not useful, let's just find the start
+            const startIdx = lines.findIndex(l => l.foldId === foldId);
+            if (startIdx !== -1) lines[startIdx].foldEnd = endLine;
+        }
+    } else if (typeof obj === "object") {
+        const keys = Object.keys(obj);
+        const foldId = pathPrefix ?? "$-obj";
+        const startLine = lineCounter.current;
+        lines.push({
+            lineNumber: lineCounter.current++,
+            content: `${pad}${prefix}{`,
+            indent,
+            foldable: keys.length > 0,
+            foldId,
+        });
+        for (let i = 0; i < keys.length; i++) {
+            const key = keys[i];
+            const childPath = `${pathPrefix ?? "$"}.${key}`;
+            lines.push(
+                ...buildCollapsibleLines(obj[key], indent + 1, lineCounter, key, i === keys.length - 1, childPath)
+            );
+        }
+        const endLine = lineCounter.current;
+        lines.push({
+            lineNumber: lineCounter.current++,
+            content: `${pad}}${comma}`,
+            indent,
+            foldable: false,
+            foldId: `${foldId}-end`,
+        });
+        // Set foldEnd on the opening line
+        if (keys.length > 0) {
+            const startIdx = lines.findIndex(l => l.foldId === foldId);
+            if (startIdx !== -1) lines[startIdx].foldEnd = endLine;
+        }
+    }
+    return lines;
+}
+
+function CollapsibleJsonView({ data, foldAllSignal }: { data: any; foldAllSignal: "expand" | "collapse" | null }) {
+    const lines = useMemo(() => {
+        if (data === undefined || data === null && typeof data !== "object") {
+            // handle simple primitives
+            return buildCollapsibleLines(data, 0, { current: 1 }, undefined, true, "$");
+        }
+        return buildCollapsibleLines(data, 0, { current: 1 }, undefined, true, "$");
+    }, [data]);
+
+    const [collapsed, setCollapsed] = useState<Set<string>>(new Set());
+
+    // React to fold all / unfold all signals
+    useEffect(() => {
+        if (foldAllSignal === "collapse") {
+            const allFoldable = new Set(lines.filter(l => l.foldable).map(l => l.foldId));
+            setCollapsed(allFoldable);
+        } else if (foldAllSignal === "expand") {
+            setCollapsed(new Set());
+        }
+    }, [foldAllSignal, lines]);
+
+    const toggleFold = useCallback((foldId: string) => {
+        setCollapsed(prev => {
+            const next = new Set(prev);
+            if (next.has(foldId)) next.delete(foldId);
+            else next.add(foldId);
+            return next;
+        });
+    }, []);
+
+    // Build visible lines considering collapsed regions
+    const visibleLines = useMemo(() => {
+        const result: { line: JsonLine; collapsedInfo?: { count: number; isArray: boolean } }[] = [];
+        let skipUntilLine: number | null = null;
+        let skipFoldId: string | null = null;
+
+        for (let i = 0; i < lines.length; i++) {
+            const line = lines[i];
+
+            // If we're skipping lines due to a collapsed fold
+            if (skipUntilLine !== null && line.lineNumber < skipUntilLine) {
+                continue;
+            }
+            if (skipUntilLine !== null && line.lineNumber >= skipUntilLine) {
+                // This is the closing bracket line — include it
+                skipUntilLine = null;
+                skipFoldId = null;
+                result.push({ line });
+                continue;
+            }
+
+            if (line.foldable && collapsed.has(line.foldId) && line.foldEnd !== undefined) {
+                // Count how many lines are being collapsed
+                const hiddenCount = line.foldEnd - line.lineNumber - 1;
+                const isArray = line.content.trimEnd().endsWith("[");
+                result.push({ line, collapsedInfo: { count: hiddenCount, isArray } });
+                skipUntilLine = line.foldEnd;
+                skipFoldId = line.foldId;
+                continue;
+            }
+
+            result.push({ line });
+        }
+        return result;
+    }, [lines, collapsed]);
+
+    const maxLineNum = lines.length > 0 ? lines[lines.length - 1].lineNumber : 1;
+    const gutterWidth = String(maxLineNum).length;
+
+    return (
+        <div className="font-mono text-sm leading-relaxed">
+            {visibleLines.map(({ line, collapsedInfo }) => (
+                <div
+                    key={line.lineNumber}
+                    className="flex hover:bg-accent/30 transition-colors group"
+                >
+                    {/* Line number gutter */}
+                    <span
+                        className="select-none text-right text-muted-foreground/50 pr-4 pl-2 flex-shrink-0 border-r border-border/30 mr-3"
+                        style={{ minWidth: `${gutterWidth + 2}ch` }}
+                    >
+                        {line.lineNumber}
+                    </span>
+
+                    {/* Fold button */}
+                    <span className="w-5 flex-shrink-0 flex items-center justify-center">
+                        {line.foldable ? (
+                            <button
+                                onClick={() => toggleFold(line.foldId)}
+                                className="text-muted-foreground/60 hover:text-primary transition-colors p-0 leading-none"
+                                title={collapsed.has(line.foldId) ? "Expand" : "Collapse"}
+                            >
+                                {collapsed.has(line.foldId) ? (
+                                    <ChevronRight className="h-3.5 w-3.5" />
+                                ) : (
+                                    <ChevronDown className="h-3.5 w-3.5" />
+                                )}
+                            </button>
+                        ) : null}
+                    </span>
+
+                    {/* Line content */}
+                    <span
+                        className="whitespace-pre flex-1"
+                        dangerouslySetInnerHTML={{ __html: line.content }}
+                    />
+
+                    {/* Collapsed indicator */}
+                    {collapsedInfo && (
+                        <button
+                            onClick={() => toggleFold(line.foldId)}
+                            className="inline-flex items-center gap-1 ml-1 px-2 py-0 rounded bg-muted/80 text-xs text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors border border-border/40 cursor-pointer flex-shrink-0"
+                        >
+                            <ChevronsUpDown className="h-3 w-3" />
+                            {collapsedInfo.count} lines
+                        </button>
+                    )}
+                </div>
+            ))}
+        </div>
+    );
 }
 
 // ─── Tree View Component ─────────────────────────────────────────────────────
@@ -506,15 +754,22 @@ export default function JsonFormatter() {
         }
     };
 
-    // Highlighted output (memoized for performance)
+    // Collapsible fold signal state
+    const [foldSignal, setFoldSignal] = useState<"expand" | "collapse" | null>(null);
+
+    // Whether the output looks like JSON (for collapsible view)
+    const outputIsJson = useMemo(() => {
+        if (!output) return false;
+        const t = output.trim();
+        return t.startsWith("{") || t.startsWith("[");
+    }, [output]);
+
+    // Highlighted output (memoized for performance) — used for non-JSON conversions
     const highlightedOutput = useMemo(() => {
         if (!output || viewMode !== "code") return "";
-        // Check if output looks like JSON (for conversions it won't be)
-        if (output.trim().startsWith("{") || output.trim().startsWith("[")) {
-            return highlightJson(escapeHtml(output)).replace(/\n/g, "<br/>").replace(/ {2}/g, "&nbsp;&nbsp;");
-        }
+        if (outputIsJson) return ""; // will use CollapsibleJsonView instead
         return escapeHtml(output).replace(/\n/g, "<br/>").replace(/ {2}/g, "&nbsp;&nbsp;");
-    }, [output, viewMode]);
+    }, [output, viewMode, outputIsJson]);
 
     // Line count for gutter
     const inputLines = input.split("\n").length;
@@ -538,9 +793,9 @@ export default function JsonFormatter() {
                 <button onClick={minifyJson} className="inline-flex items-center gap-2 rounded-lg border border-input bg-background px-3 py-2 text-sm font-medium shadow-sm transition-all hover:bg-accent hover:text-accent-foreground active:scale-[0.98]">
                     <Minimize2 className="h-4 w-4" /> Minify
                 </button>
-                <button onClick={handleFixJson} className="inline-flex items-center gap-2 rounded-lg border border-input bg-background px-3 py-2 text-sm font-medium shadow-sm transition-all hover:bg-amber-50 hover:text-amber-700 hover:border-amber-300 active:scale-[0.98]" title="Fix trailing commas, single quotes, unquoted keys">
+                {/* <button onClick={handleFixJson} className="inline-flex items-center gap-2 rounded-lg border border-input bg-background px-3 py-2 text-sm font-medium shadow-sm transition-all hover:bg-amber-50 hover:text-amber-700 hover:border-amber-300 active:scale-[0.98]" title="Fix trailing commas, single quotes, unquoted keys">
                     <Wrench className="h-4 w-4" /> Fix JSON
-                </button>
+                </button> */}
 
                 <div className="h-6 w-px bg-border/70 mx-1 hidden sm:block" />
 
@@ -631,13 +886,26 @@ export default function JsonFormatter() {
                                 </div>
                             </div>
                         )}
-                        <textarea
-                            value={input}
-                            onChange={(e) => handleInputChange(e.target.value)}
-                            placeholder="Paste your JSON here, or drag & drop a .json file..."
-                            className="font-mono h-[450px] w-full resize-none rounded-xl bg-background p-4 text-sm leading-relaxed focus:outline-none focus:ring-2 focus:ring-primary/20"
-                            spellCheck="false"
-                        />
+                        <div className="flex h-[450px] rounded-xl bg-background overflow-hidden">
+                            {/* Line numbers gutter */}
+                            {input && (
+                                <div
+                                    className="select-none text-right text-muted-foreground/40 font-mono text-sm leading-relaxed pt-4 pb-4 pl-2 pr-3 border-r border-border/30 overflow-hidden flex-shrink-0 bg-muted/20"
+                                    aria-hidden="true"
+                                >
+                                    {Array.from({ length: inputLines }, (_, i) => (
+                                        <div key={i + 1}>{i + 1}</div>
+                                    ))}
+                                </div>
+                            )}
+                            <textarea
+                                value={input}
+                                onChange={(e) => handleInputChange(e.target.value)}
+                                placeholder="Paste your JSON here, or drag & drop a .json file..."
+                                className="font-mono flex-1 h-full resize-none bg-transparent p-4 text-sm leading-relaxed focus:outline-none"
+                                spellCheck="false"
+                            />
+                        </div>
                     </div>
                 </div>
 
@@ -683,6 +951,17 @@ export default function JsonFormatter() {
                                     </button>
                                     <button onClick={() => setExpandAll(false)} className="inline-flex h-7 items-center gap-1 rounded-md px-2 text-xs text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors" title="Collapse all">
                                         <ChevronUp className="h-3 w-3" /> All
+                                    </button>
+                                </>
+                            )}
+                            {/* Code view fold controls */}
+                            {viewMode === "code" && parsedJson && outputIsJson && (
+                                <>
+                                    <button onClick={() => setFoldSignal(s => s === "expand" ? null : "expand")} className="inline-flex h-7 items-center gap-1 rounded-md px-2 text-xs text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors" title="Expand all folds">
+                                        <UnfoldVertical className="h-3.5 w-3.5" />
+                                    </button>
+                                    <button onClick={() => setFoldSignal(s => s === "collapse" ? null : "collapse")} className="inline-flex h-7 items-center gap-1 rounded-md px-2 text-xs text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors" title="Collapse all folds">
+                                        <FoldVertical className="h-3.5 w-3.5" />
                                     </button>
                                 </>
                             )}
@@ -764,10 +1043,25 @@ export default function JsonFormatter() {
                     ) : (
                         <div className="relative h-[450px] rounded-xl border border-input bg-slate-50 dark:bg-slate-900/50 overflow-auto">
                             {output ? (
-                                <pre
-                                    className="font-mono text-sm p-4 leading-relaxed"
-                                    dangerouslySetInnerHTML={{ __html: highlightedOutput }}
-                                />
+                                outputIsJson && parsedJson ? (
+                                    <div className="py-2">
+                                        <CollapsibleJsonView data={parsedJson} foldAllSignal={foldSignal} />
+                                    </div>
+                                ) : (
+                                    <pre className="font-mono text-sm p-4 leading-relaxed">
+                                        {output.split("\n").map((line, i) => (
+                                            <div key={i} className="flex hover:bg-accent/30 transition-colors">
+                                                <span
+                                                    className="select-none text-right text-muted-foreground/40 pr-4 pl-2 flex-shrink-0 border-r border-border/30 mr-3"
+                                                    style={{ minWidth: `${String(outputLines).length + 2}ch` }}
+                                                >
+                                                    {i + 1}
+                                                </span>
+                                                <span className="whitespace-pre">{line}</span>
+                                            </div>
+                                        ))}
+                                    </pre>
+                                )
                             ) : (
                                 <div className="flex h-full items-center justify-center text-sm text-muted-foreground/60">
                                     <div className="flex flex-col items-center gap-2">

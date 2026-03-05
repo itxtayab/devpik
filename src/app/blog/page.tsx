@@ -4,6 +4,7 @@ import Image from "next/image";
 import { blogPosts } from "@/lib/blog-data";
 import { StructuredData, generateBreadcrumbSchema } from "@/components/seo/StructuredData";
 import { ArrowRight, Clock, Calendar } from "lucide-react";
+import { createClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = {
     title: "Blog - Developer Tips, Guides & Tutorials | DevPik",
@@ -12,7 +13,58 @@ export const metadata: Metadata = {
     alternates: { canonical: "https://devpik.com/blog" },
 };
 
-export default function BlogListingPage() {
+interface SupabaseBlog {
+    slug: string;
+    title: string;
+    excerpt: string;
+    hero_image: string;
+    published_at: string;
+    reading_time: string;
+    tags: string[];
+    is_published: boolean;
+}
+
+export default async function BlogListingPage() {
+    // Fetch published blogs from Supabase
+    let supabaseBlogs: SupabaseBlog[] = [];
+    try {
+        const supabase = await createClient();
+        const { data } = await supabase
+            .from("blogs")
+            .select("slug, title, excerpt, hero_image, published_at, reading_time, tags, is_published")
+            .eq("is_published", true)
+            .order("published_at", { ascending: false });
+        supabaseBlogs = data || [];
+    } catch {
+        // Silently fail — still show static blogs
+    }
+
+    // Convert Supabase blogs to match static format
+    const dynamicPosts = supabaseBlogs.map((b) => ({
+        slug: b.slug,
+        title: b.title,
+        excerpt: b.excerpt,
+        heroImage: b.hero_image || "/images/blog/default.webp",
+        publishedAt: b.published_at,
+        readingTime: b.reading_time,
+        tags: b.tags || [],
+    }));
+
+    // Merge: Supabase posts first, then static posts (skip duplicates by slug)
+    const supabaseSlugs = new Set(dynamicPosts.map((p) => p.slug));
+    const staticPosts = blogPosts
+        .filter((p) => !supabaseSlugs.has(p.slug))
+        .map((p) => ({
+            slug: p.slug,
+            title: p.title,
+            excerpt: p.excerpt,
+            heroImage: p.heroImage,
+            publishedAt: p.publishedAt,
+            readingTime: p.readingTime,
+            tags: p.tags,
+        }));
+
+    const allPosts = [...dynamicPosts, ...staticPosts];
     const breadcrumbSchema = generateBreadcrumbSchema([
         { name: "Home", url: "https://devpik.com" },
         { name: "Blog", url: "https://devpik.com/blog" },
@@ -62,7 +114,7 @@ export default function BlogListingPage() {
 
             {/* Blog Posts Grid */}
             <section className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {blogPosts.map((post) => (
+                {allPosts.map((post) => (
                     <article
                         key={post.slug}
                         className="group bg-card border border-border/60 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden flex flex-col"

@@ -11,6 +11,59 @@ import {
 } from "@/components/seo/StructuredData";
 import { MarkdownRenderer } from "@/components/blog/MarkdownRenderer";
 import { ArrowLeft, Clock, Calendar, User, ChevronRight, ExternalLink } from "lucide-react";
+import { PageViewTracker } from "@/components/analytics/PageViewTracker";
+import { createClient } from "@/lib/supabase/server";
+
+// Fetch blog from Supabase by slug
+interface BlogPostData {
+    slug: string;
+    title: string;
+    metaTitle: string;
+    metaDescription: string;
+    excerpt: string;
+    heroImage: string;
+    publishedAt: string;
+    updatedAt: string;
+    author: string;
+    readingTime: string;
+    tags: string[];
+    relatedToolSlugs: string[];
+    content: { heading: string; body: string }[];
+    faqs: { question: string; answer: string }[];
+}
+
+async function getSupabaseBlog(slug: string): Promise<BlogPostData | null> {
+    try {
+        const supabase = await createClient();
+        const { data } = await supabase
+            .from("blogs")
+            .select("*")
+            .eq("slug", slug)
+            .eq("is_published", true)
+            .single();
+
+        if (!data) return null;
+
+        return {
+            slug: data.slug,
+            title: data.title,
+            metaTitle: data.meta_title || data.title,
+            metaDescription: data.meta_description || data.excerpt || "",
+            excerpt: data.excerpt || "",
+            heroImage: data.hero_image || "/images/blog/default.webp",
+            publishedAt: data.published_at,
+            updatedAt: data.updated_at,
+            author: data.author || "DevPik Team",
+            readingTime: data.reading_time || "5 min read",
+            tags: data.tags || [],
+            relatedToolSlugs: data.related_tool_slugs || [],
+            content: data.content || [],
+            faqs: data.faqs || [],
+        };
+    } catch {
+        return null;
+    }
+}
 
 type Props = {
     params: Promise<{ slug: string }>;
@@ -22,7 +75,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
     const { slug } = await props.params;
-    const post = getBlogPost(slug);
+    const post = getBlogPost(slug) || await getSupabaseBlog(slug);
     if (!post) return {};
 
     return {
@@ -51,7 +104,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 
 export default async function BlogPostPage(props: Props) {
     const { slug } = await props.params;
-    const post = getBlogPost(slug);
+    const post = getBlogPost(slug) || await getSupabaseBlog(slug);
     if (!post) notFound();
 
     const breadcrumbSchema = generateBreadcrumbSchema([
@@ -112,6 +165,7 @@ export default async function BlogPostPage(props: Props) {
             <StructuredData data={breadcrumbSchema} />
             <StructuredData data={articleSchema} />
             {faqSchema && <StructuredData data={faqSchema} />}
+            <PageViewTracker path={`/blog/${post.slug}`} />
 
             {/* Hero Section */}
             <div className="relative w-full overflow-hidden bg-gradient-to-br from-[#001a3d] via-[#002a5c] to-[#003F87] -mx-4 sm:-mx-6 md:-mx-8 lg:-mx-12 mb-10">
