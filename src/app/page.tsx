@@ -12,6 +12,7 @@ import {
   Cpu,
   Globe,
   Newspaper,
+  Wifi,
   Wrench,
   ArrowUpRight,
   TrendingUp,
@@ -22,11 +23,12 @@ import {
 const CategoryIcon = ({ category }: { category: ToolCategory }) => {
   if (category === "text-tools") return <Type className="h-5 w-5" />;
   if (category === "developer-tools") return <Code2 className="h-5 w-5" />;
+  if (category === "network-tools") return <Wifi className="h-5 w-5" />;
   return <Wrench className="h-5 w-5" />;
 };
 
 const STATS = [
-  { value: "18+", label: "Free Tools", icon: Wrench },
+  { value: "20+", label: "Free Tools", icon: Wrench },
   { value: "100%", label: "Client-Side", icon: Shield },
   { value: "0", label: "Data Sent", icon: Globe },
   { value: "∞", label: "Usage Limit", icon: Zap },

@@ -1,6 +1,6 @@
 import { type Metadata } from "next";
 
-export type ToolCategory = "text-tools" | "developer-tools";
+export type ToolCategory = "text-tools" | "developer-tools" | "network-tools";
 
 export interface FAQ {
     question: string;
@@ -28,6 +28,10 @@ export const CATEGORIES: Record<ToolCategory, { name: string; description: strin
     "developer-tools": {
         name: "Developer Tools",
         description: "Essential utilities for developers and programmers.",
+    },
+    "network-tools": {
+        name: "Network Tools",
+        description: "Test your connection speed, check your IP address, and analyze network performance.",
     },
 };
 
@@ -405,6 +409,51 @@ export const toolsData: ToolItem[] = [
             { question: "Can I use the browser's native color picker?", answer: "Yes! Click the 'Pick Color' button on the color preview to open your browser's native color picker. This lets you visually select any color, and all format fields will update automatically." }
         ],
         relatedSlugs: ["mermaid-converter", "json-formatter", "uuid-generator", "unit-converter"]
+    },
+    // ==================== NETWORK TOOLS ====================
+    {
+        slug: "speed-test",
+        name: "Internet Speed Test",
+        description: "Measure your download speed, upload speed, and ping latency instantly.",
+        category: "network-tools",
+        metaTitle: "Internet Speed Test - Check Your Connection Speed Free",
+        metaDescription: "Test your internet speed instantly. Measure download speed, upload speed, and ping latency. Free, accurate, and runs directly in your browser.",
+        howToUse: [
+            "Click the 'Start Test' button to begin measuring your internet connection.",
+            "The test will automatically run through three phases: ping (latency), download speed, and upload speed.",
+            "Wait for all phases to complete — results are displayed in real-time as each phase finishes.",
+            "Review your results showing ping in milliseconds, and download/upload speeds in Mbps. Click 'Test Again' to re-run."
+        ],
+        about: "The Internet Speed Test measures your real-world connection performance by testing three key metrics: ping latency (how responsive your connection is), download speed (how fast you can receive data), and upload speed (how fast you can send data). The test works by transferring data between your browser and our server, using adaptive chunk sizing to ensure accurate results whether you're on a slow mobile connection or a high-speed fiber link. Unlike many speed test tools that rely on third-party servers, this test uses our own endpoints for consistent, reliable measurements. Results are displayed in industry-standard units — milliseconds for ping and megabits per second (Mbps) for throughput. The test uses incompressible random data to prevent network compression from inflating results, and runs multiple iterations to reduce variance from momentary network fluctuations.",
+        faqs: [
+            { question: "How accurate is this speed test?", answer: "The test provides a good approximation of your real-world internet speed. It uses multiple iterations with adaptive chunk sizing and incompressible data for accurate measurements. Results may vary slightly between tests due to network congestion, server load, and other factors — this is normal for any speed test." },
+            { question: "What is a good internet speed?", answer: "For general browsing and streaming, 25 Mbps download is sufficient. For 4K video streaming, aim for 50+ Mbps. For gaming, low ping (under 30ms) matters more than raw speed. For remote work with video calls, 10+ Mbps upload is recommended." },
+            { question: "Why is my speed lower than what my ISP advertises?", answer: "ISPs advertise 'up to' speeds under ideal conditions. Real-world speeds are affected by Wi-Fi interference, network congestion, distance from the router, the number of connected devices, and time of day. Try testing with a wired Ethernet connection for the most accurate comparison." },
+            { question: "What does ping/latency mean?", answer: "Ping (or latency) measures the round-trip time for data to travel from your device to the server and back, measured in milliseconds (ms). Lower ping means a more responsive connection. Under 20ms is excellent, 20-50ms is good, 50-100ms is acceptable, and over 100ms may cause noticeable lag in real-time applications." }
+        ],
+        relatedSlugs: ["ip-check", "json-formatter", "base64-encode-decode"]
+    },
+    {
+        slug: "ip-check",
+        name: "IP Address Checker",
+        description: "Check your public IP address, location, ISP, and network details.",
+        category: "network-tools",
+        metaTitle: "IP Address Checker - Find Your IP & Location Free",
+        metaDescription: "Check your public IP address, geolocation, ISP, timezone, and network details instantly. Free IP lookup tool with no registration required.",
+        howToUse: [
+            "Your IP address and network information are loaded automatically when you open this tool.",
+            "View your public IP address, country, city, ISP, timezone, coordinates, and other network details.",
+            "Click the copy button next to your IP address to copy it to your clipboard.",
+            "Use the 'Refresh' button to fetch updated information if your network has changed."
+        ],
+        about: "The IP Address Checker instantly reveals your public IP address along with detailed geolocation and network information. When you connect to the internet, your ISP assigns you a public IP address that websites and services use to communicate with your device. This tool looks up that address and provides associated metadata including your approximate geographic location (country, city, region), your Internet Service Provider (ISP), timezone, geographic coordinates, and autonomous system (AS) number. This information is useful for troubleshooting network issues, verifying VPN connections, checking your geographic IP location, or understanding how websites see your connection. The tool fetches data from a geolocation API and displays it in an easy-to-read format with one-click copy functionality.",
+        faqs: [
+            { question: "Is my IP address the same as my location?", answer: "Your IP address reveals your approximate location (usually city-level accuracy), not your exact address. IP geolocation databases map IP ranges to geographic regions based on ISP allocation data. The accuracy varies — it's typically within 10-50 miles of your actual location." },
+            { question: "Why does my IP location show a different city?", answer: "IP geolocation is based on where your ISP routes traffic, not your physical location. Your ISP may route your connection through a hub in a nearby city. VPN and proxy users will see the location of their VPN/proxy server instead." },
+            { question: "What can someone do with my IP address?", answer: "An IP address alone provides limited information — approximate location and ISP. It cannot reveal your identity, exact address, or personal data. However, it's still good practice to use a VPN on public networks for added privacy." },
+            { question: "How do I change my IP address?", answer: "You can change your visible IP by using a VPN service, connecting to a different network, or restarting your router (which may assign a new dynamic IP). Most residential ISPs use dynamic IP addresses that change periodically on their own." }
+        ],
+        relatedSlugs: ["speed-test", "json-formatter", "url-encode-decode"]
     },
 ];
 
