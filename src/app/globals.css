@@ -261,6 +261,12 @@
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
 }
 
+/* Disable all backdrop-filters when search overlay is open to prevent blur rectangles */
+html.search-open [class*="backdrop-blur"] {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
 /* Stats counter glow */
 .stat-card {
   position: relative;

@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { CATEGORIES, getToolsByCategory, ToolCategory } from "@/lib/tools-data";
+import { SearchDialog } from "./SearchDialog";
 
 export function Header() {
     const [mobileOpen, setMobileOpen] = useState(false);
@@ -88,10 +89,15 @@ export function Header() {
                             About
                         </Link>
 
+                        <SearchDialog />
+
                     </nav>
 
-                    {/* Right: Mobile Toggle */}
+                    {/* Right: Search + Mobile Toggle */}
                     <div className="flex items-center justify-end gap-2 pointer-events-auto">
+                        <div className="md:hidden">
+                            <SearchDialog />
+                        </div>
                         <button
                             onClick={() => setMobileOpen(!mobileOpen)}
                             className="md:hidden p-2.5 rounded-full border border-white/25 backdrop-blur-md transition-all text-white hover:shadow-lg"
