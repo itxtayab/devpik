@@ -30,52 +30,14 @@ function QRCode({ text, size = 200 }: { text: string; size?: number }) {
     useEffect(() => {
         const canvas = canvasRef.current;
         if (!canvas) return;
-        const ctx = canvas.getContext("2d");
-        if (!ctx) return;
 
-        // Simple QR-like display using a data URL approach
-        // For a real QR code we'd use a library, but let's generate via an API-free approach
-        const moduleCount = 21;
-        const cellSize = Math.floor(size / moduleCount);
-        canvas.width = cellSize * moduleCount;
-        canvas.height = cellSize * moduleCount;
-
-        ctx.fillStyle = "#ffffff";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        // Generate a deterministic pattern from the text
-        ctx.fillStyle = "#000000";
-        const bytes = new TextEncoder().encode(text);
-        let hash = 0;
-        for (const b of bytes) hash = ((hash << 5) - hash + b) | 0;
-
-        // Draw finder patterns (3 corners)
-        const drawFinder = (x: number, y: number) => {
-            for (let i = 0; i < 7; i++) {
-                for (let j = 0; j < 7; j++) {
-                    if (i === 0 || i === 6 || j === 0 || j === 6 || (i >= 2 && i <= 4 && j >= 2 && j <= 4)) {
-                        ctx.fillRect((x + j) * cellSize, (y + i) * cellSize, cellSize, cellSize);
-                    }
-                }
-            }
-        };
-
-        drawFinder(0, 0);
-        drawFinder(moduleCount - 7, 0);
-        drawFinder(0, moduleCount - 7);
-
-        // Fill data area with deterministic pattern
-        let seed = Math.abs(hash);
-        for (let row = 0; row < moduleCount; row++) {
-            for (let col = 0; col < moduleCount; col++) {
-                // Skip finder pattern areas
-                if ((row < 8 && col < 8) || (row < 8 && col >= moduleCount - 8) || (row >= moduleCount - 8 && col < 8)) continue;
-                seed = (seed * 1103515245 + 12345) & 0x7fffffff;
-                if (seed % 3 !== 0) {
-                    ctx.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
-                }
-            }
-        }
+        import("qrcode").then((QRCodeLib) => {
+            QRCodeLib.toCanvas(canvas, text, {
+                width: size,
+                margin: 2,
+                color: { dark: "#000000", light: "#ffffff" },
+            });
+        });
     }, [text, size]);
 
     return <canvas ref={canvasRef} className="rounded-lg border border-border" />;
