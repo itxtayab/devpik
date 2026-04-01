@@ -410,6 +410,29 @@ export const toolsData: ToolItem[] = [
         ],
         relatedSlugs: ["mermaid-converter", "json-formatter", "uuid-generator", "unit-converter"]
     },
+    {
+        slug: "regex-tester",
+        name: "Regex Tester",
+        description: "Test and debug regular expressions in real-time with match highlighting.",
+        category: "developer-tools",
+        metaTitle: "Free Regex Tester & Debugger - Test Regular Expressions Online | DevPik",
+        metaDescription: "Test and debug regular expressions in real-time. See matches highlighted instantly, with match details, group captures, and a quick reference cheat sheet. Free, no signup required.",
+        howToUse: [
+            "Enter your regular expression pattern in the regex input field.",
+            "Select the appropriate flags (global, case insensitive, multiline, etc.).",
+            "Type or paste your test string in the textarea below.",
+            "View highlighted matches instantly, with detailed match information including capture groups and positions."
+        ],
+        about: "The Regex Tester is a free online tool for testing and debugging regular expressions in real-time. As you type your pattern and test string, matches are highlighted instantly with detailed information about each match including capture groups and character positions. Whether you're validating email formats, parsing log files, or extracting data from text, this tool helps you build and verify regex patterns quickly. Includes a built-in cheat sheet for quick reference.",
+        faqs: [
+            { question: "What regex flavor does this tool use?", answer: "This tool uses JavaScript's native RegExp engine, which supports ECMAScript regex syntax including lookahead, lookbehind, named groups, and Unicode properties." },
+            { question: "Does my data leave my browser?", answer: "No. All regex processing happens entirely in your browser using JavaScript. No data is sent to any server." },
+            { question: "What do the regex flags mean?", answer: "g (global) finds all matches instead of stopping at the first. i (case insensitive) ignores letter casing. m (multiline) makes ^ and $ match line starts/ends. s (dotAll) makes . match newlines. u (unicode) enables full Unicode matching." },
+            { question: "Can I test regex for other languages like Python or PHP?", answer: "This tool uses JavaScript regex syntax, which is very similar to most languages. However, some advanced features like possessive quantifiers or recursive patterns (available in PCRE/PHP) are not supported in JavaScript." },
+            { question: "Is there a limit on the test string size?", answer: "There's no hard limit, but very large strings (100,000+ characters) may slow down real-time highlighting. For best performance, test with representative samples." }
+        ],
+        relatedSlugs: ["json-formatter", "slug-generator", "text-diff", "code-share"]
+    },
     // ==================== NETWORK TOOLS ====================
     {
         slug: "speed-test",
@@ -454,6 +477,29 @@ export const toolsData: ToolItem[] = [
             { question: "How do I change my IP address?", answer: "You can change your visible IP by using a VPN service, connecting to a different network, or restarting your router (which may assign a new dynamic IP). Most residential ISPs use dynamic IP addresses that change periodically on their own." }
         ],
         relatedSlugs: ["speed-test", "json-formatter", "url-encode-decode"]
+    },
+    {
+        slug: "dns-lookup",
+        name: "DNS Lookup",
+        description: "Query DNS records for any domain — A, AAAA, CNAME, MX, TXT, NS, and SOA.",
+        category: "network-tools",
+        metaTitle: "Free DNS Lookup Tool - Query DNS Records Online | DevPik",
+        metaDescription: "Look up DNS records for any domain. Query A, AAAA, CNAME, MX, TXT, NS, and SOA records instantly. Free DNS checker tool with no signup required.",
+        howToUse: [
+            "Enter the domain name you want to look up (e.g., example.com).",
+            "Select the DNS record type you want to query, or choose 'ALL' to see all records.",
+            "Click 'Lookup' to query the DNS records.",
+            "View the results organized by record type, showing values, TTLs, and other details."
+        ],
+        about: "The DNS Lookup tool lets you query DNS records for any domain name. DNS (Domain Name System) is the internet's phone book — it translates human-readable domain names into IP addresses and other records that computers use to communicate. This tool queries public DNS servers to retrieve A, AAAA, CNAME, MX, TXT, NS, and SOA records, helping you troubleshoot DNS issues, verify configurations, or research domain infrastructure.",
+        faqs: [
+            { question: "What are DNS records?", answer: "DNS records are entries in the Domain Name System that map domain names to various types of data. They are the backbone of the internet's naming system, translating human-readable domains like example.com into IP addresses and other information that computers use to route traffic." },
+            { question: "What is an A record?", answer: "An A record maps a domain name to an IPv4 address. It's the most fundamental DNS record type and is what allows browsers to find the server hosting a website." },
+            { question: "What is an MX record?", answer: "MX (Mail Exchange) records specify the mail servers responsible for receiving email for a domain, along with priority values. Lower priority numbers indicate higher preference." },
+            { question: "What is a TXT record?", answer: "TXT records store arbitrary text data associated with a domain. They're commonly used for email authentication (SPF, DKIM, DMARC), domain verification, and other purposes." },
+            { question: "Which DNS server does this tool query?", answer: "This tool queries Google's public DNS servers (8.8.8.8) via their DNS-over-HTTPS API, providing fast and reliable results from one of the world's largest DNS resolvers." }
+        ],
+        relatedSlugs: ["ip-check", "speed-test", "url-shortener", "url-encode-decode"]
     },
     // ==================== BACKEND-POWERED TOOLS ====================
     {

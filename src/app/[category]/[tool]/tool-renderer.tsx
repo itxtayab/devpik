@@ -23,9 +23,12 @@ const MermaidConverter = dynamic(() => import("@/components/tools/MermaidConvert
 const UnitConverter = dynamic(() => import("@/components/tools/UnitConverter"), { loading: () => <Loader /> });
 const ColorConverter = dynamic(() => import("@/components/tools/ColorConverter"), { loading: () => <Loader /> });
 
+const RegexTester = dynamic(() => import("@/components/tools/RegexTester"), { loading: () => <Loader /> });
+
 // Network Tools
 const SpeedTest = dynamic(() => import("@/components/tools/SpeedTest"), { loading: () => <Loader /> });
 const IpCheck = dynamic(() => import("@/components/tools/IpCheck"), { loading: () => <Loader /> });
+const DnsLookup = dynamic(() => import("@/components/tools/DnsLookup"), { loading: () => <Loader /> });
 
 // Backend-Powered Tools
 const CodeShare = dynamic(() => import("@/components/tools/CodeShare"), { loading: () => <Loader /> });
@@ -75,10 +78,14 @@ export function ToolRenderer({ slug }: { slug: string }) {
             return <UnitConverter />;
         case "color-converter":
             return <ColorConverter />;
+        case "regex-tester":
+            return <RegexTester />;
         case "speed-test":
             return <SpeedTest />;
         case "ip-check":
             return <IpCheck />;
+        case "dns-lookup":
+            return <DnsLookup />;
         case "code-share":
             return <CodeShare />;
         case "url-shortener":

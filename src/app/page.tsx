@@ -23,7 +23,7 @@ const CategoryIcon = ({ category }: { category: ToolCategory }) => {
 };
 
 const STATS = [
-  { value: "20+", label: "Free Tools", icon: Wrench },
+  { value: "24+", label: "Free Tools", icon: Wrench },
   { value: "100%", label: "Client-Side", icon: Shield },
   { value: "0", label: "Data Sent", icon: Globe },
   { value: "∞", label: "Usage Limit", icon: Zap },
@@ -107,7 +107,7 @@ export default function Home() {
               </h1>
 
               <p className="mt-4 max-w-xl text-base md:text-lg leading-relaxed text-muted-foreground opacity-0 animate-fade-in-up stagger-2">
-                Explore 20+ free online tools for text processing, code formatting, network testing,
+                Explore 24+ free online tools for text processing, code formatting, network testing,
                 and developer utilities — all running 100% in your browser.
               </p>
 
@@ -248,7 +248,7 @@ export default function Home() {
                     {/* Stats mini row */}
                     <div className="grid grid-cols-3 gap-2 pt-1">
                       <div className="rounded-lg bg-white/5 border border-white/10 p-2.5 text-center">
-                        <div className="text-lg font-bold text-cyan-400">18+</div>
+                        <div className="text-lg font-bold text-cyan-400">24+</div>
                         <div className="text-[9px] text-white/40 font-medium">Tools</div>
                       </div>
                       <div className="rounded-lg bg-white/5 border border-white/10 p-2.5 text-center">
