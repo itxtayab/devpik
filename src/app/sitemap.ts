@@ -30,7 +30,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.9,
     }));
 
-    // Blog routes — static
+    // Blog listing
     const blogListingRoute = {
         url: `${baseUrl}/blog`,
         lastModified: new Date(),
@@ -38,6 +38,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.8,
     };
 
+    // Static blog routes
     const staticBlogRoutes = getAllBlogSlugs().map((slug) => ({
         url: `${baseUrl}/blog/${slug}`,
         lastModified: new Date(),
@@ -45,28 +46,47 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.7,
     }));
 
-    // Blog routes — Supabase
-    let supabaseBlogRoutes: MetadataRoute.Sitemap = [];
+    // Dynamic blog routes from posts table + paste routes
+    let dynamicBlogRoutes: MetadataRoute.Sitemap = [];
+    let pasteRoutes: MetadataRoute.Sitemap = [];
+
     try {
         const supabase = await createClient();
-        const { data } = await supabase
-            .from("blogs")
-            .select("slug, updated_at")
-            .eq("is_published", true);
 
-        if (data) {
+        // Published posts from new posts table
+        const { data: posts } = await supabase
+            .from("posts")
+            .select("slug, updated_at")
+            .eq("status", "published");
+
+        if (posts) {
             const staticSlugs = new Set(getAllBlogSlugs());
-            supabaseBlogRoutes = data
-                .filter((b) => !staticSlugs.has(b.slug))
-                .map((b) => ({
-                    url: `${baseUrl}/blog/${b.slug}`,
-                    lastModified: new Date(b.updated_at),
+            dynamicBlogRoutes = posts
+                .filter((p) => !staticSlugs.has(p.slug))
+                .map((p) => ({
+                    url: `${baseUrl}/blog/${p.slug}`,
+                    lastModified: new Date(p.updated_at),
                     changeFrequency: "monthly" as const,
                     priority: 0.7,
                 }));
         }
+
+        // Non-expired pastes
+        const { data: pastes } = await supabase
+            .from("pastes")
+            .select("short_code, created_at")
+            .or(`expires_at.is.null,expires_at.gt.${new Date().toISOString()}`);
+
+        if (pastes) {
+            pasteRoutes = pastes.map((p) => ({
+                url: `${baseUrl}/p/${p.short_code}`,
+                lastModified: new Date(p.created_at),
+                changeFrequency: "never" as const,
+                priority: 0.3,
+            }));
+        }
     } catch {
-        // Silently fail — still use static slugs
+        // Silently fail
     }
 
     return [
@@ -75,6 +95,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         ...toolRoutes,
         blogListingRoute,
         ...staticBlogRoutes,
-        ...supabaseBlogRoutes,
+        ...dynamicBlogRoutes,
+        ...pasteRoutes,
     ];
 }

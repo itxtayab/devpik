@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ChevronDown, Menu, X, Sparkles } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import { CATEGORIES, getToolsByCategory, ToolCategory } from "@/lib/tools-data";
 
 export function Header() {
@@ -88,19 +88,6 @@ export function Header() {
                             About
                         </Link>
 
-                        <div className="w-px h-5 bg-white/20 mx-1" />
-
-                        <Link
-                            href="/"
-                            className="flex items-center gap-1.5 text-white font-semibold px-3.5 py-1.5 rounded-full transition-all"
-                            style={{
-                                background: "linear-gradient(135deg, #00D4FF 0%, #0080CC 100%)",
-                                boxShadow: "0 2px 12px rgba(0, 212, 255, 0.3)",
-                            }}
-                        >
-                            <Sparkles className="h-3.5 w-3.5" />
-                            AI Tools
-                        </Link>
                     </nav>
 
                     {/* Right: Mobile Toggle */}
@@ -179,20 +166,6 @@ export function Header() {
                             About
                         </Link>
 
-                        <div className="section-divider my-3" />
-
-                        <Link
-                            href="/"
-                            onClick={() => setMobileOpen(false)}
-                            className="flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl text-base font-bold text-white transition-all shimmer-btn"
-                            style={{
-                                background: "linear-gradient(135deg, #003F87 0%, #00D4FF 100%)",
-                                boxShadow: "0 4px 20px rgba(0, 212, 255, 0.25)",
-                            }}
-                        >
-                            <Sparkles className="h-4 w-4" />
-                            Explore AI Tools
-                        </Link>
                     </nav>
                 </div>
             )}

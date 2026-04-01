@@ -5,6 +5,8 @@ import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { ToolRenderer } from "./tool-renderer";
 import { StructuredData, generateSoftwareApplicationSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/components/seo/StructuredData";
+import { ToolFeedback } from "@/components/ToolFeedback";
+import { ToolAnalytics } from "@/components/ToolAnalytics";
 
 interface Props {
     params: Promise<{ category: string; tool: string }>;
@@ -57,6 +59,7 @@ export default async function ToolPage(props: Props) {
 
     return (
         <div className="flex flex-col gap-10 pb-12">
+            <ToolAnalytics toolSlug={tool.slug} />
             <StructuredData data={appSchema} />
             <StructuredData data={breadcrumbSchema} />
             {faqSchema && <StructuredData data={faqSchema} />}
@@ -132,6 +135,9 @@ export default async function ToolPage(props: Props) {
                     </div>
                 </section>
             )}
+
+            {/* Tool Feedback */}
+            <ToolFeedback toolSlug={tool.slug} />
         </div>
     );
 }

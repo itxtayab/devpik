@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { ContactForm } from "./contact-form";
 
 export const metadata: Metadata = {
     title: "Contact Us - DevPik",
@@ -15,41 +16,43 @@ export default function ContactPage() {
                 </p>
             </div>
 
-            <div className="prose prose-slate max-w-none">
-                <p className="text-lg">
-                    We are constantly working to improve DevPik and add new utilities that our users need.
-                    If you have any feedback or feature requests, please reach out to us.
-                </p>
-
-                <div className="mt-8 rounded-xl border border-border bg-card p-6 shadow-sm">
-                    <h2 className="mt-0 text-xl font-semibold">Get in Touch</h2>
-                    <p className="mb-6 text-muted-foreground">
-                        You can reach us directly via email. We aim to respond to all inquiries within 24-48 hours.
-                    </p>
-
-                    <div className="space-y-4">
-                        <div>
-                            <strong className="block text-sm text-muted-foreground">General Inquiries &amp; Support</strong>
-                            <a href="mailto:founders@mergemain.com" className="text-primary hover:underline">
-                                founders@mergemain.com
-                            </a>
-                        </div>
-
-                        <div>
-                            <strong className="block text-sm text-muted-foreground">Business &amp; Partnerships</strong>
-                            <a href="mailto:founders@mergemain.com" className="text-primary hover:underline">
-                                founders@mergemain.com
-                            </a>
-                        </div>
-                    </div>
+            <div className="grid gap-8 md:grid-cols-2">
+                <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
+                    <h2 className="text-xl font-semibold mb-4">Send us a message</h2>
+                    <ContactForm />
                 </div>
 
-                <h3 className="mt-10">Frequently Asked Questions</h3>
-                <p>
-                    Before reaching out, please note that all our tools are free to use and do not require
-                    registration. If a tool isn&apos;t working as expected, try clearing your browser cache or
-                    disabling extensions that might interfere with JavaScript execution.
-                </p>
+                <div className="space-y-6">
+                    <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
+                        <h2 className="text-xl font-semibold mb-4">Get in Touch</h2>
+                        <p className="text-sm text-muted-foreground mb-6">
+                            You can also reach us directly via email. We aim to respond within 24-48 hours.
+                        </p>
+                        <div className="space-y-4">
+                            <div>
+                                <strong className="block text-sm text-muted-foreground">General Inquiries &amp; Support</strong>
+                                <a href="mailto:founders@mergemain.com" className="text-primary hover:underline">
+                                    founders@mergemain.com
+                                </a>
+                            </div>
+                            <div>
+                                <strong className="block text-sm text-muted-foreground">Business &amp; Partnerships</strong>
+                                <a href="mailto:founders@mergemain.com" className="text-primary hover:underline">
+                                    founders@mergemain.com
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
+                        <h3 className="font-semibold mb-2">Before reaching out</h3>
+                        <p className="text-sm text-muted-foreground">
+                            All our tools are free to use and do not require registration.
+                            If a tool isn&apos;t working as expected, try clearing your browser cache or
+                            disabling extensions that might interfere with JavaScript execution.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     );

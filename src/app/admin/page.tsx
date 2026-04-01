@@ -2,15 +2,17 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Lock, User, Eye, EyeOff, AlertCircle } from "lucide-react";
+import { Lock, Mail, Eye, EyeOff, AlertCircle } from "lucide-react";
+import useSupabaseBrowser from "@/lib/supabase/client";
 
 export default function AdminLoginPage() {
-    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const router = useRouter();
+    const supabase = useSupabaseBrowser();
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -18,16 +20,13 @@ export default function AdminLoginPage() {
         setLoading(true);
 
         try {
-            const res = await fetch("/api/admin/auth", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ username, password }),
-            });
-
-            if (res.ok) {
-                router.push("/admin/dashboard");
+            const { error } = await supabase.auth.signInWithPassword({ email, password });
+            if (error) {
+                setError(error.message);
             } else {
-                setError("Invalid username or password");
+                // Full page navigation to ensure cookies are sent with the request
+                window.location.href = "/admin/dashboard";
+                return;
             }
         } catch {
             setError("Something went wrong. Please try again.");
@@ -38,20 +37,12 @@ export default function AdminLoginPage() {
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0a0f1e] via-[#0d1b3e] to-[#001a3d] relative overflow-hidden">
-            {/* Background effects */}
             <div className="absolute inset-0">
-                <div
-                    className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full opacity-10"
-                    style={{ background: "radial-gradient(circle, #003F87 0%, transparent 70%)" }}
-                />
-                <div
-                    className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full opacity-10"
-                    style={{ background: "radial-gradient(circle, #00D4FF 0%, transparent 70%)" }}
-                />
+                <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full opacity-10" style={{ background: "radial-gradient(circle, #003F87 0%, transparent 70%)" }} />
+                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full opacity-10" style={{ background: "radial-gradient(circle, #00D4FF 0%, transparent 70%)" }} />
             </div>
 
             <div className="relative z-10 w-full max-w-md mx-4">
-                {/* Logo/Header */}
                 <div className="text-center mb-8">
                     <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-[#003F87] to-[#006BD6] mb-4 shadow-lg shadow-blue-500/20">
                         <Lock className="w-8 h-8 text-white" />
@@ -60,11 +51,7 @@ export default function AdminLoginPage() {
                     <p className="text-white/50 text-sm mt-1">Sign in to manage your content</p>
                 </div>
 
-                {/* Login Form */}
-                <form
-                    onSubmit={handleLogin}
-                    className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl"
-                >
+                <form onSubmit={handleLogin} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl">
                     {error && (
                         <div className="flex items-center gap-2 bg-red-500/10 border border-red-500/20 text-red-400 rounded-xl px-4 py-3 mb-6 text-sm">
                             <AlertCircle className="w-4 h-4 shrink-0" />
@@ -72,24 +59,22 @@ export default function AdminLoginPage() {
                         </div>
                     )}
 
-                    {/* Username */}
                     <div className="mb-5">
-                        <label className="block text-white/70 text-sm font-medium mb-2">Username</label>
+                        <label className="block text-white/70 text-sm font-medium mb-2">Email</label>
                         <div className="relative">
-                            <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+                            <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
                             <input
-                                type="text"
-                                value={username}
-                                onChange={(e) => setUsername(e.target.value)}
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                                 className="w-full bg-white/5 border border-white/10 rounded-xl pl-10 pr-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-[#003F87] focus:ring-1 focus:ring-[#003F87] transition-all"
-                                placeholder="Enter username"
+                                placeholder="Enter email"
                                 required
                                 autoFocus
                             />
                         </div>
                     </div>
 
-                    {/* Password */}
                     <div className="mb-7">
                         <label className="block text-white/70 text-sm font-medium mb-2">Password</label>
                         <div className="relative">
@@ -102,24 +87,17 @@ export default function AdminLoginPage() {
                                 placeholder="Enter password"
                                 required
                             />
-                            <button
-                                type="button"
-                                onClick={() => setShowPassword(!showPassword)}
-                                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-white/30 hover:text-white/60 transition-colors"
-                            >
+                            <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3.5 top-1/2 -translate-y-1/2 text-white/30 hover:text-white/60 transition-colors">
                                 {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                             </button>
                         </div>
                     </div>
 
-                    {/* Submit */}
                     <button
                         type="submit"
                         disabled={loading}
                         className="w-full py-3 rounded-xl font-semibold text-white transition-all hover:shadow-lg hover:shadow-blue-500/25 disabled:opacity-50 disabled:cursor-not-allowed"
-                        style={{
-                            background: "linear-gradient(135deg, #003F87 0%, #0059B3 50%, #006BD6 100%)",
-                        }}
+                        style={{ background: "linear-gradient(135deg, #003F87 0%, #0059B3 50%, #006BD6 100%)" }}
                     >
                         {loading ? (
                             <span className="inline-flex items-center gap-2">
@@ -129,14 +107,12 @@ export default function AdminLoginPage() {
                                 </svg>
                                 Signing in...
                             </span>
-                        ) : (
-                            "Sign In"
-                        )}
+                        ) : "Sign In"}
                     </button>
                 </form>
 
                 <p className="text-center text-white/20 text-xs mt-6">
-                    DevPik Admin Panel • Not indexed by search engines
+                    DevPik Admin Panel
                 </p>
             </div>
         </div>

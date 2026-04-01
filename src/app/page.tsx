@@ -8,16 +8,11 @@ import {
   Shield,
   Zap,
   Gift,
-  Brain,
-  Cpu,
   Globe,
   Newspaper,
   Wifi,
   Wrench,
   ArrowUpRight,
-  TrendingUp,
-  Bot,
-  Layers,
 } from "lucide-react";
 
 const CategoryIcon = ({ category }: { category: ToolCategory }) => {
@@ -53,13 +48,6 @@ const FEATURES = [
     description: "No premium tiers, no signup walls, no hidden fees. All tools are completely free to use with no limits.",
     color: "#00D4FF",
   },
-];
-
-const AI_TOPICS = [
-  { title: "AI Image Generators", desc: "Discover the best AI tools for generating images, art, and visual content", icon: Brain },
-  { title: "AI Writing Tools", desc: "Explore AI-powered writing assistants, humanizers, and content generators", icon: Bot },
-  { title: "AI Code Assistants", desc: "Find the top AI tools for code generation, review, and debugging", icon: Cpu },
-  { title: "AI Trends & News", desc: "Stay updated with the latest breakthroughs in artificial intelligence", icon: TrendingUp },
 ];
 
 const BLOG_POSTS = [
@@ -108,19 +96,19 @@ export default function Home() {
               <div className="rounded-full px-4 py-1.5 text-sm font-medium flex items-center gap-2 border shadow-sm mb-5 opacity-0 animate-fade-in-up"
                 style={{ borderColor: "rgba(0, 212, 255, 0.3)", background: "rgba(0, 212, 255, 0.06)" }}>
                 <Sparkles className="h-4 w-4" style={{ color: "#00D4FF" }} />
-                <span className="text-muted-foreground">Your AI-Powered Digital Toolkit</span>
+                <span className="text-muted-foreground">Your Free Developer Toolkit</span>
               </div>
 
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] xl:text-6xl font-extrabold tracking-tight leading-[1.12] opacity-0 animate-fade-in-up stagger-1">
-                <span style={{ color: "#0f172a" }}>Discover the Best </span>
-                <span className="gradient-text">AI Tools</span>
-                <span style={{ color: "#0f172a" }}> & Free </span>
-                <span className="gradient-text">Developer Resources</span>
+                <span style={{ color: "#0f172a" }}>Free Online </span>
+                <span className="gradient-text">Developer Tools</span>
+                <span style={{ color: "#0f172a" }}> & </span>
+                <span className="gradient-text">Resources</span>
               </h1>
 
               <p className="mt-4 max-w-xl text-base md:text-lg leading-relaxed text-muted-foreground opacity-0 animate-fade-in-up stagger-2">
-                Explore free online tools, AI-powered utilities, in-depth blogs about the newest AI technology,
-                and curated resources for developers and creators — all in one place.
+                Explore 20+ free online tools for text processing, code formatting, network testing,
+                and developer utilities — all running 100% in your browser.
               </p>
 
               {/* CTA Buttons */}
@@ -181,9 +169,9 @@ export default function Home() {
               <div className="absolute -top-3 right-8 z-20 animate-float" style={{ animationDelay: "1s" }}>
                 <div className="glass-card rounded-xl px-3.5 py-2 flex items-center gap-2 text-xs font-semibold shadow-lg">
                   <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: "linear-gradient(135deg, #0059B3, #00D4FF)" }}>
-                    <Brain className="h-3.5 w-3.5 text-white" />
+                    <Code2 className="h-3.5 w-3.5 text-white" />
                   </div>
-                  AI Tools
+                  Regex Tester
                 </div>
               </div>
 
@@ -248,13 +236,13 @@ export default function Home() {
 
                     <div className="rounded-xl p-3.5 border border-white/10 bg-white/5 flex items-center gap-3">
                       <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style={{ background: "linear-gradient(135deg, #00D4FF33, #003F8733)" }}>
-                        <Bot className="h-4 w-4 text-cyan-400" />
+                        <Wifi className="h-4 w-4 text-cyan-400" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="text-sm font-semibold text-white">AI Image Generator</div>
-                        <div className="text-[11px] text-white/40">Generate images with AI — coming soon</div>
+                        <div className="text-sm font-semibold text-white">DNS Lookup</div>
+                        <div className="text-[11px] text-white/40">Query DNS records instantly</div>
                       </div>
-                      <Sparkles className="h-4 w-4 text-cyan-400/50 shrink-0" />
+                      <ArrowRight className="h-4 w-4 text-white/30 shrink-0" />
                     </div>
 
                     {/* Stats mini row */}
@@ -346,53 +334,15 @@ export default function Home() {
         })}
       </section>
 
-      {/* ===== AI TOOLS COMING SOON ===== */}
-      <section className="py-16 md:py-20 relative">
-        <div className="section-divider mb-14" />
-
-        <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium mb-4"
-            style={{ background: "rgba(0, 212, 255, 0.08)", border: "1px solid rgba(0, 212, 255, 0.2)" }}>
-            <Bot className="h-4 w-4" style={{ color: "#00D4FF" }} />
-            <span className="text-muted-foreground">Coming Soon</span>
-          </div>
-          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight gradient-text-hero pb-1">
-            Explore AI Tools & Technology
-          </h2>
-          <p className="text-muted-foreground mt-3 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
-            We&apos;re building a comprehensive directory of AI tools, detailed reviews, comparisons,
-            and guides to help you navigate the rapidly evolving world of artificial intelligence.
-          </p>
-        </div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {AI_TOPICS.map((topic, i) => (
-            <div
-              key={topic.title}
-              className="glass-card rounded-xl p-6 transition-all hover:scale-[1.02] cursor-default group"
-            >
-              <div className="p-2.5 rounded-lg w-fit mb-4 transition-all group-hover:scale-110"
-                style={{
-                  background: "linear-gradient(135deg, rgba(0, 63, 135, 0.1), rgba(0, 212, 255, 0.1))",
-                }}>
-                <topic.icon className="h-5 w-5" style={{ color: "#003F87" }} />
-              </div>
-              <h3 className="font-bold text-base tracking-tight mb-2">{topic.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{topic.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* ===== BLOG PREVIEW ===== */}
       <section className="py-16 md:py-20">
         <div className="section-divider mb-14" />
 
         <div className="flex items-end justify-between mb-8">
           <div>
-            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">Latest AI & Tech Insights</h2>
+            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">Latest Developer Insights</h2>
             <p className="text-muted-foreground mt-2 text-base">
-              Stay ahead with our deep dives into AI tools, developer workflows, and emerging tech.
+              Practical guides, tutorials, and deep dives into the tools and concepts developers use every day.
             </p>
           </div>
           <Link href="/blog" className="hidden md:flex items-center gap-1.5 text-sm font-semibold hover:gap-2.5 transition-all" style={{ color: "#003F87" }}>
@@ -489,36 +439,35 @@ export default function Home() {
 
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight mb-6">
-            The Ultimate Platform for AI Tools & Developer Resources
+            The Ultimate Platform for Free Developer Tools
           </h2>
 
           <div className="prose prose-slate max-w-none text-muted-foreground space-y-4 text-sm md:text-base leading-relaxed">
             <p>
-              <strong className="text-foreground">DevPik</strong> is your one-stop destination for discovering the best
-              <strong className="text-foreground"> AI tools</strong>, free online developer utilities, and staying updated with the latest
-              <strong className="text-foreground"> artificial intelligence technology</strong>. Whether you&apos;re a software developer, content creator,
-              digital marketer, or tech enthusiast, our platform provides everything you need to work smarter and stay ahead.
+              <strong className="text-foreground">DevPik</strong> is your one-stop destination for
+              <strong className="text-foreground"> free online developer tools</strong>, text utilities, and practical tech insights.
+              Whether you&apos;re a software developer, content creator, student, or tech professional, our platform provides
+              everything you need to work smarter and more efficiently.
             </p>
 
             <p>
               Our collection of <strong className="text-foreground">free online tools</strong> includes essential utilities for text processing —
               word counters, case converters, markdown converters, and Lorem Ipsum generators. For developers, we offer JSON formatters,
-              Base64 encoders, JWT decoders, UUID generators, HTML minifiers, Mermaid diagram converters, unit converters, and color code converters.
-              Every tool runs 100% client-side with zero data sent to servers, ensuring maximum privacy and speed.
+              regex testers, Base64 encoders, JWT decoders, UUID generators, HTML minifiers, Mermaid diagram converters, unit converters,
+              and color code converters. Every tool runs 100% client-side with zero data sent to servers, ensuring maximum privacy and speed.
             </p>
 
             <p>
-              Beyond tools, DevPik is building a comprehensive resource hub covering <strong className="text-foreground">AI image generators</strong>,
-              <strong className="text-foreground"> AI writing tools</strong>, <strong className="text-foreground">AI humanizers</strong>,
-              AI code assistants, and more. Our blog features in-depth reviews, comparisons, tutorials, and breaking news about the newest
-              AI technology and tools shaping the future of work. From ChatGPT alternatives to AI-powered development environments,
-              we cover the topics that matter most to modern professionals.
+              For network and infrastructure work, DevPik provides <strong className="text-foreground">DNS lookup</strong>,
+              <strong className="text-foreground"> IP address tools</strong>, and other network utilities that run directly in your browser.
+              Our blog features in-depth tutorials, comparisons, and practical guides covering developer workflows, tooling,
+              and the latest technology trends that matter most to modern professionals.
             </p>
 
             <p>
               Join thousands of developers and creators who rely on DevPik as their daily toolkit. All our tools are free forever,
-              require no signup, and prioritize your privacy. Start exploring today and discover why DevPik is the ultimate digital toolkit
-              for the AI era.
+              require no signup, and prioritize your privacy. Start exploring today and discover why DevPik is the ultimate
+              online toolkit for developers and creators.
             </p>
           </div>
         </div>

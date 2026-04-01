@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { CATEGORIES, getToolsByCategory, ToolCategory } from "@/lib/tools-data";
 import { Mail, Github, Twitter, Linkedin, ArrowRight, Zap } from "lucide-react";
+import { NewsletterForm } from "@/components/NewsletterForm";
 
 export function Footer() {
     const currentYear = new Date().getFullYear();
@@ -18,28 +19,13 @@ export function Footer() {
                         <div className="text-center md:text-left">
                             <h3 className="text-xl md:text-2xl font-bold text-white flex items-center gap-2 justify-center md:justify-start">
                                 <Zap className="h-5 w-5 text-cyan-400" />
-                                Stay Ahead with AI & Dev Insights
+                                Stay Ahead with Developer Insights
                             </h3>
                             <p className="text-white/60 mt-1.5 text-sm md:text-base max-w-md">
-                                Get the latest AI tools, developer resources, and technology updates delivered to your inbox.
+                                Get the latest developer resources, tool updates, and technology insights delivered to your inbox.
                             </p>
                         </div>
-                        <div className="flex gap-2 w-full md:w-auto max-w-md">
-                            <input
-                                type="email"
-                                placeholder="Enter your email"
-                                className="flex-1 md:w-64 rounded-xl px-4 py-3 text-sm bg-white/10 border border-white/20 text-white placeholder:text-white/40 outline-none focus:border-cyan-400/50 focus:bg-white/15 transition-all"
-                            />
-                            <button
-                                className="px-5 py-3 rounded-xl text-sm font-semibold text-white transition-all shimmer-btn whitespace-nowrap"
-                                style={{
-                                    background: "linear-gradient(135deg, #00D4FF 0%, #0080CC 100%)",
-                                    boxShadow: "0 4px 16px rgba(0, 212, 255, 0.3)",
-                                }}
-                            >
-                                Subscribe
-                            </button>
-                        </div>
+                        <NewsletterForm source="footer" />
                     </div>
                 </div>
             </div>
@@ -61,7 +47,7 @@ export function Footer() {
                                 </span>
                             </Link>
                             <p className="text-sm text-muted-foreground leading-relaxed max-w-sm mb-5">
-                                Your go-to platform for free AI tools, developer utilities, and the latest insights on artificial intelligence technology. All tools run 100% client-side — your data never leaves your browser.
+                                Your go-to platform for free developer tools, text utilities, and practical tech insights. All tools run 100% client-side — your data never leaves your browser.
                             </p>
                             <div className="flex items-center gap-3">
                                 <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/30 hover:shadow-md transition-all">
@@ -155,7 +141,7 @@ export function Footer() {
                             © {currentYear} DevPik. All rights reserved. Built with ❤️ for developers & creators.
                         </p>
                         <p className="text-xs text-muted-foreground">
-                            Free AI tools, developer tools, and technology insights.
+                            Free developer tools, text utilities, and technology insights.
                         </p>
                     </div>
                 </div>

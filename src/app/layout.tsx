@@ -12,11 +12,11 @@ const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 export const metadata: Metadata = {
   metadataBase: new URL("https://devpik.com"),
   title: {
-    default: "DevPik - Best Free AI Tools, Developer Utilities & Tech Blog",
+    default: "DevPik - Free Online Developer Tools, Text Utilities & Tech Blog",
     template: "%s | DevPik",
   },
-  description: "Discover the best free AI tools, online developer utilities, and in-depth blogs about the newest AI technology. 18+ tools running 100% client-side — fast, private, and free forever.",
-  keywords: ["AI tools", "free online tools", "developer tools", "AI image generator", "AI humanizer", "AI blog", "AI technology", "free developer tools", "text tools", "JSON formatter", "Base64 encoder", "word counter"],
+  description: "Free online tools for developers and creators. JSON formatter, regex tester, Base64 encoder, word counter, and 20+ more utilities. 100% client-side, no signup required.",
+  keywords: ["free online tools", "developer tools", "JSON formatter", "regex tester", "Base64 encoder", "word counter", "text tools", "code formatter", "free developer tools", "online utilities", "DNS lookup", "JWT decoder"],
   icons: {
     icon: "/logo.png",
     apple: "/logo.png",
@@ -26,21 +26,21 @@ export const metadata: Metadata = {
     siteName: "DevPik",
     type: "website",
     url: "https://devpik.com",
-    title: "DevPik - Best Free AI Tools, Developer Utilities & Tech Blog",
-    description: "Discover the best free AI tools, online developer utilities, and in-depth blogs about the newest AI technology. 18+ tools running 100% client-side.",
+    title: "DevPik - Free Online Developer Tools, Text Utilities & Tech Blog",
+    description: "Free online tools for developers and creators. JSON formatter, regex tester, Base64 encoder, word counter, and 20+ more utilities. 100% client-side.",
     images: [
       {
         url: "https://devpik.com/og-image.png",
         width: 1200,
         height: 630,
-        alt: "DevPik - Free AI Tools & Developer Utilities",
+        alt: "DevPik - Free Developer Tools & Online Utilities",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "DevPik - Best Free AI Tools, Developer Utilities & Tech Blog",
-    description: "Discover the best free AI tools, online developer utilities, and in-depth blogs about the newest AI technology.",
+    title: "DevPik - Free Online Developer Tools, Text Utilities & Tech Blog",
+    description: "Free online tools for developers and creators. JSON formatter, regex tester, Base64 encoder, word counter, and 20+ more utilities.",
     images: ["https://devpik.com/og-image.png"],
   },
   robots: {
@@ -59,7 +59,7 @@ const organizationSchema = {
   name: "DevPik",
   url: "https://devpik.com",
   logo: "https://devpik.com/logo.png",
-  description: "DevPik is a platform for free AI tools, developer utilities, and technology insights.",
+  description: "DevPik is a platform for free developer tools, text utilities, and technology insights.",
   sameAs: [],
   contactPoint: {
     "@type": "ContactPoint",
@@ -73,7 +73,7 @@ const websiteSchema = {
   "@type": "WebSite",
   name: "DevPik",
   url: "https://devpik.com",
-  description: "Discover the best free AI tools, online developer utilities, and blogs about the newest AI technology.",
+  description: "Free online developer tools, text utilities, and technology insights. 20+ tools running 100% client-side.",
   potentialAction: {
     "@type": "SearchAction",
     target: "https://devpik.com/?q={search_term_string}",

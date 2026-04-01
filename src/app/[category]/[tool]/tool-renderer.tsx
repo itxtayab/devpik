@@ -27,6 +27,10 @@ const ColorConverter = dynamic(() => import("@/components/tools/ColorConverter")
 const SpeedTest = dynamic(() => import("@/components/tools/SpeedTest"), { loading: () => <Loader /> });
 const IpCheck = dynamic(() => import("@/components/tools/IpCheck"), { loading: () => <Loader /> });
 
+// Backend-Powered Tools
+const CodeShare = dynamic(() => import("@/components/tools/CodeShare"), { loading: () => <Loader /> });
+const UrlShortener = dynamic(() => import("@/components/tools/UrlShortener"), { loading: () => <Loader /> });
+
 const Loader = () => (
     <div className="flex h-40 w-full items-center justify-center">
         <Loader2 className="h-8 w-8 animate-spin text-primary" />
@@ -75,6 +79,10 @@ export function ToolRenderer({ slug }: { slug: string }) {
             return <SpeedTest />;
         case "ip-check":
             return <IpCheck />;
+        case "code-share":
+            return <CodeShare />;
+        case "url-shortener":
+            return <UrlShortener />;
         default:
             return <div>Tool implementation not found for slug: {slug}</div>;
     }

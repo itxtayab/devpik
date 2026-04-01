@@ -455,6 +455,49 @@ export const toolsData: ToolItem[] = [
         ],
         relatedSlugs: ["speed-test", "json-formatter", "url-encode-decode"]
     },
+    // ==================== BACKEND-POWERED TOOLS ====================
+    {
+        slug: "code-share",
+        name: "Code Share",
+        description: "Share code snippets online with syntax highlighting and short URLs.",
+        category: "developer-tools",
+        metaTitle: "Free Code Share Tool - Share Code Snippets Online | DevPik",
+        metaDescription: "Share code snippets online for free. Supports 10+ languages with syntax highlighting, expiry options, and shareable short URLs.",
+        howToUse: [
+            "Paste or type your code into the editor.",
+            "Select the programming language and optionally add a title and expiry time.",
+            "Click 'Share Code' to generate a unique shareable link.",
+            "Copy the link and share it with anyone — they'll see your code with syntax highlighting."
+        ],
+        about: "Code Share is a simple, fast way to share code snippets with anyone. Paste your code, choose a language, and get a shareable link instantly. Your snippet is stored securely and can be set to expire after a chosen duration. Perfect for sharing code during pair programming, code reviews, bug reports, or quick collaborations.",
+        faqs: [
+            { question: "How long are shared code snippets stored?", answer: "By default, snippets are stored indefinitely. You can optionally set an expiry time of 1 hour, 24 hours, 7 days, or 30 days when creating a snippet." },
+            { question: "Is there a size limit for code snippets?", answer: "Snippets can be up to 100KB in size, which is more than enough for most code sharing needs." },
+            { question: "Can I edit a shared snippet after creating it?", answer: "No, shared snippets are immutable once created. You can create a new snippet with the updated code." }
+        ],
+        relatedSlugs: ["json-formatter", "html-minifier", "markdown-converter", "url-shortener"]
+    },
+    {
+        slug: "url-shortener",
+        name: "URL Shortener",
+        description: "Shorten long URLs into clean, shareable short links with QR codes.",
+        category: "developer-tools",
+        metaTitle: "Free URL Shortener - Shorten Links Online | DevPik",
+        metaDescription: "Shorten long URLs for free. Get clean short links with QR code generation, click tracking, and optional expiry dates.",
+        howToUse: [
+            "Paste your long URL into the input field.",
+            "Optionally set an expiry date for the short link.",
+            "Click 'Shorten URL' to generate your short link.",
+            "Copy the short URL or scan the QR code to share it."
+        ],
+        about: "The URL Shortener transforms long, unwieldy URLs into clean, short links that are easy to share. Each shortened URL comes with an auto-generated QR code for easy mobile sharing. Links can be set to expire after a chosen duration. Perfect for sharing links on social media, in emails, presentations, or anywhere character count matters.",
+        faqs: [
+            { question: "How long do shortened URLs last?", answer: "By default, shortened URLs are permanent. You can optionally set an expiry of 1 hour, 24 hours, 7 days, or 30 days." },
+            { question: "Can I track clicks on my shortened URLs?", answer: "Click counts are tracked automatically. The click count is visible when you view the short URL details." },
+            { question: "Is there a limit to how many URLs I can shorten?", answer: "There are no limits on URL shortening. The service is completely free to use." }
+        ],
+        relatedSlugs: ["code-share", "url-encode-decode", "base64-encode-decode", "json-formatter"]
+    },
 ];
 
 export function getToolsByCategory(category: ToolCategory): ToolItem[] {
