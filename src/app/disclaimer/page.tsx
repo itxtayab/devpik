@@ -84,8 +84,8 @@ const sections = [
 
 export default function DisclaimerPage() {
     const breadcrumbSchema = generateBreadcrumbSchema([
-        { name: "Home", url: "https://devpik.com" },
-        { name: "Disclaimer", url: "https://devpik.com/disclaimer" },
+        { name: "Home", url: "https://www.devpik.com" },
+        { name: "Disclaimer", url: "https://www.devpik.com/disclaimer" },
     ]);
 
     return (

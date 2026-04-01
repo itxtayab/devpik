@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     title: "Blog - Developer Tips, Guides & Tutorials | DevPik",
     description:
         "Explore developer guides, tutorials, and tips on Base64, JSON formatting, UUIDs, URL encoding, and more. Learn best practices and boost your workflow with DevPik.",
-    alternates: { canonical: "https://devpik.com/blog" },
+    alternates: { canonical: "https://www.devpik.com/blog" },
 };
 
 export default async function BlogListingPage() {
@@ -55,8 +55,8 @@ export default async function BlogListingPage() {
 
     const allPosts = [...dynamicPosts, ...staticPosts];
     const breadcrumbSchema = generateBreadcrumbSchema([
-        { name: "Home", url: "https://devpik.com" },
-        { name: "Blog", url: "https://devpik.com/blog" },
+        { name: "Home", url: "https://www.devpik.com" },
+        { name: "Blog", url: "https://www.devpik.com/blog" },
     ]);
 
     const collectionPageSchema = {
@@ -64,8 +64,8 @@ export default async function BlogListingPage() {
         "@type": "CollectionPage",
         name: "DevPik Blog",
         description: metadata.description,
-        url: "https://devpik.com/blog",
-        publisher: { "@type": "Organization", name: "DevPik", url: "https://devpik.com" },
+        url: "https://www.devpik.com/blog",
+        publisher: { "@type": "Organization", name: "DevPik", url: "https://www.devpik.com" },
     };
 
     return (

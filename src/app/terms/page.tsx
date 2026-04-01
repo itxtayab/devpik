@@ -83,8 +83,8 @@ const sections = [
 
 export default function TermsPage() {
     const breadcrumbSchema = generateBreadcrumbSchema([
-        { name: "Home", url: "https://devpik.com" },
-        { name: "Terms and Conditions", url: "https://devpik.com/terms" },
+        { name: "Home", url: "https://www.devpik.com" },
+        { name: "Terms and Conditions", url: "https://www.devpik.com/terms" },
     ]);
 
     return (

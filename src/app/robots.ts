@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
             allow: "/",
             disallow: ["/admin", "/api/admin"],
         },
-        sitemap: "https://devpik.com/sitemap.xml",
+        sitemap: "https://www.devpik.com/sitemap.xml",
     };
 }

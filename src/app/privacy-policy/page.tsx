@@ -79,8 +79,8 @@ const sections = [
 
 export default function PrivacyPolicyPage() {
     const breadcrumbSchema = generateBreadcrumbSchema([
-        { name: "Home", url: "https://devpik.com" },
-        { name: "Privacy Policy", url: "https://devpik.com/privacy-policy" },
+        { name: "Home", url: "https://www.devpik.com" },
+        { name: "Privacy Policy", url: "https://www.devpik.com/privacy-policy" },
     ]);
 
     return (

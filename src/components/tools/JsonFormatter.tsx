@@ -529,7 +529,7 @@ const SAMPLE_JSON = `{
   "features": ["JSON Formatter", "Base64 Encoder", "JWT Decoder"],
   "author": {
     "name": "DevPik",
-    "website": "https://devpik.com",
+    "website": "https://www.devpik.com",
     "social": {
       "github": "devpik",
       "twitter": "@devpik"

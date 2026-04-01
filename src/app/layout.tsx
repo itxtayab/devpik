@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://devpik.com"),
+  metadataBase: new URL("https://www.devpik.com"),
   title: {
     default: "DevPik - Free Online Developer Tools, Text Utilities & Tech Blog",
     template: "%s | DevPik",
@@ -25,12 +25,12 @@ export const metadata: Metadata = {
   openGraph: {
     siteName: "DevPik",
     type: "website",
-    url: "https://devpik.com",
+    url: "https://www.devpik.com",
     title: "DevPik - Free Online Developer Tools, Text Utilities & Tech Blog",
     description: "Free online tools for developers and creators. JSON formatter, regex tester, Base64 encoder, word counter, and 20+ more utilities. 100% client-side.",
     images: [
       {
-        url: "https://devpik.com/og-image.png",
+        url: "https://www.devpik.com/og-image.png",
         width: 1200,
         height: 630,
         alt: "DevPik - Free Developer Tools & Online Utilities",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "DevPik - Free Online Developer Tools, Text Utilities & Tech Blog",
     description: "Free online tools for developers and creators. JSON formatter, regex tester, Base64 encoder, word counter, and 20+ more utilities.",
-    images: ["https://devpik.com/og-image.png"],
+    images: ["https://www.devpik.com/og-image.png"],
   },
   robots: {
     index: true,
@@ -57,8 +57,8 @@ const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "DevPik",
-  url: "https://devpik.com",
-  logo: "https://devpik.com/logo.png",
+  url: "https://www.devpik.com",
+  logo: "https://www.devpik.com/logo.png",
   description: "DevPik is a platform for free developer tools, text utilities, and technology insights.",
   sameAs: [],
   contactPoint: {
@@ -72,11 +72,11 @@ const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "DevPik",
-  url: "https://devpik.com",
+  url: "https://www.devpik.com",
   description: "Free online developer tools, text utilities, and technology insights. 20+ tools running 100% client-side.",
   potentialAction: {
     "@type": "SearchAction",
-    target: "https://devpik.com/?q={search_term_string}",
+    target: "https://www.devpik.com/?q={search_term_string}",
     "query-input": "required name=search_term_string",
   },
 };

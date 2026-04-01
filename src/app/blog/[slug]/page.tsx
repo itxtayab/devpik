@@ -81,18 +81,18 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     return {
         title: post.metaTitle,
         description: post.metaDescription,
-        alternates: { canonical: `https://devpik.com/blog/${post.slug}` },
+        alternates: { canonical: `https://www.devpik.com/blog/${post.slug}` },
         openGraph: {
             title: post.metaTitle,
             description: post.metaDescription,
-            url: `https://devpik.com/blog/${post.slug}`,
+            url: `https://www.devpik.com/blog/${post.slug}`,
             type: "article",
             publishedTime: post.publishedAt,
             modifiedTime: post.updatedAt,
             authors: [post.author],
             images: [
                 {
-                    url: `https://devpik.com${post.heroImage}`,
+                    url: `https://www.devpik.com${post.heroImage}`,
                     width: 1200,
                     height: 630,
                     alt: post.title,
@@ -108,9 +108,9 @@ export default async function BlogPostPage(props: Props) {
     if (!post) notFound();
 
     const breadcrumbSchema = generateBreadcrumbSchema([
-        { name: "Home", url: "https://devpik.com" },
-        { name: "Blog", url: "https://devpik.com/blog" },
-        { name: post.title, url: `https://devpik.com/blog/${post.slug}` },
+        { name: "Home", url: "https://www.devpik.com" },
+        { name: "Blog", url: "https://www.devpik.com/blog" },
+        { name: post.title, url: `https://www.devpik.com/blog/${post.slug}` },
     ]);
 
     const articleSchema = {
@@ -118,27 +118,27 @@ export default async function BlogPostPage(props: Props) {
         "@type": "BlogPosting",
         headline: post.title,
         description: post.metaDescription,
-        image: `https://devpik.com${post.heroImage}`,
-        url: `https://devpik.com/blog/${post.slug}`,
+        image: `https://www.devpik.com${post.heroImage}`,
+        url: `https://www.devpik.com/blog/${post.slug}`,
         datePublished: post.publishedAt,
         dateModified: post.updatedAt,
         author: {
             "@type": "Organization",
             name: "DevPik",
-            url: "https://devpik.com",
+            url: "https://www.devpik.com",
         },
         publisher: {
             "@type": "Organization",
             name: "DevPik",
-            url: "https://devpik.com",
+            url: "https://www.devpik.com",
             logo: {
                 "@type": "ImageObject",
-                url: "https://devpik.com/logo.png",
+                url: "https://www.devpik.com/logo.png",
             },
         },
         mainEntityOfPage: {
             "@type": "WebPage",
-            "@id": `https://devpik.com/blog/${post.slug}`,
+            "@id": `https://www.devpik.com/blog/${post.slug}`,
         },
         keywords: post.tags.join(", "),
         wordCount: post.content.reduce((acc, section) => acc + section.body.split(/\s+/).length, 0),
