@@ -13,17 +13,19 @@ import {
   Wifi,
   Wrench,
   ArrowUpRight,
+  Braces,
 } from "lucide-react";
 
 const CategoryIcon = ({ category }: { category: ToolCategory }) => {
   if (category === "text-tools") return <Type className="h-5 w-5" />;
   if (category === "developer-tools") return <Code2 className="h-5 w-5" />;
   if (category === "network-tools") return <Wifi className="h-5 w-5" />;
+  if (category === "json-tools") return <Braces className="h-5 w-5" />;
   return <Wrench className="h-5 w-5" />;
 };
 
 const STATS = [
-  { value: "24+", label: "Free Tools", icon: Wrench },
+  { value: "26+", label: "Free Tools", icon: Wrench },
   { value: "100%", label: "Client-Side", icon: Shield },
   { value: "0", label: "Data Sent", icon: Globe },
   { value: "∞", label: "Usage Limit", icon: Zap },
@@ -107,7 +109,7 @@ export default function Home() {
               </h1>
 
               <p className="mt-4 max-w-xl text-base md:text-lg leading-relaxed text-muted-foreground opacity-0 animate-fade-in-up stagger-2">
-                Explore 24+ free online tools for text processing, code formatting, network testing,
+                Explore 26+ free online tools for text processing, code formatting, network testing,
                 and developer utilities — all running 100% in your browser.
               </p>
 
@@ -248,7 +250,7 @@ export default function Home() {
                     {/* Stats mini row */}
                     <div className="grid grid-cols-3 gap-2 pt-1">
                       <div className="rounded-lg bg-white/5 border border-white/10 p-2.5 text-center">
-                        <div className="text-lg font-bold text-cyan-400">24+</div>
+                        <div className="text-lg font-bold text-cyan-400">26+</div>
                         <div className="text-[9px] text-white/40 font-medium">Tools</div>
                       </div>
                       <div className="rounded-lg bg-white/5 border border-white/10 p-2.5 text-center">
@@ -454,7 +456,8 @@ export default function Home() {
               Our collection of <strong className="text-foreground">free online tools</strong> includes essential utilities for text processing —
               word counters, case converters, markdown converters, and Lorem Ipsum generators. For developers, we offer JSON formatters,
               regex testers, Base64 encoders, JWT decoders, UUID generators, HTML minifiers, Mermaid diagram converters, unit converters,
-              and color code converters. Every tool runs 100% client-side with zero data sent to servers, ensuring maximum privacy and speed.
+              and color code converters. Our dedicated <strong className="text-foreground">JSON tools</strong> suite includes JSON escape, JSON unescape,
+              and JSON formatting utilities for working with JSON data. Every tool runs 100% client-side with zero data sent to servers, ensuring maximum privacy and speed.
             </p>
 
             <p>

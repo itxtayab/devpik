@@ -729,6 +729,193 @@ export const blogPosts: BlogPost[] = [
             },
         ],
     },
+    {
+        slug: "json-escape-characters",
+        title: "JSON Escape Characters: The Complete Reference Guide",
+        metaTitle: "JSON Escape Characters: Complete Reference Guide for Developers | DevPik",
+        metaDescription: "Learn every JSON escape character — from double quotes and backslashes to newlines, tabs, and Unicode sequences. Includes code examples in JavaScript, Python, and more.",
+        excerpt: "A complete reference to JSON escape characters covering every escape sequence, why escaping matters, common pitfalls, and practical code examples in JavaScript, Python, Java, and more.",
+        heroImage: "/blog/json-escape-characters.png",
+        publishedAt: "2026-04-02",
+        updatedAt: "2026-04-02",
+        author: "DevPik Team",
+        readingTime: "7 min read",
+        tags: ["json", "developer tools", "web development", "api"],
+        relatedToolSlugs: ["json-escape", "json-unescape", "json-formatter"],
+        content: [
+            {
+                heading: "What Are JSON Escape Characters?",
+                body: `JSON escape characters are special sequences that represent characters which cannot appear directly inside a JSON string value. According to the JSON specification ([RFC 8259](https://datatracker.ietf.org/doc/html/rfc8259)), every string in JSON is enclosed in double quotes, and certain characters within those quotes must be **escaped** with a backslash (\`\\\`) prefix to avoid breaking the JSON syntax.
+
+Without proper escaping, characters like double quotes, backslashes, and control characters (newlines, tabs) would cause JSON parsers to throw syntax errors. Understanding JSON escape characters is essential for any developer who works with APIs, configuration files, databases, or any system that exchanges JSON data.`
+            },
+            {
+                heading: "Complete List of JSON Escape Characters",
+                body: `Here is the full list of escape sequences defined by the JSON specification:
+
+| Escape Sequence | Character | Description |
+|---|---|---|
+| \`\\"\` | \`"\` | Double quote |
+| \`\\\\\` | \`\\\` | Backslash |
+| \`\\/\` | \`/\` | Forward slash (optional) |
+| \`\\b\` | Backspace | ASCII 0x08 |
+| \`\\f\` | Form feed | ASCII 0x0C |
+| \`\\n\` | Newline | Line feed, ASCII 0x0A |
+| \`\\r\` | Carriage return | ASCII 0x0D |
+| \`\\t\` | Tab | Horizontal tab, ASCII 0x09 |
+| \`\\uXXXX\` | Unicode | Any Unicode character by hex code point |
+
+**Key rules to remember:**
+- The **double quote** (\`\\"\`) and **backslash** (\`\\\\\`) are the only two characters that *must always* be escaped
+- All **control characters** (U+0000 through U+001F) must be escaped, either using the named sequences above or the \`\\uXXXX\` format
+- The **forward slash** (\`\\/\`) *may* be escaped but this is optional — most JSON libraries do not escape it by default`
+            },
+            {
+                heading: "How to Escape Double Quotes in JSON",
+                body: `The double quote is the most commonly escaped character in JSON because it's also the string delimiter. To include a literal double quote inside a JSON string, prefix it with a backslash:
+
+\`\`\`json
+{
+  "message": "He said \\"hello\\" to everyone"
+}
+\`\`\`
+
+Without the backslash, the parser would interpret the inner quote as the end of the string, resulting in a syntax error. This applies to every programming language — whether you're building JSON in JavaScript, Python, Java, or Go, the rule is the same inside the JSON output.`
+            },
+            {
+                heading: "How to Escape Backslashes in JSON",
+                body: `Since the backslash (\`\\\`) is the escape character itself in JSON, a literal backslash must be written as a double backslash (\`\\\\\`):
+
+\`\`\`json
+{
+  "path": "C:\\\\Users\\\\dev\\\\project",
+  "regex": "\\\\d+\\\\.\\\\d+"
+}
+\`\`\`
+
+This is one of the most common sources of confusion when working with JSON strings, especially for **Windows file paths** and **regular expressions**. If you forget to escape the backslash, the parser will try to interpret the next character as an escape sequence — and if it's not a valid one, you'll get an error.`
+            },
+            {
+                heading: "Escaping Newlines, Tabs, and Control Characters",
+                body: `JSON strings cannot contain literal newline or tab characters. These must be replaced with their escape sequences:
+
+- **Newline** → \`\\n\`
+- **Tab** → \`\\t\`
+- **Carriage return** → \`\\r\`
+
+\`\`\`json
+{
+  "formatted": "Line 1\\nLine 2\\nLine 3",
+  "table_data": "Name\\tAge\\tCity",
+  "windows_line": "First line\\r\\nSecond line"
+}
+\`\`\`
+
+Other control characters like **backspace** (\`\\b\`) and **form feed** (\`\\f\`) are less common but still valid. Any control character not covered by a named escape can be represented using \`\\uXXXX\` notation — for example, a null character is \`\\u0000\`.`
+            },
+            {
+                heading: "Unicode Escape Sequences in JSON",
+                body: `JSON supports Unicode escape sequences in the format \`\\uXXXX\`, where \`XXXX\` is a four-digit hexadecimal code point. This allows you to represent any Unicode character:
+
+\`\`\`json
+{
+  "copyright": "\\u00A9 2026 DevPik",
+  "emoji": "\\uD83D\\uDE00",
+  "greek": "\\u03B1\\u03B2\\u03B3"
+}
+\`\`\`
+
+For characters outside the Basic Multilingual Plane (code points above U+FFFF), JSON uses **UTF-16 surrogate pairs** — two \`\\uXXXX\` sequences back-to-back. For example, the grinning face emoji (U+1F600) is encoded as \`\\uD83D\\uDE00\`.
+
+While Unicode escapes are always valid, most modern JSON libraries will output the actual UTF-8 characters directly since JSON files are expected to be UTF-8 encoded.`
+            },
+            {
+                heading: "JSON Escape in JavaScript",
+                body: `In JavaScript, the easiest way to properly escape a string for JSON is to use \`JSON.stringify()\`:
+
+\`\`\`javascript
+const text = 'He said "hello"\\nNew line here';
+const escaped = JSON.stringify(text);
+// Result: "He said \\"hello\\"\\nNew line here"
+
+// To get just the inner escaped string (without outer quotes):
+const innerEscaped = JSON.stringify(text).slice(1, -1);
+\`\`\`
+
+\`JSON.stringify()\` handles all escape characters automatically — double quotes, backslashes, newlines, tabs, and Unicode control characters. Never try to build JSON strings manually with string concatenation; always use the built-in serialization methods.`
+            },
+            {
+                heading: "JSON Escape in Python",
+                body: `Python's \`json\` module provides the \`json.dumps()\` function for proper JSON escaping:
+
+\`\`\`python
+import json
+
+text = 'He said "hello"\\nNew line here'
+escaped = json.dumps(text)
+# Result: '"He said \\\\"hello\\\\"\\\\nNew line here"'
+
+# For just the content without outer quotes:
+inner = json.dumps(text)[1:-1]
+\`\`\`
+
+The \`json.dumps()\` function with \`ensure_ascii=True\` (the default) will also escape any non-ASCII characters using \`\\uXXXX\` notation. Set \`ensure_ascii=False\` to output UTF-8 characters directly.`
+            },
+            {
+                heading: "Common Mistakes and Pitfalls",
+                body: `**1. Single quotes are not valid JSON string delimiters**
+JSON only allows double quotes for strings. \`{'key': 'value'}\` is not valid JSON — it must be \`{"key": "value"}\`.
+
+**2. Forgetting to escape backslashes in file paths**
+A Windows path like \`C:\\Users\\file.txt\` must be \`"C:\\\\Users\\\\file.txt"\` in JSON. One of the most common parsing errors developers encounter.
+
+**3. Embedding raw newlines in JSON strings**
+If you copy multi-line text directly into a JSON string without replacing newlines with \`\\n\`, the JSON will be invalid.
+
+**4. Double-escaping**
+When a JSON string passes through multiple systems (e.g., stored in a database, then served via API), each layer may add its own escaping. This leads to strings like \`\\\\\\\\"hello\\\\\\\\"\` — use a [JSON unescape tool](/json-tools/json-unescape) to debug these situations.
+
+**5. Not escaping user input**
+Always use your language's built-in JSON serialization when including user input in JSON. Manual string building is a recipe for injection vulnerabilities and parsing errors.`
+            },
+            {
+                heading: "Try Our JSON Escape and Unescape Tools",
+                body: `Need to quickly escape or unescape JSON strings? DevPik offers free, instant online tools:
+
+- **[JSON Escape](/json-tools/json-escape)** — Paste raw text and get a properly escaped JSON string instantly. Handles all special characters including quotes, backslashes, newlines, tabs, and Unicode control characters.
+- **[JSON Unescape](/json-tools/json-unescape)** — Convert escaped JSON strings back to readable text. Perfect for debugging API responses and log files.
+- **[JSON Formatter](/developer-tools/json-formatter)** — Format, validate, and beautify JSON data with syntax highlighting.
+
+All tools run 100% in your browser — your data never leaves your device.`
+            }
+        ],
+        faqs: [
+            {
+                question: "What are escape characters in JSON?",
+                answer: "Escape characters in JSON are special sequences that begin with a backslash (\\) followed by a specific character. They represent characters that cannot appear literally inside a JSON string, such as double quotes (\\\"), backslashes (\\\\), newlines (\\n), tabs (\\t), carriage returns (\\r), backspace (\\b), form feed (\\f), and arbitrary Unicode characters (\\uXXXX)."
+            },
+            {
+                question: "What characters must be escaped in JSON?",
+                answer: "According to RFC 8259, you must escape double quotes (\"), backslashes (\\), and all control characters (U+0000 through U+001F). Control characters include newline, tab, carriage return, backspace, form feed, and null. The forward slash (/) may optionally be escaped but is not required."
+            },
+            {
+                question: "Does JSON need to be escaped?",
+                answer: "Yes — any string value within JSON that contains special characters must have those characters properly escaped. Without escaping, characters like double quotes and backslashes will break the JSON syntax and cause parsing errors. Always use your programming language's built-in JSON serialization functions (like JSON.stringify in JavaScript or json.dumps in Python) to handle escaping automatically."
+            },
+            {
+                question: "How do I escape a newline in JSON?",
+                answer: "A newline character in JSON is represented by the escape sequence \\n. A literal newline character cannot appear inside a JSON string — it must be replaced with \\n. Similarly, a carriage return is \\r, and a Windows-style line ending (CRLF) is \\r\\n."
+            },
+            {
+                question: "How do I escape a single quote in JSON?",
+                answer: "Single quotes do not need to be escaped in JSON because JSON strings are always delimited by double quotes, not single quotes. A single quote can appear literally inside a JSON string: {\"message\": \"it's working\"}. Note that single quotes cannot be used as string delimiters in valid JSON."
+            },
+            {
+                question: "What is the difference between JSON escape and URL encoding?",
+                answer: "JSON escaping converts special characters into backslash sequences (like \\\" and \\n) for use inside JSON strings. URL encoding (percent encoding) converts characters into %XX hex sequences for use in URLs. They serve different purposes: JSON escaping for data serialization, URL encoding for safe transmission in web addresses."
+            }
+        ],
+    },
 ];
 
 export function getBlogPost(slug: string): BlogPost | undefined {

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X, Braces } from "lucide-react";
 import { CATEGORIES, getToolsByCategory, ToolCategory } from "@/lib/tools-data";
 import { SearchDialog } from "./SearchDialog";
 

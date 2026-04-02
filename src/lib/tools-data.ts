@@ -1,6 +1,6 @@
 import { type Metadata } from "next";
 
-export type ToolCategory = "text-tools" | "developer-tools" | "network-tools";
+export type ToolCategory = "text-tools" | "developer-tools" | "network-tools" | "json-tools";
 
 export interface FAQ {
     question: string;
@@ -32,6 +32,10 @@ export const CATEGORIES: Record<ToolCategory, { name: string; description: strin
     "network-tools": {
         name: "Network Tools",
         description: "Test your connection speed, check your IP address, and analyze network performance.",
+    },
+    "json-tools": {
+        name: "JSON Tools",
+        description: "Free online JSON formatting, escaping, and data transformation tools for developers.",
     },
 };
 
@@ -543,6 +547,53 @@ export const toolsData: ToolItem[] = [
             { question: "Is there a limit to how many URLs I can shorten?", answer: "There are no limits on URL shortening. The service is completely free to use." }
         ],
         relatedSlugs: ["code-share", "url-encode-decode", "base64-encode-decode", "json-formatter"]
+    },
+    // ==================== JSON TOOLS ====================
+    {
+        slug: "json-escape",
+        name: "JSON Escape",
+        description: "Escape special characters in JSON strings online. Convert raw text to valid JSON string format instantly.",
+        category: "json-tools",
+        metaTitle: "JSON Escape Online - Escape JSON Strings & Special Characters Free",
+        metaDescription: "Free online JSON escape tool. Escape special characters in JSON strings including quotes, backslashes, newlines, and tabs. Instant, client-side processing.",
+        howToUse: [
+            "Paste or type your raw text or JSON string into the input panel on the left.",
+            "The tool instantly escapes all special characters — double quotes, backslashes, newlines, tabs, and Unicode control characters — in real time.",
+            "Copy the escaped output from the right panel, or click the Swap button to switch to JSON Unescape mode."
+        ],
+        about: "JSON Escape is a free online tool that converts special characters in your text into their JSON-safe escape sequences. When building JSON strings manually or embedding text inside JSON payloads, characters like double quotes (\"), backslashes (\\), newlines, tabs, and control characters must be properly escaped to produce valid JSON. This tool handles all JSON escape characters defined in the RFC 8259 specification, including \\\" for double quotes, \\\\ for backslashes, \\n for newlines, \\t for tabs, \\r for carriage returns, \\b for backspace, \\f for form feed, and \\uXXXX for Unicode control characters. Everything runs 100% client-side in your browser — your data is never sent to any server. Developers, API engineers, and anyone working with JSON data use this tool to quickly escape JSON strings for embedding in code, API requests, configuration files, and database queries.",
+        faqs: [
+            { question: "What characters need to be escaped in JSON?", answer: "According to the JSON specification (RFC 8259), you must escape double quotes (\\\"), backslashes (\\\\), and all control characters (U+0000 through U+001F). This includes newlines (\\n), tabs (\\t), carriage returns (\\r), backspace (\\b), and form feed (\\f). Forward slashes (/) may optionally be escaped as \\/ but this is not required." },
+            { question: "How do I escape double quotes in JSON?", answer: "To escape a double quote inside a JSON string, prefix it with a backslash: \\\". For example, the text He said \"hello\" becomes He said \\\"hello\\\" when properly escaped for use inside a JSON string value." },
+            { question: "Does JSON need to be escaped?", answer: "Yes — any string value inside JSON that contains special characters must have those characters escaped. If you don't escape characters like quotes or backslashes, the JSON will be invalid and parsers like JSON.parse() will throw a syntax error. This tool automates the escaping process so you don't have to do it manually." },
+            { question: "What is the difference between JSON escape and JSON unescape?", answer: "JSON escape converts raw text into a JSON-safe format by adding backslash escape sequences before special characters. JSON unescape does the reverse — it converts escaped sequences back into their original characters. Use escape when preparing text for JSON, and unescape when reading escaped JSON string data." },
+            { question: "How do I escape a backslash in JSON?", answer: "A single backslash (\\) in JSON must be escaped as a double backslash (\\\\). This is because the backslash is the escape character itself in JSON, so it needs to be escaped to be treated as a literal backslash." },
+            { question: "Is my data safe when using this tool?", answer: "Absolutely. This JSON escape tool runs entirely in your browser using client-side JavaScript. Your text is never transmitted to any server, ensuring complete privacy and data security." }
+        ],
+        relatedSlugs: ["json-unescape", "json-formatter", "url-encode-decode", "base64-encode-decode"]
+    },
+    {
+        slug: "json-unescape",
+        name: "JSON Unescape",
+        description: "Unescape JSON strings online. Convert escaped JSON text back to readable format instantly.",
+        category: "json-tools",
+        metaTitle: "JSON Unescape Online - Unescape JSON Strings Free",
+        metaDescription: "Free online JSON unescape tool. Remove escape sequences from JSON strings and convert them back to readable text. Fast, free, and runs in your browser.",
+        howToUse: [
+            "Paste your escaped JSON string into the input panel on the left.",
+            "The tool instantly converts all escape sequences — \\n, \\t, \\\", \\\\, and Unicode escapes — back to their original characters in real time.",
+            "Copy the unescaped output from the right panel, or click the Swap button to switch to JSON Escape mode."
+        ],
+        about: "JSON Unescape is a free online tool that converts JSON escape sequences back into their original, human-readable characters. When you receive JSON data from APIs, log files, or databases, strings often contain escape sequences like \\n for newlines, \\\" for quotes, and \\\\ for backslashes. This tool reverses all standard JSON escape sequences defined in RFC 8259, making the text readable again. It also handles quoted JSON string values — if your input is wrapped in double quotes, the tool will strip the outer quotes and unescape the contents. Perfect for debugging API responses, reading log output, cleaning up JSON data, and removing escape characters from JSON strings. All processing happens 100% client-side in your browser with zero data sent to any server.",
+        faqs: [
+            { question: "What does JSON unescape do?", answer: "JSON unescape reverses the escaping process by converting escape sequences back to their original characters. For example, \\n becomes an actual newline, \\\" becomes a double quote, \\\\ becomes a single backslash, and \\t becomes a tab character. It makes escaped JSON strings human-readable again." },
+            { question: "How do I unescape a JSON string?", answer: "Paste your escaped JSON string into this tool and the unescaped output appears instantly. Programmatically, you can use JSON.parse() in JavaScript (wrapping the string in quotes first), json.loads() in Python, or equivalent functions in other languages." },
+            { question: "How do I remove escape characters from JSON?", answer: "Use this JSON unescape tool to instantly remove all escape characters from a JSON string. Simply paste the escaped text and get clean, readable output. The tool handles all standard JSON escape sequences including \\n, \\t, \\\", \\\\, \\r, \\b, \\f, and \\uXXXX Unicode escapes." },
+            { question: "What is the difference between JSON unescape and JSON parse?", answer: "JSON unescape specifically reverses escape sequences in a string value, while JSON parse (JSON.parse) converts an entire JSON text into a JavaScript object or value. JSON.parse will also unescape strings as part of the parsing process, but this tool focuses on string-level unescaping without full JSON parsing." },
+            { question: "Can I unescape JSON with Unicode characters?", answer: "Yes. This tool fully supports Unicode escape sequences in the format \\uXXXX (e.g., \\u0041 becomes A, \\u00e9 becomes e with acute accent). It also handles surrogate pairs for characters outside the Basic Multilingual Plane." },
+            { question: "Is my data safe when using this tool?", answer: "Yes. This JSON unescape tool processes everything locally in your browser. No data is ever sent to a server, ensuring complete privacy." }
+        ],
+        relatedSlugs: ["json-escape", "json-formatter", "url-encode-decode", "base64-encode-decode"]
     },
 ];
 

@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Metadata } from "next";
 import { CATEGORIES, getToolsByCategory, ToolCategory } from "@/lib/tools-data";
-import { ArrowRight, Wrench, Sparkles, Code2, Type, Wifi } from "lucide-react";
+import { ArrowRight, Wrench, Sparkles, Code2, Type, Wifi, Braces } from "lucide-react";
 
 interface Props {
     params: Promise<{ category: string }>;
@@ -18,6 +18,9 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     return {
         title: `${category.name} - Free Online Tools`,
         description: category.description,
+        alternates: {
+            canonical: `/${categoryId}`,
+        },
     };
 }
 
@@ -31,6 +34,7 @@ const CategoryIcon = ({ category }: { category: ToolCategory }) => {
     if (category === "text-tools") return <Type className="h-8 w-8 text-blue-500" />;
     if (category === "developer-tools") return <Code2 className="h-8 w-8 text-emerald-500" />;
     if (category === "network-tools") return <Wifi className="h-8 w-8 text-orange-500" />;
+    if (category === "json-tools") return <Braces className="h-8 w-8 text-amber-500" />;
     return <Wrench className="h-8 w-8 text-primary" />;
 };
 

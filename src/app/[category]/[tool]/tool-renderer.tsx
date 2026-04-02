@@ -30,6 +30,10 @@ const SpeedTest = dynamic(() => import("@/components/tools/SpeedTest"), { loadin
 const IpCheck = dynamic(() => import("@/components/tools/IpCheck"), { loading: () => <Loader /> });
 const DnsLookup = dynamic(() => import("@/components/tools/DnsLookup"), { loading: () => <Loader /> });
 
+// JSON Tools
+const JsonEscape = dynamic(() => import("@/components/tools/JsonEscape"), { loading: () => <Loader /> });
+const JsonUnescape = dynamic(() => import("@/components/tools/JsonUnescape"), { loading: () => <Loader /> });
+
 // Backend-Powered Tools
 const CodeShare = dynamic(() => import("@/components/tools/CodeShare"), { loading: () => <Loader /> });
 const UrlShortener = dynamic(() => import("@/components/tools/UrlShortener"), { loading: () => <Loader /> });
@@ -90,6 +94,10 @@ export function ToolRenderer({ slug }: { slug: string }) {
             return <CodeShare />;
         case "url-shortener":
             return <UrlShortener />;
+        case "json-escape":
+            return <JsonEscape />;
+        case "json-unescape":
+            return <JsonUnescape />;
         default:
             return <div>Tool implementation not found for slug: {slug}</div>;
     }
