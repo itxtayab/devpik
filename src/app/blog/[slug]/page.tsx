@@ -12,9 +12,8 @@ import {
 import { MarkdownRenderer } from "@/components/blog/MarkdownRenderer";
 import { ArrowLeft, Clock, Calendar, User, ChevronRight, ExternalLink } from "lucide-react";
 import { PageViewTracker } from "@/components/analytics/PageViewTracker";
-import { createClient } from "@/lib/supabase/server";
 
-// Fetch blog from Supabase by slug
+// Fetch blog from Supabase by slug (pure fetch to avoid static-to-dynamic cookie error)
 interface BlogPostData {
     slug: string;
     title: string;
@@ -34,13 +33,17 @@ interface BlogPostData {
 
 async function getSupabaseBlog(slug: string): Promise<BlogPostData | null> {
     try {
-        const supabase = await createClient();
-        const { data } = await supabase
-            .from("blogs")
-            .select("*")
-            .eq("slug", slug)
-            .eq("is_published", true)
-            .single();
+        const url = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/blogs?slug=eq.${encodeURIComponent(slug)}&is_published=eq.true&select=*`;
+        const res = await fetch(url, {
+            headers: {
+                apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+                Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!}`,
+            },
+            next: { revalidate: 60 },
+        });
+        if (!res.ok) return null;
+        const rows = await res.json();
+        const data = rows?.[0];
 
         if (!data) return null;
 
