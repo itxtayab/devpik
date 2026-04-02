@@ -5,6 +5,7 @@ import { FileText, Wrench, ShieldAlert, Ban, Megaphone, RefreshCcw, Scale, Mail,
 export const metadata: Metadata = {
     title: "Terms and Conditions - DevPik",
     description: "Terms and Conditions for using DevPik tools and services. Understand your rights and responsibilities.",
+    alternates: { canonical: "https://www.devpik.com/terms" },
 };
 
 const sections = [

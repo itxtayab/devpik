@@ -5,6 +5,7 @@ import { Shield, Server, Cookie, Globe, UserCheck, Mail, Lock, Eye, Database, Ex
 export const metadata: Metadata = {
     title: "Privacy Policy - DevPik",
     description: "Privacy Policy for DevPik. Learn how we handle your data with client-side processing and what information we collect.",
+    alternates: { canonical: "https://www.devpik.com/privacy-policy" },
 };
 
 const sections = [

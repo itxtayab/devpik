@@ -4,6 +4,7 @@ import { ContactForm } from "./contact-form";
 export const metadata: Metadata = {
     title: "Contact Us - DevPik",
     description: "Get in touch with the DevPik team. We are here to help.",
+    alternates: { canonical: "https://www.devpik.com/contact" },
 };
 
 export default function ContactPage() {

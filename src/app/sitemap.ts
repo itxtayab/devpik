@@ -6,11 +6,12 @@ import { createClient } from "@/lib/supabase/server";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = "https://www.devpik.com";
 
-    // Static routes
+    // Static routes (fixed lastModified to avoid false freshness signals)
+    const staticLastModified = new Date("2025-12-01");
     const staticRoutes = ["", "/about", "/contact", "/privacy-policy", "/terms", "/disclaimer"].map((route) => ({
         url: `${baseUrl}${route}`,
-        lastModified: new Date(),
-        changeFrequency: "weekly" as const,
+        lastModified: route === "" ? new Date() : staticLastModified,
+        changeFrequency: route === "" ? "weekly" as const : "monthly" as const,
         priority: route === "" ? 1.0 : 0.5,
     }));
 

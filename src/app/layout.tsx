@@ -60,7 +60,10 @@ const organizationSchema = {
   url: "https://www.devpik.com",
   logo: "https://www.devpik.com/logo.png",
   description: "DevPik is a platform for free developer tools, text utilities, and technology insights.",
-  sameAs: [],
+  sameAs: [
+    "https://github.com/devpik",
+    "https://x.com/devpik",
+  ],
   contactPoint: {
     "@type": "ContactPoint",
     email: "founders@mergemain.com",

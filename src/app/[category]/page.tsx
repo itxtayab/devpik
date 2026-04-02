@@ -19,10 +19,18 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
         title: `${category.name} - Free Online Tools`,
         description: category.description,
         alternates: {
-            canonical: `/${categoryId}`,
+            canonical: `https://www.devpik.com/${categoryId}`,
+        },
+        openGraph: {
+            title: `${category.name} - Free Online Tools`,
+            description: category.description,
+            url: `https://www.devpik.com/${categoryId}`,
+            type: "website",
         },
     };
 }
+
+export const dynamicParams = false;
 
 export function generateStaticParams() {
     return Object.keys(CATEGORIES).map((category) => ({

@@ -1,5 +1,21 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { CATEGORIES, getToolsByCategory, ToolCategory } from "@/lib/tools-data";
+
+export const metadata: Metadata = {
+  title: "DevPik - Free Online Developer Tools, Text Utilities & Tech Blog",
+  description:
+    "Free online tools for developers and creators. JSON formatter, regex tester, Base64 encoder, word counter, and 20+ more utilities. 100% client-side, no signup required.",
+  alternates: { canonical: "https://www.devpik.com" },
+  openGraph: {
+    title: "DevPik - Free Online Developer Tools, Text Utilities & Tech Blog",
+    description:
+      "Free online tools for developers and creators. JSON formatter, regex tester, Base64 encoder, word counter, and 20+ more utilities. 100% client-side.",
+    url: "https://www.devpik.com",
+    type: "website",
+  },
+};
 import {
   ArrowRight,
   Sparkles,
@@ -362,10 +378,12 @@ export default function Home() {
             >
               {/* Card hero image */}
               <div className="h-40 relative overflow-hidden">
-                <img
+                <Image
                   src={post.heroImage}
                   alt={post.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.4) 100%)" }} />
                 <div className="absolute top-3 left-3">

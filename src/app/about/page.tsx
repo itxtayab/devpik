@@ -3,6 +3,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
     title: "About Us - DevPik",
     description: "Learn more about DevPik — free, privacy-first developer tools and text utilities that run 100% in your browser.",
+    alternates: { canonical: "https://www.devpik.com/about" },
 };
 
 export default function AboutPage() {

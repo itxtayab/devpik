@@ -21,6 +21,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     return {
         title: `${data.title || "Untitled"} | DevPik Code Share`,
         description: data.content.slice(0, 100) + (data.content.length > 100 ? "..." : ""),
+        robots: { index: false, follow: false },
     };
 }
 

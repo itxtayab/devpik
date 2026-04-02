@@ -6,6 +6,7 @@ import { AlertTriangle, ShieldOff, UserX, Calculator, Globe, RefreshCcw, Mail, I
 export const metadata: Metadata = {
     title: "Disclaimer - DevPik",
     description: "Disclaimer for DevPik. Understand the limitations, warranties, and terms of using our free online developer tools.",
+    alternates: { canonical: "https://www.devpik.com/disclaimer" },
 };
 
 const sections = [

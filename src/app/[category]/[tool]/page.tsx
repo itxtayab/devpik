@@ -12,6 +12,8 @@ interface Props {
     params: Promise<{ category: string; tool: string }>;
 }
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
     return toolsData.map((tool) => ({
         category: tool.category,
@@ -28,8 +30,14 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
         title: tool.metaTitle,
         description: tool.metaDescription,
         alternates: {
-            canonical: `/${tool.category}/${tool.slug}`,
-        }
+            canonical: `https://www.devpik.com/${tool.category}/${tool.slug}`,
+        },
+        openGraph: {
+            title: tool.metaTitle,
+            description: tool.metaDescription,
+            url: `https://www.devpik.com/${tool.category}/${tool.slug}`,
+            type: "website",
+        },
     };
 }
 
