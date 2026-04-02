@@ -83,6 +83,26 @@ export function MarkdownRenderer({ content }: { content: string }) {
                     );
                 }
 
+                // Check if this is a heading (### or ####)
+                if (lines.length === 1) {
+                    const h4Match = trimmed.match(/^####\s+(.+)$/);
+                    if (h4Match) {
+                        return (
+                            <h4 key={bIndex} className="text-base font-bold text-foreground mt-2">
+                                <InlineMarkdown text={h4Match[1]} />
+                            </h4>
+                        );
+                    }
+                    const h3Match = trimmed.match(/^###\s+(.+)$/);
+                    if (h3Match) {
+                        return (
+                            <h3 key={bIndex} className="text-lg font-bold text-foreground mt-4">
+                                <InlineMarkdown text={h3Match[1]} />
+                            </h3>
+                        );
+                    }
+                }
+
                 // Regular paragraph
                 return (
                     <p key={bIndex}>
