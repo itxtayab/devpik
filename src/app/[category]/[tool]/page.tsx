@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
-import { getToolBySlug, getToolsByCategory, CATEGORIES, ToolCategory } from "@/lib/tools-data";
+import { getToolBySlug, getToolsByCategory, CATEGORIES, ToolCategory, toolsData } from "@/lib/tools-data";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { ToolRenderer } from "./tool-renderer";
@@ -10,6 +10,13 @@ import { ToolAnalytics } from "@/components/ToolAnalytics";
 
 interface Props {
     params: Promise<{ category: string; tool: string }>;
+}
+
+export function generateStaticParams() {
+    return toolsData.map((tool) => ({
+        category: tool.category,
+        tool: tool.slug,
+    }));
 }
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
