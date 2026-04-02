@@ -75,7 +75,7 @@ const BLOG_POSTS = [
     tag: "AI Trends",
     readTime: "9 min read",
     slug: "what-is-agentic-ai",
-    heroImage: "/blog/agentic-ai-hero.png",
+    heroImage: "/blog/agentic-ai-hero.webp",
   },
   {
     title: "10 Best AI Coding Tools in 2026",
@@ -83,7 +83,7 @@ const BLOG_POSTS = [
     tag: "AI Coding",
     readTime: "11 min read",
     slug: "best-ai-coding-tools-2026",
-    heroImage: "/blog/ai-coding-tools-hero.png",
+    heroImage: "/blog/ai-coding-tools-hero.webp",
   },
   {
     title: "ChatGPT vs Claude vs Perplexity: Which Is Best?",
@@ -91,7 +91,7 @@ const BLOG_POSTS = [
     tag: "AI Comparison",
     readTime: "12 min read",
     slug: "chatgpt-vs-claude-vs-perplexity-2026",
-    heroImage: "/blog/ai-comparison-hero.png",
+    heroImage: "/blog/ai-comparison-hero.webp",
   },
 ];
 

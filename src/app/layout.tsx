@@ -18,8 +18,8 @@ export const metadata: Metadata = {
   description: "Free online tools for developers and creators. JSON formatter, regex tester, Base64 encoder, word counter, and 20+ more utilities. 100% client-side, no signup required.",
   keywords: ["free online tools", "developer tools", "JSON formatter", "regex tester", "Base64 encoder", "word counter", "text tools", "code formatter", "free developer tools", "online utilities", "DNS lookup", "JWT decoder"],
   icons: {
-    icon: "/logo.png",
-    apple: "/logo.png",
+    icon: "/favicon-32x32.png",
+    apple: "/apple-touch-icon.png",
   },
   manifest: "/manifest.json",
   openGraph: {
@@ -96,7 +96,7 @@ export default function RootLayout({
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6309173133572136"
           crossOrigin="anonymous"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
       </head>
       <body className={`${inter.variable} ${outfit.variable} font-sans min-h-screen bg-background text-foreground antialiased selection:bg-primary/30 selection:text-primary`}>

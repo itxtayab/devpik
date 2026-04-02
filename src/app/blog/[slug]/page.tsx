@@ -185,7 +185,7 @@ export default async function BlogPostPage(props: Props) {
                     {/* Breadcrumbs */}
                     <nav
                         aria-label="Breadcrumb"
-                        className="text-sm text-white/60 mb-6"
+                        className="text-sm text-white/80 mb-6"
                     >
                         <ol className="flex items-center gap-1.5 flex-wrap">
                             <li>
@@ -234,12 +234,12 @@ export default async function BlogPostPage(props: Props) {
                                 {post.title}
                             </h1>
 
-                            <p className="text-base md:text-lg text-white/70 leading-relaxed">
+                            <p className="text-base md:text-lg text-white/80 leading-relaxed">
                                 {post.excerpt}
                             </p>
 
                             {/* Meta */}
-                            <div className="flex flex-wrap items-center gap-4 text-sm text-white/60 pt-2">
+                            <div className="flex flex-wrap items-center gap-4 text-sm text-white/75 pt-2">
                                 <span className="flex items-center gap-1.5">
                                     <User className="h-4 w-4" />
                                     {post.author}
@@ -434,7 +434,7 @@ export default async function BlogPostPage(props: Props) {
                                                 alt={p.title}
                                                 fill
                                                 className="object-cover group-hover:scale-105 transition-transform duration-500"
-                                                sizes="(max-width: 640px) 100vw, 50vw"
+                                                sizes="(max-width: 640px) 100vw, 280px"
                                             />
                                         </div>
                                         <div className="p-4">

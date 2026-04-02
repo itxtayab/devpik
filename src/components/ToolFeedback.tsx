@@ -87,10 +87,12 @@ export function ToolFeedback({ toolSlug }: { toolSlug: string }) {
                                 value={comment}
                                 onChange={(e) => setComment(e.target.value)}
                                 placeholder="Optional comment..."
+                                aria-label="Additional feedback"
                                 className="flex-1 rounded-xl px-4 py-2 text-sm border border-border/60 bg-card outline-none focus:border-primary/40 transition-all"
                             />
                             <button
                                 onClick={handleComment}
+                                aria-label="Submit feedback"
                                 className="px-4 py-2 rounded-xl text-sm font-medium text-white transition-all"
                                 style={{ background: "linear-gradient(135deg, #003F87, #006BD6)" }}
                             >

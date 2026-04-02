@@ -3,9 +3,11 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { ChevronDown, Menu, X, Braces } from "lucide-react";
 import { CATEGORIES, getToolsByCategory, ToolCategory } from "@/lib/tools-data";
-import { SearchDialog } from "./SearchDialog";
+
+const SearchDialog = dynamic(() => import("./SearchDialog").then(m => ({ default: m.SearchDialog })), { ssr: false });
 
 export function Header() {
     const [mobileOpen, setMobileOpen] = useState(false);
@@ -27,8 +29,8 @@ export function Header() {
                         href="/"
                         className="flex items-center gap-2.5 pointer-events-auto rounded-full px-3 py-2 shadow-md border border-border/30 backdrop-blur-md bg-white/80 transition-all hover:shadow-lg hover:bg-white/95 group"
                     >
-                        <div className="relative h-8 w-8 overflow-hidden rounded-md shrink-0 transition-transform group-hover:scale-110">
-                            <Image src="/logo_main.png" alt="DevPik Logo" fill className="object-contain" />
+                        <div className="h-8 w-8 overflow-hidden rounded-md shrink-0 transition-transform group-hover:scale-110">
+                            <Image src="/logo_main.webp" alt="DevPik Logo" width={32} height={32} className="object-contain" />
                         </div>
                         <span className="font-extrabold tracking-tight text-base hidden sm:inline-flex whitespace-nowrap gap-0">
                             <span className="gradient-text">Dev</span>

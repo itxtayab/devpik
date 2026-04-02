@@ -29,7 +29,7 @@ export const blogPosts: BlogPost[] = [
             "Learn what Base64 encoding is, how it works, and when to use it. Understand encode vs decode, use cases in web development, and try our free Base64 tool.",
         excerpt:
             "Base64 encoding converts binary data into ASCII text. Learn how it works, common use cases in web development, and how to encode and decode Base64 strings instantly.",
-        heroImage: "/blog/base64-encoding.png",
+        heroImage: "/blog/base64-encoding.webp",
         publishedAt: "2026-02-27",
         updatedAt: "2026-02-27",
         author: "DevPik Team",
@@ -89,7 +89,7 @@ export const blogPosts: BlogPost[] = [
             "Master JSON formatting with best practices for readability, debugging, and validation. Learn common JSON errors and how to fix them with our free formatter tool.",
         excerpt:
             "JSON is the backbone of modern APIs. Learn best practices for formatting, validating, and debugging JSON data to write cleaner code and fix errors faster.",
-        heroImage: "/blog/json-formatting.png",
+        heroImage: "/blog/json-formatting.webp",
         publishedAt: "2026-02-27",
         updatedAt: "2026-02-27",
         author: "DevPik Team",
@@ -145,7 +145,7 @@ export const blogPosts: BlogPost[] = [
             "Discover why word count matters for SEO, blog posts, essays, and social media. Learn ideal content lengths and count words instantly with our free tool.",
         excerpt:
             "Word count impacts SEO rankings, reader engagement, and content quality. Learn the ideal word counts for different content types and how to count words accurately.",
-        heroImage: "/blog/word-counter.png",
+        heroImage: "/blog/word-counter.webp",
         publishedAt: "2026-02-27",
         updatedAt: "2026-02-27",
         author: "DevPik Team",
@@ -201,7 +201,7 @@ export const blogPosts: BlogPost[] = [
             "Learn what UUIDs are, how they work, and when to use them in your applications. Explore UUID versions, best practices, and generate UUIDs instantly online.",
         excerpt:
             "UUIDs provide unique identifiers without a central authority. Learn about UUID versions, use cases in databases and APIs, and generate them instantly with our free tool.",
-        heroImage: "/blog/uuid-generator.png",
+        heroImage: "/blog/uuid-generator.webp",
         publishedAt: "2026-02-27",
         updatedAt: "2026-02-27",
         author: "DevPik Team",
@@ -257,7 +257,7 @@ export const blogPosts: BlogPost[] = [
             "Understand URL encoding (percent encoding), why it's needed, which characters must be encoded, and how to encode/decode URLs with our free online tool.",
         excerpt:
             "URL encoding converts special characters into a format that can be transmitted over the internet. Learn which characters need encoding and how percent-encoding works.",
-        heroImage: "/blog/url-encoding.png",
+        heroImage: "/blog/url-encoding.webp",
         publishedAt: "2026-02-27",
         updatedAt: "2026-02-27",
         author: "DevPik Team",
@@ -313,7 +313,7 @@ export const blogPosts: BlogPost[] = [
             "Use this rapid, secure JSON formatter to inspect API payloads, reveal hidden structure, catch syntax flaws in seconds, and ship confident releases today.",
         excerpt:
             "Turn unreadable one-line JSON into clean, structured output in seconds. Format, validate, minify, and explore JSON payloads — all client-side in your browser.",
-        heroImage: "/blog/json-formatter-validate.png",
+        heroImage: "/blog/json-formatter-validate.webp",
         publishedAt: "2026-03-01",
         updatedAt: "2026-03-01",
         author: "DevPik Team",
@@ -393,7 +393,7 @@ export const blogPosts: BlogPost[] = [
             "Discover what agentic AI is, how AI agents work autonomously, and why agentic AI is the biggest AI trend in 2026. Learn real-world use cases for developers and businesses.",
         excerpt:
             "Agentic AI is redefining how software operates — autonomous AI agents can now plan, reason, and execute multi-step tasks without human intervention. Here's everything you need to know.",
-        heroImage: "/blog/agentic-ai-hero.png",
+        heroImage: "/blog/agentic-ai-hero.webp",
         publishedAt: "2026-03-01",
         updatedAt: "2026-03-01",
         author: "DevPik Team",
@@ -453,7 +453,7 @@ export const blogPosts: BlogPost[] = [
             "Discover the best AI coding tools in 2026 for code generation, debugging, and development. Compare Cursor AI, GitHub Copilot, Claude Code, and more free AI tools for developers.",
         excerpt:
             "AI code generation tools have evolved from autocomplete to autonomous development agents. Here are the 10 best AI coding tools that developers are using in 2026.",
-        heroImage: "/blog/ai-coding-tools-hero.png",
+        heroImage: "/blog/ai-coding-tools-hero.webp",
         publishedAt: "2026-03-01",
         updatedAt: "2026-03-01",
         author: "DevPik Team",
@@ -521,7 +521,7 @@ export const blogPosts: BlogPost[] = [
             "ChatGPT vs Claude vs Perplexity — an in-depth comparison for 2026. Compare features, pricing, accuracy, and use cases. Find out which AI assistant is best for your needs.",
         excerpt:
             "The AI assistant landscape in 2026 features three dominant players: ChatGPT, Claude, and Perplexity. We compare them head-to-head on features, accuracy, pricing, and real-world use cases.",
-        heroImage: "/blog/ai-comparison-hero.png",
+        heroImage: "/blog/ai-comparison-hero.webp",
         publishedAt: "2026-03-01",
         updatedAt: "2026-03-01",
         author: "DevPik Team",
@@ -589,7 +589,7 @@ export const blogPosts: BlogPost[] = [
             "Find your IP address instantly and learn how IP lookup, geolocation, and IP checking works. Understand IPv4 vs IPv6, public vs private IPs, and how to protect your online privacy.",
         excerpt:
             "Your IP address reveals more about you than you think. Learn what an IP address is, how to find yours, what information it exposes, and how to protect your online privacy with our comprehensive guide.",
-        heroImage: "/blog/ip-check-hero.png",
+        heroImage: "/blog/ip-check-hero.webp",
         publishedAt: "2026-03-31",
         updatedAt: "2026-03-31",
         author: "DevPik Team",
@@ -661,7 +661,7 @@ export const blogPosts: BlogPost[] = [
             "Learn how to test your internet speed accurately. Understand download vs upload speeds, ping, jitter, and what speeds you need for streaming, gaming, and remote work.",
         excerpt:
             "Is your internet actually as fast as your ISP promises? Learn how speed tests work, what download/upload speeds and ping mean, and how to get the most accurate results from your internet speed test.",
-        heroImage: "/blog/speed-test-hero.png",
+        heroImage: "/blog/speed-test-hero.webp",
         publishedAt: "2026-03-31",
         updatedAt: "2026-03-31",
         author: "DevPik Team",
@@ -735,7 +735,7 @@ export const blogPosts: BlogPost[] = [
         metaTitle: "JSON Escape Characters: Complete Reference Guide for Developers | DevPik",
         metaDescription: "Learn every JSON escape character — from double quotes and backslashes to newlines, tabs, and Unicode sequences. Includes code examples in JavaScript, Python, and more.",
         excerpt: "A complete reference to JSON escape characters covering every escape sequence, why escaping matters, common pitfalls, and practical code examples in JavaScript, Python, Java, and more.",
-        heroImage: "/blog/json-escape-characters.png",
+        heroImage: "/blog/json-escape-characters.webp",
         publishedAt: "2026-04-02",
         updatedAt: "2026-04-02",
         author: "DevPik Team",

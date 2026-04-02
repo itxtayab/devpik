@@ -33,7 +33,7 @@ export default async function BlogListingPage() {
         slug: p.slug,
         title: p.title,
         excerpt: p.excerpt || "",
-        heroImage: p.cover_image_url || "/blog/base64-encoding.png",
+        heroImage: p.cover_image_url || "/blog/base64-encoding.webp",
         publishedAt: p.published_at,
         readingTime: `${p.read_time} min read`,
         tags: p.tags || [],

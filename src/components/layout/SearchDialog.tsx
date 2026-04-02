@@ -3,8 +3,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { Search, X, ArrowRight, FileText, Wrench } from "lucide-react";
-import { toolsData } from "@/lib/tools-data";
-import { blogPosts } from "@/lib/blog-data";
 
 interface SearchResult {
     type: "tool" | "blog";
@@ -13,27 +11,38 @@ interface SearchResult {
     href: string;
 }
 
-const allItems: SearchResult[] = [
-    ...toolsData.map((t) => ({
-        type: "tool" as const,
-        title: t.name,
-        description: t.description,
-        href: `/${t.category}/${t.slug}`,
-    })),
-    ...blogPosts.map((p) => ({
-        type: "blog" as const,
-        title: p.title,
-        description: p.excerpt,
-        href: `/blog/${p.slug}`,
-    })),
-];
-
 export function SearchDialog() {
     const [open, setOpen] = useState(false);
     const [query, setQuery] = useState("");
     const [activeIndex, setActiveIndex] = useState(0);
+    const [allItems, setAllItems] = useState<SearchResult[]>([]);
     const inputRef = useRef<HTMLInputElement>(null);
     const router = useRouter();
+
+    // Lazy-load search data only when dialog opens
+    useEffect(() => {
+        if (open && allItems.length === 0) {
+            Promise.all([
+                import("@/lib/tools-data").then((m) => m.toolsData),
+                import("@/lib/blog-data").then((m) => m.blogPosts),
+            ]).then(([tools, blogs]) => {
+                setAllItems([
+                    ...tools.map((t) => ({
+                        type: "tool" as const,
+                        title: t.name,
+                        description: t.description,
+                        href: `/${t.category}/${t.slug}`,
+                    })),
+                    ...blogs.map((p) => ({
+                        type: "blog" as const,
+                        title: p.title,
+                        description: p.excerpt,
+                        href: `/blog/${p.slug}`,
+                    })),
+                ]);
+            });
+        }
+    }, [open, allItems.length]);
 
     const results = query.trim()
         ? allItems.filter(
@@ -97,6 +106,7 @@ export function SearchDialog() {
             {/* Trigger Button */}
             <button
                 onClick={() => setOpen(true)}
+                aria-label="Search tools and blog posts"
                 className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/20 bg-white/5 text-white/60 text-sm hover:bg-white/10 hover:text-white/80 transition-all"
             >
                 <Search className="h-3.5 w-3.5" />
@@ -116,7 +126,12 @@ export function SearchDialog() {
                     />
 
                     {/* Dialog */}
-                    <div className="relative w-full max-w-lg mx-4 bg-white rounded-2xl shadow-2xl border border-border/60 overflow-hidden animate-fade-in-up">
+                    <div
+                        role="dialog"
+                        aria-modal="true"
+                        aria-label="Search"
+                        className="relative w-full max-w-lg mx-4 bg-white rounded-2xl shadow-2xl border border-border/60 overflow-hidden animate-fade-in-up"
+                    >
                         {/* Search Input */}
                         <div className="flex items-center gap-3 px-4 border-b border-border/60">
                             <Search className="h-5 w-5 text-muted-foreground shrink-0" />
@@ -130,10 +145,12 @@ export function SearchDialog() {
                                 }}
                                 onKeyDown={handleKeyDown}
                                 placeholder="Search tools and blog posts..."
+                                aria-label="Search"
                                 className="flex-1 py-4 text-base outline-none bg-transparent placeholder:text-muted-foreground/60"
                             />
                             <button
                                 onClick={close}
+                                aria-label="Close search"
                                 className="p-1 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all"
                             >
                                 <X className="h-4 w-4" />

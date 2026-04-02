@@ -166,11 +166,9 @@
 
 .gradient-text-hero {
   background: linear-gradient(135deg, #0f172a 0%, #003F87 35%, #0059B3 60%, #00D4FF 100%);
-  background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: gradient-shift 8s ease infinite;
 }
 
 .gradient-border {
@@ -218,7 +216,7 @@
     linear-gradient(rgba(0, 63, 135, 0.06) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 63, 135, 0.06) 1px, transparent 1px);
   background-size: 60px 60px;
-  animation: grid-fade 4s ease-in-out infinite;
+  opacity: 0.05;
   pointer-events: none;
 }
 
@@ -302,4 +300,16 @@ html.search-open [class*="backdrop-blur"] {
 
 .tool-card-hover:hover {
   transform: translateY(-4px);
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up,
+  .animate-float,
+  .animate-scale-in,
+  .animate-slide-in-left,
+  .animate-slide-in-right {
+    animation: none !important;
+    opacity: 1 !important;
+  }
 }

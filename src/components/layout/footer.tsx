@@ -38,8 +38,8 @@ export function Footer() {
                         {/* Brand Column */}
                         <div className="col-span-2 md:col-span-1 lg:col-span-2">
                             <Link href="/" className="flex items-center gap-2.5 mb-4 group">
-                                <div className="relative h-9 w-9 overflow-hidden rounded-lg shrink-0 transition-transform group-hover:scale-110">
-                                    <Image src="/logo.png" alt="DevPik" fill className="object-contain" />
+                                <div className="h-9 w-9 overflow-hidden rounded-lg shrink-0 transition-transform group-hover:scale-110">
+                                    <Image src="/logo.webp" alt="DevPik" width={36} height={36} className="object-contain" />
                                 </div>
                                 <span className="font-extrabold text-lg tracking-tight">
                                     <span className="gradient-text">Dev</span>
@@ -50,17 +50,17 @@ export function Footer() {
                                 Your go-to platform for free developer tools, text utilities, and practical tech insights. All tools run 100% client-side — your data never leaves your browser.
                             </p>
                             <div className="flex items-center gap-3">
-                                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/30 hover:shadow-md transition-all">
-                                    <Twitter className="h-4 w-4" />
+                                <a href="https://x.com/devpik" target="_blank" rel="noopener noreferrer" aria-label="Follow DevPik on X (Twitter)" className="p-2.5 rounded-lg bg-white border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/30 hover:shadow-md transition-all">
+                                    <Twitter className="h-5 w-5" />
                                 </a>
-                                <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/30 hover:shadow-md transition-all">
-                                    <Github className="h-4 w-4" />
+                                <a href="https://github.com/devpik" target="_blank" rel="noopener noreferrer" aria-label="DevPik on GitHub" className="p-2.5 rounded-lg bg-white border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/30 hover:shadow-md transition-all">
+                                    <Github className="h-5 w-5" />
                                 </a>
-                                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/30 hover:shadow-md transition-all">
-                                    <Linkedin className="h-4 w-4" />
+                                <a href="https://linkedin.com/company/devpik" target="_blank" rel="noopener noreferrer" aria-label="DevPik on LinkedIn" className="p-2.5 rounded-lg bg-white border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/30 hover:shadow-md transition-all">
+                                    <Linkedin className="h-5 w-5" />
                                 </a>
-                                <a href="mailto:founders@mergemain.com" className="p-2 rounded-lg bg-white border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/30 hover:shadow-md transition-all">
-                                    <Mail className="h-4 w-4" />
+                                <a href="mailto:founders@mergemain.com" aria-label="Email DevPik" className="p-2.5 rounded-lg bg-white border border-border/50 text-muted-foreground hover:text-primary hover:border-primary/30 hover:shadow-md transition-all">
+                                    <Mail className="h-5 w-5" />
                                 </a>
                             </div>
                         </div>

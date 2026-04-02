@@ -52,6 +52,7 @@ export function NewsletterForm({ source = "footer" }: { source?: string }) {
                     if (status === "error") setStatus("idle");
                 }}
                 placeholder="Enter your email"
+                aria-label="Email address"
                 required
                 className="flex-1 md:w-64 rounded-xl px-4 py-3 text-sm bg-white/10 border border-white/20 text-white placeholder:text-white/40 outline-none focus:border-cyan-400/50 focus:bg-white/15 transition-all"
             />
