@@ -13,6 +13,13 @@ import { MarkdownRenderer } from "@/components/blog/MarkdownRenderer";
 import { ArrowLeft, Clock, Calendar, User, ChevronRight, ExternalLink } from "lucide-react";
 import { PageViewTracker } from "@/components/analytics/PageViewTracker";
 
+/** Convert local /blog/*.png or .jpg paths to .webp; pass through external URLs */
+function toWebp(url: string | null | undefined): string | null {
+    if (!url) return null;
+    if (url.startsWith("http")) return url;
+    return url.replace(/\.(png|jpg|jpeg)$/i, ".webp");
+}
+
 // Fetch blog from Supabase by slug (pure fetch to avoid static-to-dynamic cookie error)
 interface BlogPostData {
     slug: string;
@@ -53,7 +60,7 @@ async function getSupabaseBlog(slug: string): Promise<BlogPostData | null> {
             metaTitle: data.meta_title || data.title,
             metaDescription: data.meta_description || data.excerpt || "",
             excerpt: data.excerpt || "",
-            heroImage: data.hero_image || "/images/blog/default.webp",
+            heroImage: toWebp(data.hero_image) || "/images/blog/default.webp",
             publishedAt: data.published_at,
             updatedAt: data.updated_at,
             author: data.author || "DevPik Team",

@@ -8,6 +8,13 @@ import { createClient } from "@/lib/supabase/server";
 
 export const revalidate = 60;
 
+/** Convert local /blog/*.png or .jpg paths to .webp; pass through external URLs */
+function toWebp(url: string | null | undefined): string | null {
+    if (!url) return null;
+    if (url.startsWith("http")) return url;
+    return url.replace(/\.(png|jpg|jpeg)$/i, ".webp");
+}
+
 export const metadata: Metadata = {
     title: "Blog - Developer Tips, Guides & Tutorials | DevPik",
     description:
@@ -33,7 +40,7 @@ export default async function BlogListingPage() {
         slug: p.slug,
         title: p.title,
         excerpt: p.excerpt || "",
-        heroImage: p.cover_image_url || "/blog/base64-encoding.webp",
+        heroImage: toWebp(p.cover_image_url) || "/blog/base64-encoding.webp",
         publishedAt: p.published_at,
         readingTime: `${p.read_time} min read`,
         tags: p.tags || [],
