@@ -160,7 +160,7 @@ export const toolsData: ToolItem[] = [
             { question: "Can I compare code files?", answer: "Yes! The tool works excellently for comparing code snippets, configuration files, or any structured text. It preserves whitespace and indentation, which is critical for code comparison." },
             { question: "Is there a size limit for text comparison?", answer: "The tool can handle large texts efficiently, but for optimal performance we recommend texts under 100,000 characters per panel. Since processing is done in your browser, performance depends on your device's capabilities." }
         ],
-        relatedSlugs: ["word-counter", "markdown-converter", "case-converter", "text-to-html"]
+        relatedSlugs: ["json-compare", "word-counter", "markdown-converter", "case-converter"]
     },
     {
         slug: "slug-generator",
@@ -248,7 +248,7 @@ export const toolsData: ToolItem[] = [
             { question: "Is my JSON data secure?", answer: "100% secure. Everything processes locally in your browser — no server requests. Your data is saved in localStorage for convenience between sessions but never transmitted. Safe for API keys, tokens, and sensitive configuration." },
             { question: "Can I upload and download JSON files?", answer: "Yes! Click 'Upload' or drag-and-drop a .json file directly onto the input area. After formatting or converting, click 'Download' to save the result as a file." }
         ],
-        relatedSlugs: ["base64-encode-decode", "jwt-decoder", "html-minifier", "url-encode-decode"]
+        relatedSlugs: ["json-minifier", "json-compare", "json-escape", "json-unescape"]
     },
     {
         slug: "base64-encode-decode",
@@ -570,7 +570,7 @@ export const toolsData: ToolItem[] = [
             { question: "How do I escape a backslash in JSON?", answer: "A single backslash (\\) in JSON must be escaped as a double backslash (\\\\). This is because the backslash is the escape character itself in JSON, so it needs to be escaped to be treated as a literal backslash." },
             { question: "Is my data safe when using this tool?", answer: "Absolutely. This JSON escape tool runs entirely in your browser using client-side JavaScript. Your text is never transmitted to any server, ensuring complete privacy and data security." }
         ],
-        relatedSlugs: ["json-unescape", "json-formatter", "url-encode-decode", "base64-encode-decode"]
+        relatedSlugs: ["json-unescape", "json-formatter", "json-minifier", "json-compare"]
     },
     {
         slug: "json-unescape",
@@ -593,7 +593,59 @@ export const toolsData: ToolItem[] = [
             { question: "Can I unescape JSON with Unicode characters?", answer: "Yes. This tool fully supports Unicode escape sequences in the format \\uXXXX (e.g., \\u0041 becomes A, \\u00e9 becomes e with acute accent). It also handles surrogate pairs for characters outside the Basic Multilingual Plane." },
             { question: "Is my data safe when using this tool?", answer: "Yes. This JSON unescape tool processes everything locally in your browser. No data is ever sent to a server, ensuring complete privacy." }
         ],
-        relatedSlugs: ["json-escape", "json-formatter", "url-encode-decode", "base64-encode-decode"]
+        relatedSlugs: ["json-escape", "json-formatter", "json-minifier", "json-compare"]
+    },
+    {
+        slug: "json-minifier",
+        name: "JSON Minifier",
+        description: "Minify and compress JSON by removing all whitespace, newlines, and indentation. Reduce JSON file size instantly with real-time compression stats.",
+        category: "json-tools",
+        metaTitle: "JSON Minifier Online - Minify & Compress JSON Free | DevPik",
+        metaDescription: "Free online JSON minifier tool. Compress JSON by removing whitespace, newlines, and indentation. See original vs minified size stats. 100% client-side, no data sent to servers.",
+        howToUse: [
+            "Paste or type your formatted JSON into the input area on the left.",
+            "The tool automatically minifies your JSON in real-time as you type.",
+            "View compression stats showing original size, minified size, and percentage saved.",
+            "Click the Copy button to copy the minified JSON to your clipboard.",
+            "Use the Sample button to load example JSON and see minification in action."
+        ],
+        about: "JSON Minifier is a free online tool that compresses JSON data by removing all unnecessary whitespace, newlines, tabs, and indentation. Minified JSON is functionally identical to the original — it contains the same data structure and values — but takes up significantly less space. This is essential for reducing payload sizes in APIs, configuration files, and data storage. The tool processes everything locally in your browser with zero server requests, ensuring your data stays completely private. It also validates your JSON and shows clear error messages if the input is malformed.",
+        faqs: [
+            { question: "What does a JSON minifier do?", answer: "A JSON minifier removes all unnecessary whitespace characters from JSON data — including spaces, tabs, newlines, and indentation — without changing the actual data or structure. The result is a compact, single-line JSON string that is functionally identical to the original but smaller in file size." },
+            { question: "Does minifying JSON change the data?", answer: "No. Minifying JSON only removes formatting characters (whitespace, newlines, indentation). The actual data structure, keys, values, arrays, and objects remain exactly the same. A minified JSON string will parse to the identical object as the original formatted version." },
+            { question: "When should I minify JSON?", answer: "Minify JSON for production environments: API responses, configuration files deployed to servers, data stored in databases, and any JSON transmitted over the network. Smaller payloads mean faster load times and lower bandwidth costs. Avoid minifying JSON you need to read or debug — use a JSON formatter instead." },
+            { question: "How much space does JSON minification save?", answer: "Savings depend on the original formatting. Typically, minification reduces JSON file size by 10-40%. Heavily indented JSON with many nested objects can see even greater reductions. Our tool shows exact byte counts and percentage savings in real-time." },
+            { question: "Is my JSON data safe with this tool?", answer: "Yes. This JSON minifier runs 100% in your browser. No data is ever sent to any server. Your JSON is processed locally using JavaScript, ensuring complete privacy and security." },
+            { question: "What is the difference between JSON minify and JSON compress?", answer: "JSON minify and JSON compress are often used interchangeably. Both refer to removing whitespace from JSON. However, true compression (like gzip or brotli) applies binary compression algorithms to reduce file size further. This tool performs minification — whitespace removal — which is the first step before optional binary compression." },
+            { question: "Can I minify invalid JSON?", answer: "No. The JSON must be valid for minification to work. If your input has syntax errors, the tool will display an error message indicating the problem. Fix the JSON syntax first, then minify." }
+        ],
+        relatedSlugs: ["json-formatter", "json-escape", "json-unescape", "html-minifier"]
+    },
+    {
+        slug: "json-compare",
+        name: "JSON Compare",
+        description: "Compare two JSON objects side by side and find every difference. Visual tree diff and text diff views with additions, deletions, and modifications highlighted.",
+        category: "json-tools",
+        metaTitle: "JSON Compare & Diff Online - Compare JSON Objects Free | DevPik",
+        metaDescription: "Free online JSON compare tool. Find differences between two JSON objects with visual tree diff and line-by-line text diff. Shows additions, deletions, modifications. 100% client-side.",
+        howToUse: [
+            "Paste your original JSON into the left panel and the modified JSON into the right panel.",
+            "Click the Compare button to analyze differences between the two JSON objects.",
+            "View results in Tree View mode to see differences highlighted in a collapsible tree structure.",
+            "Switch to Text Diff mode for a line-by-line comparison similar to GitHub diff view.",
+            "Use the Swap button to switch the left and right panels. Copy the diff summary with one click."
+        ],
+        about: "JSON Compare is a free online tool that finds and visualizes differences between two JSON objects. It performs a deep, structural comparison — not just a text-level diff — which means it correctly identifies added keys, removed keys, modified values, and type changes at every level of nesting. The tool offers two viewing modes: a Tree View that shows the merged JSON structure with color-coded differences at each node, and a Text Diff view that provides a line-by-line comparison similar to code diffs on GitHub. All processing happens locally in your browser, making it safe for comparing sensitive data like API responses, configuration files, and database records.",
+        faqs: [
+            { question: "How does JSON compare work?", answer: "JSON Compare parses both JSON inputs into JavaScript objects, then recursively walks through every key, value, and array element in both structures simultaneously. It tracks four types of differences: additions (keys that exist only in the right JSON), deletions (keys only in the left JSON), modifications (same key but different value), and type changes (same key but different data type). Results are displayed with JSON paths like data.users[0].name so you can locate each difference precisely." },
+            { question: "Does JSON compare ignore formatting differences?", answer: "Yes. Because the tool parses JSON into objects before comparing, all formatting differences (whitespace, indentation, key ordering within objects) are automatically ignored. Only actual data differences are shown. Two JSON objects with different formatting but identical data will show as 'identical'." },
+            { question: "Can I compare large JSON files?", answer: "Yes. The tool handles JSON files of any reasonable size since it runs locally in your browser. For very large files (10MB+), comparison may take a moment. The tool compares by structure, not by line, so it works well even with deeply nested or complex JSON data." },
+            { question: "What is the difference between tree view and text diff?", answer: "Tree View shows the merged JSON structure as a collapsible tree where each node is color-coded: green for additions, red for deletions, and yellow/amber for modifications. Text Diff shows a line-by-line comparison of the pretty-printed JSON, similar to a GitHub pull request diff, with + and - prefixes for added and removed lines." },
+            { question: "How does JSON diff handle arrays?", answer: "Arrays are compared by index position. Element at index 0 in the left JSON is compared with element at index 0 in the right JSON, and so on. If one array is longer, the extra elements are shown as additions or deletions. This index-based comparison is the standard approach for JSON diffing." },
+            { question: "Is my data safe when comparing JSON?", answer: "Yes. This JSON compare tool processes everything 100% in your browser. No JSON data is ever sent to any server. You can safely compare sensitive API responses, credentials (if needed), and private configuration files." },
+            { question: "Can I compare JSON with different key orders?", answer: "Yes. Since the tool performs structural comparison (not text comparison), different key ordering does not affect the result. Two objects with the same keys and values but in different order will show as identical." }
+        ],
+        relatedSlugs: ["json-formatter", "json-minifier", "text-diff", "json-escape"]
     },
 ];
 

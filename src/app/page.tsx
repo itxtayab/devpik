@@ -41,7 +41,7 @@ const CategoryIcon = ({ category }: { category: ToolCategory }) => {
 };
 
 const STATS = [
-  { value: "26+", label: "Free Tools", icon: Wrench },
+  { value: "28+", label: "Free Tools", icon: Wrench },
   { value: "100%", label: "Client-Side", icon: Shield },
   { value: "0", label: "Data Sent", icon: Globe },
   { value: "∞", label: "Usage Limit", icon: Zap },

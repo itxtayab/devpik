@@ -33,6 +33,8 @@ const DnsLookup = dynamic(() => import("@/components/tools/DnsLookup"), { loadin
 // JSON Tools
 const JsonEscape = dynamic(() => import("@/components/tools/JsonEscape"), { loading: () => <Loader /> });
 const JsonUnescape = dynamic(() => import("@/components/tools/JsonUnescape"), { loading: () => <Loader /> });
+const JsonMinifier = dynamic(() => import("@/components/tools/JsonMinifier"), { loading: () => <Loader /> });
+const JsonCompare = dynamic(() => import("@/components/tools/JsonCompare"), { loading: () => <Loader /> });
 
 // Backend-Powered Tools
 const CodeShare = dynamic(() => import("@/components/tools/CodeShare"), { loading: () => <Loader /> });
@@ -98,6 +100,10 @@ export function ToolRenderer({ slug }: { slug: string }) {
             return <JsonEscape />;
         case "json-unescape":
             return <JsonUnescape />;
+        case "json-minifier":
+            return <JsonMinifier />;
+        case "json-compare":
+            return <JsonCompare />;
         default:
             return <div>Tool implementation not found for slug: {slug}</div>;
     }
