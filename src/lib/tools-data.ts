@@ -647,6 +647,58 @@ export const toolsData: ToolItem[] = [
         ],
         relatedSlugs: ["json-formatter", "json-minifier", "text-diff", "json-escape"]
     },
+    {
+        slug: "json-to-csv",
+        name: "JSON to CSV Converter",
+        description: "Convert JSON arrays to CSV format instantly. Supports nested objects, custom delimiters, and file download.",
+        category: "json-tools",
+        metaTitle: "JSON to CSV Converter Online Free - Convert JSON to CSV | DevPik",
+        metaDescription: "Free online JSON to CSV converter. Transform JSON arrays into CSV format with nested object flattening, custom delimiters, and instant download. 100% client-side, private and fast.",
+        howToUse: [
+            "Paste your JSON array into the input area or upload a .json file using the Upload button.",
+            "The tool automatically converts your JSON to CSV in real-time as you type or paste.",
+            "Adjust options: choose a delimiter (comma, semicolon, tab, pipe), toggle headers, or enable nested object flattening.",
+            "Copy the CSV output to your clipboard or download it as a .csv file.",
+            "Use the Swap button to switch to CSV to JSON conversion mode."
+        ],
+        about: "JSON to CSV Converter is a free online tool that transforms JSON arrays into CSV (Comma Separated Values) format. It handles complex JSON structures including nested objects (flattened with dot notation like address.city), arrays within values, null values, and mixed data types. The tool supports multiple delimiters — comma, semicolon, tab, and pipe — making it compatible with different regional CSV standards and applications. Whether you need to export API response data to a spreadsheet, prepare data for database import, or share structured data with non-technical team members, this converter handles it all. Every conversion runs 100% in your browser — your JSON data never leaves your device.",
+        faqs: [
+            { question: "How do I convert JSON to CSV?", answer: "Paste your JSON array of objects into the input field. The tool automatically extracts all keys as CSV column headers and converts each object into a CSV row. Click Copy or Download CSV to get the result. For nested objects, enable 'Flatten nested objects' to convert them to dot-notation columns like address.city." },
+            { question: "Can I convert nested JSON to CSV?", answer: "Yes. Enable the 'Flatten nested objects' option (on by default) and the tool will convert nested properties to dot-notation columns. For example, {\"address\": {\"city\": \"NYC\"}} becomes a column header address.city with value NYC." },
+            { question: "What JSON format does this tool accept?", answer: "The tool accepts a JSON array of objects, like [{\"name\":\"John\",\"age\":30},{\"name\":\"Jane\",\"age\":25}]. Each object in the array becomes one row in the CSV. The tool automatically collects all unique keys across all objects as column headers." },
+            { question: "Can I change the CSV delimiter?", answer: "Yes. Choose from four delimiter options: Comma (default, standard CSV), Semicolon (common in European countries), Tab (TSV format), or Pipe. Select the delimiter that matches your target application or regional standard." },
+            { question: "Is my JSON data safe with this converter?", answer: "Yes. This JSON to CSV converter runs 100% client-side in your browser. No data is ever uploaded to any server. Your JSON stays on your device, making it safe for converting sensitive or proprietary data." },
+            { question: "How does the tool handle arrays inside JSON values?", answer: "Arrays within JSON values are joined with semicolons by default. For example, {\"skills\": [\"JS\", \"Python\"]} becomes JS;Python in the CSV output. This preserves all data while maintaining CSV compatibility." },
+            { question: "Can I convert large JSON files to CSV?", answer: "Yes. The tool processes JSON locally in your browser and can handle files with thousands of rows. For very large files, use the Upload button to load a .json file directly instead of pasting." }
+        ],
+        relatedSlugs: ["csv-to-json", "json-formatter", "json-minifier", "json-compare"]
+    },
+    {
+        slug: "csv-to-json",
+        name: "CSV to JSON Converter",
+        description: "Convert CSV data to JSON format instantly. Auto-detects delimiters, parses types, and supports file upload.",
+        category: "json-tools",
+        metaTitle: "CSV to JSON Converter Online Free - Convert CSV to JSON | DevPik",
+        metaDescription: "Free online CSV to JSON converter. Transform CSV data into JSON arrays with automatic delimiter detection, type parsing, and instant download. 100% client-side, fast and private.",
+        howToUse: [
+            "Paste your CSV data into the input area or upload a .csv file using the Upload button.",
+            "The tool automatically detects the delimiter and converts CSV to JSON in real-time.",
+            "Adjust options: toggle first row as headers, enable auto-detect types (numbers, booleans), or choose output format.",
+            "Copy the JSON output to your clipboard or download it as a .json file.",
+            "Use the Swap button to switch to JSON to CSV conversion mode."
+        ],
+        about: "CSV to JSON Converter is a free online tool that transforms CSV (Comma Separated Values) data into structured JSON format. It features automatic delimiter detection (comma, semicolon, tab, pipe), intelligent type parsing that converts numeric strings to numbers and boolean strings to true/false, and proper handling of quoted fields with escaped characters. Output as an array of objects (with column headers as keys) or an array of arrays. The tool correctly handles edge cases like newlines within quoted fields, escaped quotes, inconsistent column counts, and empty values. Perfect for importing spreadsheet data into web applications, preparing data for APIs, or converting tabular data for JavaScript processing. All conversion happens in your browser — your CSV data stays private.",
+        faqs: [
+            { question: "How do I convert CSV to JSON?", answer: "Paste your CSV data into the input field or upload a .csv file. The tool automatically detects the delimiter and converts each row into a JSON object using the first row as property keys. The result is a JSON array of objects that you can copy or download." },
+            { question: "Does the tool auto-detect the CSV delimiter?", answer: "Yes. The auto-detect feature analyzes the first line of your CSV to determine whether it uses commas, semicolons, tabs, or pipes as delimiters. You can also disable auto-detection and manually select a delimiter if needed." },
+            { question: "What does auto-detect types do?", answer: "When enabled, the tool converts string values to their appropriate JSON types: numeric strings like \"30\" become the number 30, \"true\"/\"false\" become booleans, and \"null\" becomes null. Disable this option if you want all values to remain as strings." },
+            { question: "Can I convert CSV without headers?", answer: "Yes. Uncheck 'First row as headers' and the tool will generate automatic column names (column_1, column_2, etc.) instead of using the first row as property keys. All rows including the first will be treated as data." },
+            { question: "Is my CSV data safe with this tool?", answer: "Yes. This CSV to JSON converter runs 100% client-side in your browser using JavaScript. No data is sent to any server. Your CSV data remains on your device throughout the entire conversion process." },
+            { question: "How does the tool handle quoted CSV fields?", answer: "The parser correctly handles RFC 4180 compliant CSV: fields wrapped in double quotes can contain commas, newlines, and other special characters without breaking the parse. Double quotes within quoted fields are escaped as two consecutive quotes (\"\")." },
+            { question: "What output formats are available?", answer: "Two output formats: 'Array of objects' creates [{\"name\":\"John\",\"age\":30},...] using headers as keys (most common), while 'Array of arrays' creates [[\"name\",\"age\"],[\"John\",30],...] preserving the tabular structure." }
+        ],
+        relatedSlugs: ["json-to-csv", "json-formatter", "json-minifier", "json-compare"]
+    },
 ];
 
 export function getToolsByCategory(category: ToolCategory): ToolItem[] {

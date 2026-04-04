@@ -16,6 +16,21 @@ export function MarkdownRenderer({ content }: { content: string }) {
                     return <MarkdownTable key={bIndex} rows={block.lines} />;
                 }
 
+                if (block.type === "code") {
+                    return (
+                        <div key={bIndex} className="relative my-4 rounded-xl overflow-hidden border border-border/60">
+                            {block.language && (
+                                <div className="flex items-center justify-between bg-slate-800 px-4 py-2 border-b border-slate-700">
+                                    <span className="text-xs font-mono text-slate-400">{block.language}</span>
+                                </div>
+                            )}
+                            <pre className={`overflow-x-auto bg-slate-900 p-4 text-sm leading-relaxed ${!block.language ? 'rounded-xl' : ''}`}>
+                                <code className="font-mono text-slate-200 whitespace-pre">{block.code}</code>
+                            </pre>
+                        </div>
+                    );
+                }
+
                 const trimmed = block.text.trim();
                 if (!trimmed) return null;
 
@@ -122,7 +137,7 @@ export function MarkdownRenderer({ content }: { content: string }) {
 /**
  * Splits content into blocks, grouping consecutive pipe-delimited table rows together.
  */
-type Block = { type: "text"; text: string } | { type: "table"; lines: string[] };
+type Block = { type: "text"; text: string } | { type: "table"; lines: string[] } | { type: "code"; language: string; code: string };
 
 function isTableRow(line: string): boolean {
     const t = line.trim();
@@ -139,10 +154,12 @@ function splitIntoBlocks(content: string): Block[] {
     const blocks: Block[] = [];
     let currentText: string[] = [];
     let currentTable: string[] = [];
+    let inCodeBlock = false;
+    let codeLanguage = "";
+    let codeLines: string[] = [];
 
     const flushText = () => {
         if (currentText.length > 0) {
-            // Split by double newlines to create separate paragraphs
             const joined = currentText.join("\n");
             const paragraphs = joined.split("\n\n");
             for (const p of paragraphs) {
@@ -158,13 +175,40 @@ function splitIntoBlocks(content: string): Block[] {
         if (currentTable.length >= 2) {
             blocks.push({ type: "table", lines: currentTable });
         } else if (currentTable.length > 0) {
-            // Not a real table, treat as text
             currentText.push(...currentTable);
         }
         currentTable = [];
     };
 
+    const flushCode = () => {
+        blocks.push({ type: "code", language: codeLanguage, code: codeLines.join("\n") });
+        codeLanguage = "";
+        codeLines = [];
+        inCodeBlock = false;
+    };
+
     for (const line of allLines) {
+        // Detect fenced code block start/end
+        if (line.trim().startsWith("```")) {
+            if (!inCodeBlock) {
+                // Start of code block
+                flushTable();
+                flushText();
+                inCodeBlock = true;
+                codeLanguage = line.trim().replace(/^```/, "").trim();
+                codeLines = [];
+            } else {
+                // End of code block
+                flushCode();
+            }
+            continue;
+        }
+
+        if (inCodeBlock) {
+            codeLines.push(line);
+            continue;
+        }
+
         if (isTableRow(line)) {
             if (currentTable.length === 0) {
                 flushText();
@@ -178,6 +222,10 @@ function splitIntoBlocks(content: string): Block[] {
         }
     }
 
+    // Flush remaining (handle unclosed code blocks gracefully)
+    if (inCodeBlock) {
+        flushCode();
+    }
     flushTable();
     flushText();
 

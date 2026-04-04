@@ -35,6 +35,8 @@ const JsonEscape = dynamic(() => import("@/components/tools/JsonEscape"), { load
 const JsonUnescape = dynamic(() => import("@/components/tools/JsonUnescape"), { loading: () => <Loader /> });
 const JsonMinifier = dynamic(() => import("@/components/tools/JsonMinifier"), { loading: () => <Loader /> });
 const JsonCompare = dynamic(() => import("@/components/tools/JsonCompare"), { loading: () => <Loader /> });
+const JsonToCsv = dynamic(() => import("@/components/tools/JsonToCsv"), { loading: () => <Loader /> });
+const CsvToJson = dynamic(() => import("@/components/tools/CsvToJson"), { loading: () => <Loader /> });
 
 // Backend-Powered Tools
 const CodeShare = dynamic(() => import("@/components/tools/CodeShare"), { loading: () => <Loader /> });
@@ -104,6 +106,10 @@ export function ToolRenderer({ slug }: { slug: string }) {
             return <JsonMinifier />;
         case "json-compare":
             return <JsonCompare />;
+        case "json-to-csv":
+            return <JsonToCsv />;
+        case "csv-to-json":
+            return <CsvToJson />;
         default:
             return <div>Tool implementation not found for slug: {slug}</div>;
     }
