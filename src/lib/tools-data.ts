@@ -699,6 +699,54 @@ export const toolsData: ToolItem[] = [
         ],
         relatedSlugs: ["json-to-csv", "json-formatter", "json-minifier", "json-compare"]
     },
+    {
+        slug: "json-to-yaml",
+        name: "JSON to YAML Converter",
+        description: "Convert JSON to YAML and YAML to JSON online. Bidirectional converter with indent options, inline arrays, and instant download.",
+        category: "json-tools",
+        metaTitle: "JSON to YAML Converter Online Free - Convert JSON to YAML & YAML to JSON | DevPik",
+        metaDescription: "Free online JSON to YAML converter. Convert JSON to YAML or YAML to JSON instantly with customizable indentation, inline arrays, and download. 100% client-side, no data sent to servers.",
+        howToUse: [
+            "Paste your JSON into the left input panel. The tool converts it to YAML in real-time as you type.",
+            "Adjust formatting options: choose 2 or 4 space indentation, enable inline short arrays, or toggle string quoting.",
+            "Click the Swap button to switch to YAML → JSON mode and convert YAML back to JSON.",
+            "Copy the output to your clipboard or download it as a .yaml or .json file."
+        ],
+        about: "The JSON to YAML Converter is a free online tool that converts between JSON and YAML formats instantly. JSON (JavaScript Object Notation) and YAML (YAML Ain't Markup Language) are both popular data serialization formats, but they serve different purposes. JSON is the standard for APIs and data exchange, while YAML is preferred for configuration files like Docker Compose, Kubernetes manifests, GitHub Actions workflows, and CI/CD pipelines because of its human-readable syntax and support for comments. This bidirectional converter handles nested objects, arrays, null values, booleans, multiline strings, and all standard YAML features. Customize the output with indent size options and inline array formatting. Everything runs 100% client-side in your browser — your data never leaves your device.",
+        faqs: [
+            { question: "How do I convert JSON to YAML?", answer: "Paste your JSON into the left input panel and the tool instantly converts it to YAML in the right panel. You can customize the output with 2 or 4 space indentation, inline short arrays, and string quoting options. Copy or download the result when ready." },
+            { question: "Can I convert YAML to JSON?", answer: "Yes! Click the Swap button to switch to YAML → JSON mode. Paste your YAML in the left panel and get clean, formatted JSON output. The tool handles YAML features like comments (stripped in JSON output), anchors, and multiline strings." },
+            { question: "What is the difference between JSON and YAML?", answer: "JSON uses braces {} and brackets [] with strict syntax, while YAML uses indentation-based structure that's more human-readable. YAML supports comments, JSON doesn't. JSON is standard for APIs and JavaScript, while YAML is preferred for configuration files (Docker, Kubernetes, GitHub Actions). Both represent the same data structures." },
+            { question: "Does the converter handle nested objects and arrays?", answer: "Yes. The converter fully supports deeply nested objects, arrays of objects, mixed types, null values, booleans, numbers, and multiline strings. Nested YAML structures are properly indented, and nested JSON is correctly formatted with braces and brackets." },
+            { question: "Is YAML a superset of JSON?", answer: "Technically yes — valid JSON is also valid YAML (since YAML 1.2). However, they have different conventions and strengths. YAML adds features like comments, anchors/aliases, and multiline strings that JSON doesn't support. This tool converts between their conventional formats." },
+            { question: "Is my data safe when converting?", answer: "Yes. This JSON to YAML converter runs 100% client-side in your browser. No data is ever transmitted to any server. Your JSON and YAML content stays completely private on your device." }
+        ],
+        relatedSlugs: ["json-formatter", "json-minifier", "json-to-csv", "json-compare"]
+    },
+    // ==================== TEXT GENERATORS ====================
+    {
+        slug: "upside-down-text",
+        name: "Upside Down Text Generator",
+        description: "Flip your text upside down using Unicode characters. Copy and paste upside down text anywhere — social media, messages, usernames.",
+        category: "text-tools",
+        metaTitle: "Upside Down Text Generator - Flip Text Upside Down Online Free | DevPik",
+        metaDescription: "Free upside down text generator. Flip text upside down, backwards, or mirrored using Unicode characters. Copy and paste flipped text to social media, messages, and more. Instant, no signup.",
+        howToUse: [
+            "Type or paste your text in the input area above. The upside down text appears instantly below.",
+            "Choose a transformation mode: Upside Down, Backwards, Flipped Only, or Mirror.",
+            "Click the Copy button to copy the transformed text, then paste it anywhere — social media posts, messages, usernames, or emails."
+        ],
+        about: "The Upside Down Text Generator flips your text upside down using special Unicode characters that look like inverted versions of regular letters. Unlike image-based text flippers, the output is real text that you can copy, paste, and use anywhere — Facebook posts, Twitter/X tweets, Instagram bios, Discord usernames, WhatsApp messages, emails, and more. The tool supports multiple transformation modes: Upside Down (flips and reverses for true upside-down reading), Backwards (reverses character order), Flipped Only (maps characters without reversing), and Mirror (horizontal reversal). All 26 lowercase letters, 26 uppercase letters, numbers 0-9, and common punctuation marks have carefully selected Unicode equivalents. Processing happens instantly in your browser with zero server requests — your text is never stored or transmitted.",
+        faqs: [
+            { question: "How does upside down text work?", answer: "Upside down text uses special Unicode characters that look like flipped versions of regular letters. For example, 'a' becomes 'ɐ', 'b' becomes 'q', and 'e' becomes 'ǝ'. The text is also reversed so it reads correctly when viewed upside down. These are real characters in the Unicode standard, not images." },
+            { question: "Can I use upside down text on social media?", answer: "Yes! Since the output uses standard Unicode characters, you can paste upside down text into Facebook posts, Twitter/X tweets, Instagram bios and comments, TikTok captions, Discord messages, Reddit posts, and virtually any platform that supports Unicode text." },
+            { question: "Does upside down text work on all devices?", answer: "Most modern devices and browsers support the Unicode characters used for upside down text. Some older phones or apps may display certain flipped characters as empty boxes. The most common letters (a-z) have the best support across all devices." },
+            { question: "What is the difference between upside down and backwards text?", answer: "Upside down text replaces each character with its flipped Unicode equivalent AND reverses the string so it reads correctly when literally turned upside down. Backwards text simply reverses the character order without changing the characters themselves — 'hello' becomes 'olleh'." },
+            { question: "Why do some characters look the same upside down?", answer: "Some letters are naturally symmetrical — like 'o', 'x', 's', and 'H' — so they look identical when flipped. Others like 'l' have very similar upside-down equivalents. The tool uses the closest matching Unicode character for each letter." },
+            { question: "Is my text stored or tracked?", answer: "No. The Upside Down Text Generator runs 100% client-side in your browser. Your text is never sent to any server, stored in any database, or tracked in any way. Complete privacy is guaranteed." }
+        ],
+        relatedSlugs: ["unicode-text-converter", "case-converter", "word-counter", "text-repeater"]
+    },
 ];
 
 export function getToolsByCategory(category: ToolCategory): ToolItem[] {

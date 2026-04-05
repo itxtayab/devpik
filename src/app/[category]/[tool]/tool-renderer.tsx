@@ -37,6 +37,10 @@ const JsonMinifier = dynamic(() => import("@/components/tools/JsonMinifier"), { 
 const JsonCompare = dynamic(() => import("@/components/tools/JsonCompare"), { loading: () => <Loader /> });
 const JsonToCsv = dynamic(() => import("@/components/tools/JsonToCsv"), { loading: () => <Loader /> });
 const CsvToJson = dynamic(() => import("@/components/tools/CsvToJson"), { loading: () => <Loader /> });
+const JsonToYaml = dynamic(() => import("@/components/tools/JsonToYaml"), { loading: () => <Loader /> });
+
+// Text Generators
+const UpsideDownText = dynamic(() => import("@/components/tools/UpsideDownText"), { loading: () => <Loader /> });
 
 // Backend-Powered Tools
 const CodeShare = dynamic(() => import("@/components/tools/CodeShare"), { loading: () => <Loader /> });
@@ -110,6 +114,10 @@ export function ToolRenderer({ slug }: { slug: string }) {
             return <JsonToCsv />;
         case "csv-to-json":
             return <CsvToJson />;
+        case "json-to-yaml":
+            return <JsonToYaml />;
+        case "upside-down-text":
+            return <UpsideDownText />;
         default:
             return <div>Tool implementation not found for slug: {slug}</div>;
     }

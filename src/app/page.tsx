@@ -6,12 +6,12 @@ import { CATEGORIES, getToolsByCategory, ToolCategory } from "@/lib/tools-data";
 export const metadata: Metadata = {
   title: "DevPik - Free Online Developer Tools, Text Utilities & Tech Blog",
   description:
-    "Free online tools for developers and creators. JSON formatter, regex tester, Base64 encoder, word counter, and 20+ more utilities. 100% client-side, no signup required.",
+    "Free online tools for developers and creators. JSON formatter, regex tester, Base64 encoder, word counter, and 30+ more utilities. 100% client-side, no signup required.",
   alternates: { canonical: "https://www.devpik.com" },
   openGraph: {
     title: "DevPik - Free Online Developer Tools, Text Utilities & Tech Blog",
     description:
-      "Free online tools for developers and creators. JSON formatter, regex tester, Base64 encoder, word counter, and 20+ more utilities. 100% client-side.",
+      "Free online tools for developers and creators. JSON formatter, regex tester, Base64 encoder, word counter, and 30+ more utilities. 100% client-side.",
     url: "https://www.devpik.com",
     type: "website",
   },
@@ -41,7 +41,7 @@ const CategoryIcon = ({ category }: { category: ToolCategory }) => {
 };
 
 const STATS = [
-  { value: "28+", label: "Free Tools", icon: Wrench },
+  { value: "30+", label: "Free Tools", icon: Wrench },
   { value: "100%", label: "Client-Side", icon: Shield },
   { value: "0", label: "Data Sent", icon: Globe },
   { value: "∞", label: "Usage Limit", icon: Zap },
