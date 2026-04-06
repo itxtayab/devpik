@@ -41,6 +41,8 @@ const JsonToYaml = dynamic(() => import("@/components/tools/JsonToYaml"), { load
 
 // Text Generators
 const UpsideDownText = dynamic(() => import("@/components/tools/UpsideDownText"), { loading: () => <Loader /> });
+const CursedTextGenerator = dynamic(() => import("@/components/tools/CursedTextGenerator"), { loading: () => <Loader /> });
+const BoldTextGenerator = dynamic(() => import("@/components/tools/BoldTextGenerator"), { loading: () => <Loader /> });
 
 // Backend-Powered Tools
 const CodeShare = dynamic(() => import("@/components/tools/CodeShare"), { loading: () => <Loader /> });
@@ -118,6 +120,10 @@ export function ToolRenderer({ slug }: { slug: string }) {
             return <JsonToYaml />;
         case "upside-down-text":
             return <UpsideDownText />;
+        case "cursed-text-generator":
+            return <CursedTextGenerator />;
+        case "bold-text-generator":
+            return <BoldTextGenerator />;
         default:
             return <div>Tool implementation not found for slug: {slug}</div>;
     }

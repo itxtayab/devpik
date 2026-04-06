@@ -745,7 +745,56 @@ export const toolsData: ToolItem[] = [
             { question: "Why do some characters look the same upside down?", answer: "Some letters are naturally symmetrical — like 'o', 'x', 's', and 'H' — so they look identical when flipped. Others like 'l' have very similar upside-down equivalents. The tool uses the closest matching Unicode character for each letter." },
             { question: "Is my text stored or tracked?", answer: "No. The Upside Down Text Generator runs 100% client-side in your browser. Your text is never sent to any server, stored in any database, or tracked in any way. Complete privacy is guaranteed." }
         ],
-        relatedSlugs: ["unicode-text-converter", "case-converter", "word-counter", "text-repeater"]
+        relatedSlugs: ["unicode-text-converter", "cursed-text-generator", "bold-text-generator", "case-converter"]
+    },
+    {
+        slug: "cursed-text-generator",
+        name: "Cursed Text Generator",
+        description: "Generate cursed, glitchy, zalgo text using Unicode combining marks. Copy and paste creepy corrupted text for Discord, social media, and gaming.",
+        category: "text-tools",
+        metaTitle: "Cursed Text Generator (Copy & Paste) - Glitch & Zalgo Text | DevPik",
+        metaDescription: "Free cursed text generator. Create glitchy, zalgo, creepy, and corrupted text with adjustable intensity. Copy and paste cursed text for Discord, Minecraft, social media, and more.",
+        howToUse: [
+            "Type or paste your text in the input area above. Cursed text appears instantly below.",
+            "Choose an intensity level: Light (subtle glitch), Medium (noticeable distortion), Heavy (corrupted), or EXTREME (maximum chaos).",
+            "Toggle 'Randomize per character' for a more organic, uneven look.",
+            "Click the Copy button to copy your cursed text, then paste it anywhere — Discord, social media, gaming chats, or usernames."
+        ],
+        about: "The Cursed Text Generator transforms normal text into creepy, glitchy, zalgo-style text using Unicode combining diacritical marks. These special characters stack above, below, and through your base text to create a corrupted, distorted appearance — often called zalgo text, glitch text, cursed text, or void text. The tool offers four intensity levels so you can create anything from a subtle glitch effect to maximum chaos with characters stacking dozens of marks high. Unlike image generators, the output is real Unicode text that you can copy and paste anywhere — Discord messages, Minecraft chat, Roblox usernames, TikTok bios, Instagram captions, Twitter/X posts, Reddit comments, and any platform that supports Unicode. The randomize option varies the number of combining marks per character for a more natural, organic corrupted look. Everything runs 100% client-side in your browser — your text is never sent to any server.",
+        faqs: [
+            { question: "How does cursed text work?", answer: "Cursed text uses Unicode combining diacritical marks — special characters designed to combine with base characters. Normally, a letter might have one accent mark above it (like é). Cursed text stacks dozens of these marks above, below, and through each character, creating a glitchy, corrupted appearance. These are real Unicode characters, not images, so they can be copied and pasted anywhere." },
+            { question: "Can I use cursed text on Discord?", answer: "Yes! Discord fully supports Unicode combining characters, making it one of the best platforms for cursed text. You can use it in messages, server names, nicknames, and channel descriptions. Heavy and extreme intensity levels create the most dramatic effect in Discord chats." },
+            { question: "Does cursed text work on Minecraft and Roblox?", answer: "Minecraft chat supports Unicode characters, so cursed text works in multiplayer chat, signs, and books. Roblox also supports Unicode in usernames and chat, though very extreme zalgo text may be truncated. Test with medium intensity first for best results." },
+            { question: "What is the difference between cursed text and zalgo text?", answer: "Cursed text and zalgo text refer to the same thing — text with stacked Unicode combining marks creating a glitchy, corrupted appearance. 'Zalgo' comes from a creepypasta meme, while 'cursed text' is the more general term. Other names include glitch text, corrupted text, creepy text, scary text, and void text." },
+            { question: "Why does cursed text look different on different devices?", answer: "Different operating systems, browsers, and fonts render Unicode combining marks differently. iOS tends to show a cleaner stack, while Android and Windows may spread marks more widely. The base effect works everywhere, but the exact visual appearance varies by platform." },
+            { question: "Is my text stored or tracked?", answer: "No. The Cursed Text Generator runs 100% client-side in your browser. Your text is never sent to any server, stored in any database, or tracked in any way. Complete privacy is guaranteed." }
+        ],
+        relatedSlugs: ["bold-text-generator", "upside-down-text", "unicode-text-converter", "case-converter"]
+    },
+    {
+        slug: "bold-text-generator",
+        name: "Bold Text Generator",
+        description: "Generate bold, italic, and fancy Unicode text styles. Copy and paste bold text for Instagram, Facebook, LinkedIn, Discord, and more.",
+        category: "text-tools",
+        metaTitle: "Bold Text Generator (𝐂𝐨𝐩𝐲 & 𝐏𝐚𝐬𝐭𝐞) - Bold Font Generator Free | DevPik",
+        metaDescription: "Free bold text generator with 17 styles — bold, italic, bold italic, script, double-struck, fraktur, and more. Copy and paste bold Unicode text for Facebook, Instagram, LinkedIn, Twitter/X, and Discord.",
+        howToUse: [
+            "Type or paste your text in the input area above. All 17 text styles are generated instantly.",
+            "Browse the style grid to find the bold, italic, or fancy style you prefer.",
+            "Click the Copy button next to any style to copy it, then paste it into Instagram bios, Facebook posts, LinkedIn updates, Discord messages, or anywhere else."
+        ],
+        about: "The Bold Text Generator converts your normal text into bold Unicode characters and 16 other fancy text styles — all using real Unicode characters that you can copy and paste anywhere. Unlike rich text formatting (which only works in specific apps), Unicode bold text uses special characters from the Mathematical Alphanumeric Symbols block (U+1D400–U+1D7FF) that look like bold, italic, or decorative letters but are technically different characters. This means they work on any platform that supports Unicode: Instagram bios and captions, Facebook posts and comments, LinkedIn posts and profiles, Twitter/X tweets, Discord messages, Reddit posts, WhatsApp messages, YouTube comments, TikTok bios, and email subject lines. The tool generates 17 simultaneous styles including Bold, Italic, Bold Italic, Double-Struck (outline), Script, Bold Script, Fraktur (gothic), Sans-Serif variants, Circled, Squared, Negative Squared, Strikethrough, and Underlined text. Every style is generated in real-time in your browser — no server calls, no data stored, complete privacy.",
+        faqs: [
+            { question: "How do I make text bold on Instagram?", answer: "Instagram doesn't have built-in bold formatting, but you can use our Bold Text Generator to create bold Unicode text that you copy and paste into your Instagram bio, captions, or comments. The bold characters are real Unicode symbols that Instagram displays as bold-looking text." },
+            { question: "Can I use bold text on Facebook?", answer: "Yes! Facebook supports Unicode bold text in posts, comments, and your profile bio. Simply type your text in our generator, click Copy next to the bold style you want, and paste it into Facebook. The Bold, Bold Italic, and Sans Bold styles work best on Facebook." },
+            { question: "How do I bold text in LinkedIn posts?", answer: "LinkedIn doesn't offer bold formatting in regular posts. Our Bold Text Generator creates Unicode bold characters that you can paste directly into LinkedIn posts, comments, and your profile headline. This is how creators make their LinkedIn posts stand out." },
+            { question: "What is the difference between bold text and bold font?", answer: "In the context of Unicode text generators, 'bold text' and 'bold font' refer to the same thing — text converted to Unicode Mathematical Bold characters (like 𝐇𝐞𝐥𝐥𝐨). These aren't actually a different font; they're separate Unicode characters that happen to look bold. Real bold formatting (CSS font-weight) only works in apps that support rich text." },
+            { question: "Does bold Unicode text affect SEO?", answer: "Unicode bold text should not be used for SEO purposes. Search engines like Google treat Unicode mathematical symbols as different characters than regular letters. For web content, use proper HTML bold tags (<strong> or <b>) instead. Unicode bold text is best for social media, messaging apps, and platforms without rich text support." },
+            { question: "Why don't some characters change to bold?", answer: "Some characters don't have Unicode bold equivalents — including most punctuation marks, special symbols, and characters from non-Latin alphabets. When a character has no bold equivalent, the generator keeps it as-is. Letters A-Z, a-z, and digits 0-9 have the best coverage across all styles." },
+            { question: "Is using bold text generators bad for social media?", answer: "No, using Unicode bold text is perfectly fine for social media. However, screen readers may struggle with Unicode mathematical symbols, so avoid using them for important accessibility-critical content. For casual social media posts, bios, and emphasis, bold text generators are widely used and accepted." },
+            { question: "Is my text stored or tracked?", answer: "No. The Bold Text Generator runs 100% client-side in your browser. Your text is never sent to any server, stored in any database, or tracked in any way. Complete privacy is guaranteed." }
+        ],
+        relatedSlugs: ["cursed-text-generator", "upside-down-text", "unicode-text-converter", "case-converter"]
     },
 ];
 
