@@ -163,8 +163,24 @@ function splitIntoBlocks(content: string): Block[] {
             const joined = currentText.join("\n");
             const paragraphs = joined.split("\n\n");
             for (const p of paragraphs) {
-                if (p.trim()) {
-                    blocks.push({ type: "text", text: p });
+                if (!p.trim()) continue;
+                // Split out heading lines (### or ####) into their own blocks
+                const pLines = p.split("\n");
+                let buffer: string[] = [];
+                for (const line of pLines) {
+                    if (/^#{3,4}\s+/.test(line.trim())) {
+                        if (buffer.length > 0) {
+                            blocks.push({ type: "text", text: buffer.join("\n") });
+                            buffer = [];
+                        }
+                        blocks.push({ type: "text", text: line.trim() });
+                    } else {
+                        buffer.push(line);
+                    }
+                }
+                if (buffer.length > 0) {
+                    const text = buffer.join("\n").trim();
+                    if (text) blocks.push({ type: "text", text });
                 }
             }
             currentText = [];
@@ -304,7 +320,7 @@ function InlineMarkdown({ text }: { text: string }) {
     // 4. *italic text* — italic (single asterisk, not preceded by another *)
     // 5. `inline code` — code
     const regex =
-        /(\*\*\[(.+?)\]\((https?:\/\/[^\s)]+)\)\*\*)|(\[(.+?)\]\((https?:\/\/[^\s)]+)\))|(\*\*(.+?)\*\*)|(?<!\*)(\*([^*]+?)\*)(?!\*)|(`(.+?)`)/g;
+        /(\*\*\[(.+?)\]\(((?:https?:\/\/[^\s)]+|\/[^\s)]+))\)\*\*)|(\[(.+?)\]\(((?:https?:\/\/[^\s)]+|\/[^\s)]+))\))|(\*\*(.+?)\*\*)|(?<!\*)(\*([^*]+?)\*)(?!\*)|(`(.+?)`)/g;
 
     let lastIndex = 0;
     let match: RegExpExecArray | null;
@@ -317,12 +333,13 @@ function InlineMarkdown({ text }: { text: string }) {
 
         if (match[2] && match[3]) {
             // **[bold link text](url)** — bold link
+            const isInternalBl = match[3].startsWith("/") || match[3].includes("devpik.com");
             parts.push(
                 <a
                     key={`bl-${match.index}`}
                     href={match[3]}
-                    target={match[3].includes("devpik.com") ? undefined : "_blank"}
-                    rel={match[3].includes("devpik.com") ? undefined : "noopener noreferrer"}
+                    target={isInternalBl ? undefined : "_blank"}
+                    rel={isInternalBl ? undefined : "noopener noreferrer"}
                     className="font-semibold text-primary hover:text-primary/80 underline underline-offset-2 transition-colors"
                 >
                     {match[2]}
@@ -330,7 +347,7 @@ function InlineMarkdown({ text }: { text: string }) {
             );
         } else if (match[5] && match[6]) {
             // [link text](url) — plain link
-            const isInternal = match[6].includes("devpik.com");
+            const isInternal = match[6].startsWith("/") || match[6].includes("devpik.com");
             parts.push(
                 <a
                     key={`l-${match.index}`}
@@ -346,14 +363,15 @@ function InlineMarkdown({ text }: { text: string }) {
             // **bold** match — may contain links inside
             const boldContent = match[8];
             // Check if the bold content itself has a link
-            const linkInBold = /^\[(.+?)\]\((https?:\/\/[^\s)]+)\)$/.exec(boldContent);
+            const linkInBold = /^\[(.+?)\]\(((?:https?:\/\/[^\s)]+|\/[^\s)]*))\)$/.exec(boldContent);
             if (linkInBold) {
+                const isInternalBld = linkInBold[2].startsWith("/") || linkInBold[2].includes("devpik.com");
                 parts.push(
                     <a
                         key={`bld-${match.index}`}
                         href={linkInBold[2]}
-                        target={linkInBold[2].includes("devpik.com") ? undefined : "_blank"}
-                        rel={linkInBold[2].includes("devpik.com") ? undefined : "noopener noreferrer"}
+                        target={isInternalBld ? undefined : "_blank"}
+                        rel={isInternalBld ? undefined : "noopener noreferrer"}
                         className="font-semibold text-primary hover:text-primary/80 underline underline-offset-2 transition-colors"
                     >
                         {linkInBold[1]}

@@ -70,28 +70,28 @@ const FEATURES = [
 
 const BLOG_POSTS = [
   {
+    title: "GPT-5.4 Computer Use: AI That Operates Your Desktop",
+    excerpt: "OpenAI's GPT-5.4 scored 75% on OSWorld — the first AI model to clearly beat human performance at desktop tasks. Here's what developers need to know.",
+    tag: "AI",
+    readTime: "11 min read",
+    slug: "gpt-5-4-computer-use-ai-agents",
+    heroImage: "/blog/gpt-5-4-computer-use-ai-agents.webp",
+  },
+  {
+    title: "Unicode Text Effects for Social Media: Complete Guide",
+    excerpt: "Learn how Unicode text effects work for Instagram, Discord, Twitter/X, and Facebook. Create bold, italic, cursed, and fancy text that works anywhere.",
+    tag: "Text Tools",
+    readTime: "9 min read",
+    slug: "unicode-text-effects-social-media",
+    heroImage: "/blog/unicode-text-effects-social-media.webp",
+  },
+  {
     title: "What Is Agentic AI? The Rise of AI Agents in 2026",
     excerpt: "Agentic AI is redefining how software operates — autonomous AI agents can now plan, reason, and execute multi-step tasks without human intervention.",
     tag: "AI Trends",
     readTime: "9 min read",
     slug: "what-is-agentic-ai",
     heroImage: "/blog/agentic-ai-hero.webp",
-  },
-  {
-    title: "10 Best AI Coding Tools in 2026",
-    excerpt: "From Cursor to GitHub Copilot — AI code generation tools have evolved from autocomplete to autonomous development agents. Here are the best ones.",
-    tag: "AI Coding",
-    readTime: "11 min read",
-    slug: "best-ai-coding-tools-2026",
-    heroImage: "/blog/ai-coding-tools-hero.webp",
-  },
-  {
-    title: "ChatGPT vs Claude vs Perplexity: Which Is Best?",
-    excerpt: "An in-depth comparison of the three dominant AI assistants covering features, pricing, accuracy, and real-world use cases for 2026.",
-    tag: "AI Comparison",
-    readTime: "12 min read",
-    slug: "chatgpt-vs-claude-vs-perplexity-2026",
-    heroImage: "/blog/ai-comparison-hero.webp",
   },
 ];
 
