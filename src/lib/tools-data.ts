@@ -745,7 +745,7 @@ export const toolsData: ToolItem[] = [
             { question: "Why do some characters look the same upside down?", answer: "Some letters are naturally symmetrical — like 'o', 'x', 's', and 'H' — so they look identical when flipped. Others like 'l' have very similar upside-down equivalents. The tool uses the closest matching Unicode character for each letter." },
             { question: "Is my text stored or tracked?", answer: "No. The Upside Down Text Generator runs 100% client-side in your browser. Your text is never sent to any server, stored in any database, or tracked in any way. Complete privacy is guaranteed." }
         ],
-        relatedSlugs: ["unicode-text-converter", "cursed-text-generator", "bold-text-generator", "case-converter"]
+        relatedSlugs: ["unicode-text-converter", "cursed-text-generator", "bold-text-generator", "strikethrough-text-generator"]
     },
     {
         slug: "cursed-text-generator",
@@ -769,7 +769,7 @@ export const toolsData: ToolItem[] = [
             { question: "Why does cursed text look different on different devices?", answer: "Different operating systems, browsers, and fonts render Unicode combining marks differently. iOS tends to show a cleaner stack, while Android and Windows may spread marks more widely. The base effect works everywhere, but the exact visual appearance varies by platform." },
             { question: "Is my text stored or tracked?", answer: "No. The Cursed Text Generator runs 100% client-side in your browser. Your text is never sent to any server, stored in any database, or tracked in any way. Complete privacy is guaranteed." }
         ],
-        relatedSlugs: ["bold-text-generator", "upside-down-text", "unicode-text-converter", "case-converter"]
+        relatedSlugs: ["bold-text-generator", "upside-down-text", "strikethrough-text-generator", "small-text-generator"]
     },
     {
         slug: "bold-text-generator",
@@ -794,7 +794,59 @@ export const toolsData: ToolItem[] = [
             { question: "Is using bold text generators bad for social media?", answer: "No, using Unicode bold text is perfectly fine for social media. However, screen readers may struggle with Unicode mathematical symbols, so avoid using them for important accessibility-critical content. For casual social media posts, bios, and emphasis, bold text generators are widely used and accepted." },
             { question: "Is my text stored or tracked?", answer: "No. The Bold Text Generator runs 100% client-side in your browser. Your text is never sent to any server, stored in any database, or tracked in any way. Complete privacy is guaranteed." }
         ],
-        relatedSlugs: ["cursed-text-generator", "upside-down-text", "unicode-text-converter", "case-converter"]
+        relatedSlugs: ["cursed-text-generator", "upside-down-text", "strikethrough-text-generator", "small-text-generator"]
+    },
+    {
+        slug: "strikethrough-text-generator",
+        name: "Strikethrough Text Generator",
+        description: "Generate strikethrough, crossed out, and line-through text using Unicode. Copy and paste strikethrough text for Discord, social media, and more.",
+        category: "text-tools",
+        metaTitle: "Strikethrough Text Generator (S̶t̶r̶i̶k̶e̶t̶h̶r̶o̶u̶g̶h̶) - Cross Out Text Online Free | DevPik",
+        metaDescription: "Free strikethrough text generator. Create crossed out text with single line, short stroke, slash, and diagonal styles. Copy and paste strikethrough text for Discord, Slack, WhatsApp, and social media.",
+        howToUse: [
+            "Type or paste your text in the input area above. All strikethrough styles are generated instantly in real-time.",
+            "Browse the style grid to find the strikethrough variant you prefer — single line, short stroke, slash through, diagonal, or Markdown/Discord format.",
+            "Click the Copy button next to any style to copy it, then paste it anywhere — Discord, Slack, WhatsApp, social media, or documents.",
+            "Use the reference panel below the results to see platform-specific strikethrough shortcuts for Google Docs, Word, HTML, and more."
+        ],
+        about: "The Strikethrough Text Generator converts your normal text into strikethrough (crossed out) text using Unicode combining characters. Unlike platform-specific formatting that only works in certain apps, Unicode strikethrough text uses combining overlay characters (U+0336, U+0335, U+0337, U+0338) that render as lines through each character — and these work everywhere that supports Unicode. Copy and paste strikethrough text into Discord messages, Slack channels, WhatsApp chats, Instagram bios, Twitter/X tweets, Facebook posts, Reddit comments, email subjects, and any other platform. The tool generates multiple strikethrough styles simultaneously: single line (standard strikethrough), short stroke (compact line), slash through (diagonal long solidus), and diagonal strikethrough (short solidus). It also shows the Markdown/Discord syntax (~~text~~) and HTML tag format (<del>text</del>) for web developers. Common use cases include showing price changes and discounts, crossing off completed tasks, indicating deleted or corrected text, humor and emphasis in social media posts, and proofreading marks. All processing happens 100% client-side in your browser — your text is never sent to any server.",
+        faqs: [
+            { question: "How do I type strikethrough text?", answer: "Most platforms don't have a direct strikethrough key. Use our Strikethrough Text Generator to type your text and instantly get strikethrough versions you can copy and paste anywhere. For specific platforms: Discord uses ~~text~~, Slack uses ~text~, Google Docs uses Alt+Shift+5 (Windows) or ⌘+Shift+X (Mac), and Word uses the Font dialog strikethrough checkbox." },
+            { question: "How do you strikethrough text in Discord?", answer: "In Discord, wrap your text with two tildes on each side: ~~like this~~. Discord will render it as strikethrough text. You can also use our generator to create Unicode strikethrough text that works in Discord usernames and server names where Markdown isn't supported." },
+            { question: "How to strikethrough text in Google Docs?", answer: "In Google Docs, select your text and press Alt+Shift+5 on Windows or ⌘+Shift+X on Mac. You can also go to Format > Text > Strikethrough. For Google Sheets, the same Alt+Shift+5 shortcut works." },
+            { question: "Can I use strikethrough text on Instagram and Facebook?", answer: "Instagram and Facebook don't support Markdown strikethrough, but Unicode strikethrough text from our generator works perfectly. The combining characters render as lines through your text on both platforms — in posts, comments, bios, and stories." },
+            { question: "What is the difference between strikethrough and crossout text?", answer: "Strikethrough and crossout (crossed out) text are the same thing — a horizontal line drawn through text. The term 'strikethrough' is more common in word processors and web development, while 'cross out' is used more casually. Both refer to text with a line through it indicating deletion, completion, or correction." },
+            { question: "Does strikethrough text work on all devices?", answer: "Unicode strikethrough text works on virtually all modern devices, browsers, and operating systems. The combining overlay characters (U+0336) are part of the Unicode standard and have excellent support. Very old devices or some specialized terminals may not render them correctly." },
+            { question: "How to do strikethrough in HTML?", answer: "In HTML, use the <del> tag for deleted content (has semantic meaning for accessibility and SEO) or the <s> tag for content that is no longer relevant. You can also use CSS: text-decoration: line-through. The <strike> tag is deprecated and should not be used." },
+            { question: "Is my text stored or tracked?", answer: "No. The Strikethrough Text Generator runs 100% client-side in your browser. Your text is never sent to any server, stored in any database, or tracked in any way. Complete privacy is guaranteed." }
+        ],
+        relatedSlugs: ["bold-text-generator", "cursed-text-generator", "upside-down-text", "small-text-generator"]
+    },
+    {
+        slug: "small-text-generator",
+        name: "Small Text Generator",
+        description: "Generate superscript, subscript, and small caps text using Unicode. Copy and paste tiny text for Instagram, Discord, gaming usernames, and more.",
+        category: "text-tools",
+        metaTitle: "Small Text Generator (ˢᵐᵃˡˡ ᵗᵉˣᵗ) - Tiny Text & Small Caps Copy Paste | DevPik",
+        metaDescription: "Free small text generator with superscript, subscript, and small caps styles. Create tiny text and small font copy paste for Instagram, Discord, WhatsApp, Twitter/X, gaming usernames, and social media bios.",
+        howToUse: [
+            "Type or paste your text in the input area above. All three small text styles are generated instantly.",
+            "Browse the results to find the style you want: Superscript (ˢᵘᵖᵉʳˢᶜʳⁱᵖᵗ), Subscript (ₛᵤᵦₛ), or Small Caps (ꜱᴍᴀʟʟ ᴄᴀᴘꜱ).",
+            "Click the Copy button next to your preferred style, then paste it into Instagram bios, Discord usernames, WhatsApp messages, gaming profiles, or anywhere else.",
+            "Check the character support note below for details on which letters have small Unicode equivalents."
+        ],
+        about: "The Small Text Generator converts your normal text into three different small text styles using Unicode characters: Superscript (ˢᵐᵃˡˡ raised letters), Subscript (ₛₘₐₗₗ lowered letters), and Small Caps (ꜱᴍᴀʟʟ ᴄᴀᴘɪᴛᴀʟ letters). These are real Unicode characters — not formatting or font changes — which means they can be copied and pasted anywhere that supports Unicode text. Small text is hugely popular for Instagram bios, Twitter/X display names, Discord usernames and nicknames, WhatsApp status messages, Facebook posts, TikTok bios, gaming usernames (Steam, Xbox, PlayStation), Roblox display names, Minecraft signs, email signatures, and aesthetic text layouts. The superscript style maps all 26 lowercase and uppercase letters plus digits 0-9. Subscript has fewer available characters (not all letters have Unicode subscript equivalents), so some characters stay normal-sized. Small Caps converts lowercase letters to their small capital equivalents — perfect for elegant headings and stylish usernames. Important: these are real Unicode characters, not a font. They won't change back to normal text if someone changes the font — the small size is permanent. All processing happens 100% client-side in your browser with zero server calls.",
+        faqs: [
+            { question: "How do I make small text for Instagram?", answer: "Use our Small Text Generator to type your text, then copy the superscript or small caps result. Paste it directly into your Instagram bio, caption, or comment. Since these are Unicode characters (not formatting), they display as small text on all devices viewing your Instagram profile." },
+            { question: "What is the difference between superscript and subscript text?", answer: "Superscript text appears raised above the normal text baseline (like ˢᵘᵖᵉʳ), commonly used for exponents and footnotes. Subscript text appears below the baseline (like ₛᵤᵦ), used for chemical formulas and mathematical notation. Both use Unicode characters that can be copied and pasted anywhere." },
+            { question: "What are small caps?", answer: "Small caps (ꜱᴍᴀʟʟ ᴄᴀᴘꜱ) are uppercase letters that are the same height as lowercase letters. They create an elegant, refined look often used in typography, headings, and branding. Our generator uses Unicode small capital letters that work as copy-paste text on any platform." },
+            { question: "Can I use small text on Discord?", answer: "Yes! Unicode small text works perfectly in Discord messages, usernames, server nicknames, and channel descriptions. Superscript is the most popular choice for Discord usernames because it makes your name look unique and compact. Small caps also work great for aesthetic server names." },
+            { question: "Why do some characters stay normal-sized?", answer: "Not all characters have Unicode small equivalents. Superscript supports most letters and all digits (a-z, A-Z, 0-9). Subscript only has equivalents for certain letters (a, e, h, i, j, k, l, m, n, o, p, r, s, t, u, v, x) and digits. Characters without small Unicode equivalents remain in their original size." },
+            { question: "Is small text the same as changing font size?", answer: "No. Small text generators use different Unicode characters that are inherently small-sized — they're not regular letters with a smaller font. This is why they work when you paste them anywhere: the 'small' property is baked into the character itself. Changing font size only works in apps that support text formatting." },
+            { question: "Where can I use small text?", answer: "Small text works on any platform that supports Unicode: Instagram bios, Twitter/X names, Discord usernames, WhatsApp messages, Facebook posts, TikTok bios, Reddit comments, YouTube comments, Steam usernames, Xbox gamertags, email signatures, and more. Basically anywhere you can paste text." },
+            { question: "Is my text stored or tracked?", answer: "No. The Small Text Generator runs 100% client-side in your browser. Your text is never sent to any server, stored in any database, or tracked in any way. Complete privacy is guaranteed." }
+        ],
+        relatedSlugs: ["bold-text-generator", "cursed-text-generator", "upside-down-text", "strikethrough-text-generator"]
     },
 ];
 

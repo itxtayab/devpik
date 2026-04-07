@@ -167,16 +167,22 @@ export default function CursedTextGenerator() {
                         Try Bold Text Generator
                     </Link>
                     <Link
+                        href="/text-tools/strikethrough-text-generator"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md border border-border bg-background hover:bg-accent transition-colors text-muted-foreground"
+                    >
+                        Try Strikethrough Text
+                    </Link>
+                    <Link
+                        href="/text-tools/small-text-generator"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md border border-border bg-background hover:bg-accent transition-colors text-muted-foreground"
+                    >
+                        Try Small Text Generator
+                    </Link>
+                    <Link
                         href="/text-tools/upside-down-text"
                         className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md border border-border bg-background hover:bg-accent transition-colors text-muted-foreground"
                     >
                         Try Upside Down Text
-                    </Link>
-                    <Link
-                        href="/text-tools/unicode-text-converter"
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md border border-border bg-background hover:bg-accent transition-colors text-muted-foreground"
-                    >
-                        More Text Styles
                     </Link>
                 </div>
             )}

@@ -43,6 +43,8 @@ const JsonToYaml = dynamic(() => import("@/components/tools/JsonToYaml"), { load
 const UpsideDownText = dynamic(() => import("@/components/tools/UpsideDownText"), { loading: () => <Loader /> });
 const CursedTextGenerator = dynamic(() => import("@/components/tools/CursedTextGenerator"), { loading: () => <Loader /> });
 const BoldTextGenerator = dynamic(() => import("@/components/tools/BoldTextGenerator"), { loading: () => <Loader /> });
+const StrikethroughTextGenerator = dynamic(() => import("@/components/tools/StrikethroughTextGenerator"), { loading: () => <Loader /> });
+const SmallTextGenerator = dynamic(() => import("@/components/tools/SmallTextGenerator"), { loading: () => <Loader /> });
 
 // Backend-Powered Tools
 const CodeShare = dynamic(() => import("@/components/tools/CodeShare"), { loading: () => <Loader /> });
@@ -124,6 +126,10 @@ export function ToolRenderer({ slug }: { slug: string }) {
             return <CursedTextGenerator />;
         case "bold-text-generator":
             return <BoldTextGenerator />;
+        case "strikethrough-text-generator":
+            return <StrikethroughTextGenerator />;
+        case "small-text-generator":
+            return <SmallTextGenerator />;
         default:
             return <div>Tool implementation not found for slug: {slug}</div>;
     }
