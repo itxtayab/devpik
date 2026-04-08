@@ -745,7 +745,7 @@ export const toolsData: ToolItem[] = [
             { question: "Why do some characters look the same upside down?", answer: "Some letters are naturally symmetrical — like 'o', 'x', 's', and 'H' — so they look identical when flipped. Others like 'l' have very similar upside-down equivalents. The tool uses the closest matching Unicode character for each letter." },
             { question: "Is my text stored or tracked?", answer: "No. The Upside Down Text Generator runs 100% client-side in your browser. Your text is never sent to any server, stored in any database, or tracked in any way. Complete privacy is guaranteed." }
         ],
-        relatedSlugs: ["unicode-text-converter", "cursed-text-generator", "bold-text-generator", "strikethrough-text-generator"]
+        relatedSlugs: ["unicode-text-converter", "cursed-text-generator", "bold-text-generator", "strikethrough-text-generator", "italics-generator", "backwards-text-generator"]
     },
     {
         slug: "cursed-text-generator",
@@ -769,7 +769,7 @@ export const toolsData: ToolItem[] = [
             { question: "Why does cursed text look different on different devices?", answer: "Different operating systems, browsers, and fonts render Unicode combining marks differently. iOS tends to show a cleaner stack, while Android and Windows may spread marks more widely. The base effect works everywhere, but the exact visual appearance varies by platform." },
             { question: "Is my text stored or tracked?", answer: "No. The Cursed Text Generator runs 100% client-side in your browser. Your text is never sent to any server, stored in any database, or tracked in any way. Complete privacy is guaranteed." }
         ],
-        relatedSlugs: ["bold-text-generator", "upside-down-text", "strikethrough-text-generator", "small-text-generator"]
+        relatedSlugs: ["bold-text-generator", "upside-down-text", "strikethrough-text-generator", "small-text-generator", "italics-generator", "backwards-text-generator"]
     },
     {
         slug: "bold-text-generator",
@@ -794,7 +794,7 @@ export const toolsData: ToolItem[] = [
             { question: "Is using bold text generators bad for social media?", answer: "No, using Unicode bold text is perfectly fine for social media. However, screen readers may struggle with Unicode mathematical symbols, so avoid using them for important accessibility-critical content. For casual social media posts, bios, and emphasis, bold text generators are widely used and accepted." },
             { question: "Is my text stored or tracked?", answer: "No. The Bold Text Generator runs 100% client-side in your browser. Your text is never sent to any server, stored in any database, or tracked in any way. Complete privacy is guaranteed." }
         ],
-        relatedSlugs: ["cursed-text-generator", "upside-down-text", "strikethrough-text-generator", "small-text-generator"]
+        relatedSlugs: ["cursed-text-generator", "upside-down-text", "strikethrough-text-generator", "small-text-generator", "italics-generator", "backwards-text-generator"]
     },
     {
         slug: "strikethrough-text-generator",
@@ -820,7 +820,7 @@ export const toolsData: ToolItem[] = [
             { question: "How to do strikethrough in HTML?", answer: "In HTML, use the <del> tag for deleted content (has semantic meaning for accessibility and SEO) or the <s> tag for content that is no longer relevant. You can also use CSS: text-decoration: line-through. The <strike> tag is deprecated and should not be used." },
             { question: "Is my text stored or tracked?", answer: "No. The Strikethrough Text Generator runs 100% client-side in your browser. Your text is never sent to any server, stored in any database, or tracked in any way. Complete privacy is guaranteed." }
         ],
-        relatedSlugs: ["bold-text-generator", "cursed-text-generator", "upside-down-text", "small-text-generator"]
+        relatedSlugs: ["bold-text-generator", "cursed-text-generator", "upside-down-text", "small-text-generator", "italics-generator", "backwards-text-generator"]
     },
     {
         slug: "small-text-generator",
@@ -846,7 +846,58 @@ export const toolsData: ToolItem[] = [
             { question: "Where can I use small text?", answer: "Small text works on any platform that supports Unicode: Instagram bios, Twitter/X names, Discord usernames, WhatsApp messages, Facebook posts, TikTok bios, Reddit comments, YouTube comments, Steam usernames, Xbox gamertags, email signatures, and more. Basically anywhere you can paste text." },
             { question: "Is my text stored or tracked?", answer: "No. The Small Text Generator runs 100% client-side in your browser. Your text is never sent to any server, stored in any database, or tracked in any way. Complete privacy is guaranteed." }
         ],
-        relatedSlugs: ["bold-text-generator", "cursed-text-generator", "upside-down-text", "strikethrough-text-generator"]
+        relatedSlugs: ["bold-text-generator", "cursed-text-generator", "upside-down-text", "strikethrough-text-generator", "italics-generator", "backwards-text-generator"]
+    },
+    {
+        slug: "italics-generator",
+        name: "Italics Generator",
+        description: "Generate italic, bold italic, script, and fancy Unicode text styles. Copy and paste italic text for Instagram, Discord, Twitter/X, and more.",
+        category: "text-tools",
+        metaTitle: "Italics Generator (𝘐𝘵𝘢𝘭𝘪𝘤 𝘛𝘦𝘹𝘵) - Italic Text Copy & Paste Free | DevPik",
+        metaDescription: "Free italic text generator with 12 styles — italic, bold italic, script, fraktur, and more. Copy and paste italic Unicode text for Instagram, Facebook, Twitter/X, Discord, and LinkedIn.",
+        howToUse: [
+            "Type or paste your text in the input area above. All 12 italic and fancy text styles are generated instantly.",
+            "Browse the style grid to find the italic, script, or decorative style you prefer.",
+            "Click the Copy button next to any style to copy it, then paste it into Instagram bios, Twitter/X posts, Discord messages, LinkedIn updates, or anywhere else."
+        ],
+        about: "The Italics Generator converts your normal text into italic Unicode characters and 11 other fancy text styles — all using real Unicode characters that you can copy and paste anywhere. Unlike CSS italic formatting (which only works in specific apps), Unicode italic text uses special characters from the Mathematical Alphanumeric Symbols block that look like italic, script, or decorative letters but are technically different characters. This means they work on any platform that supports Unicode: Instagram bios and captions, Twitter/X tweets, Facebook posts, LinkedIn updates, Discord messages, Reddit posts, WhatsApp messages, YouTube comments, and email subject lines. The tool generates 12 simultaneous styles including Sans Italic, Math Italic, Bold Italic, Sans Bold Italic, Script, Bold Script, Fraktur, Bold Fraktur, Double-Struck, Monospace, Circled, and Underlined text. Every style is generated in real-time in your browser — no server calls, no data stored, complete privacy. Italic text is perfect for emphasis in social media posts, elegant Instagram bios, and making your Discord messages stand out. Since these are real Unicode characters, they survive copy-paste across any platform.",
+        faqs: [
+            { question: "How do I type italic text on Instagram?", answer: "Instagram doesn't have built-in italic formatting, but you can use our Italics Generator to create italic Unicode text that you copy and paste into your Instagram bio, captions, or comments. The italic characters are real Unicode symbols that Instagram displays as italic-looking text on all devices." },
+            { question: "Can I use italic text on Twitter/X?", answer: "Yes! Twitter/X doesn't support rich text formatting, but Unicode italic text from our generator works perfectly. Simply type your text, click Copy next to the italic style you want, and paste it into your tweet. The Sans Italic and Math Italic styles look best on Twitter/X." },
+            { question: "What is the difference between CSS italic and Unicode italic?", answer: "CSS italic (font-style: italic) is a formatting instruction that only works in web browsers and apps that support HTML. Unicode italic uses entirely different characters from the Mathematical Alphanumeric Symbols block (U+1D608–U+1D63B) that inherently look italic. Unicode italic works everywhere you can paste text — social media, messaging apps, gaming platforms, and email." },
+            { question: "Do italic Unicode characters work on Discord?", answer: "Yes! While Discord supports *markdown italic* with asterisks, Unicode italic text works in places Discord markdown doesn't — like usernames, server names, and channel descriptions. Our generator provides multiple italic styles that all work perfectly in Discord." },
+            { question: "Why don't some characters change to italic?", answer: "Some characters don't have Unicode italic equivalents — including most punctuation marks, special symbols, and characters from non-Latin alphabets. When a character has no italic equivalent, the generator keeps it as-is. Letters A-Z and a-z have the best coverage across all italic styles." },
+            { question: "What is the script style in the Italics Generator?", answer: "The Script style (𝒮𝒸𝓇𝒾𝓅𝓉) uses Unicode Mathematical Script characters that look like cursive handwriting or calligraphy. It's different from italic but commonly grouped with italic styles. Bold Script (𝓑𝓸𝓵𝓭 𝓢𝓬𝓻𝓲𝓹𝓉) is the bolder version — both are popular for elegant social media bios and display names." },
+            { question: "How do I make italic text on LinkedIn?", answer: "LinkedIn doesn't offer italic formatting in regular posts. Our Italics Generator creates Unicode italic characters that you can paste directly into LinkedIn posts, comments, and your profile headline or summary. This is how creators add emphasis to their LinkedIn content without formatting support." },
+            { question: "Is my text stored or tracked?", answer: "No. The Italics Generator runs 100% client-side in your browser. Your text is never sent to any server, stored in any database, or tracked in any way. Complete privacy is guaranteed." }
+        ],
+        relatedSlugs: ["bold-text-generator", "cursed-text-generator", "upside-down-text", "strikethrough-text-generator", "small-text-generator", "backwards-text-generator"]
+    },
+    {
+        slug: "backwards-text-generator",
+        name: "Backwards Text Generator",
+        description: "Reverse, mirror, and flip text instantly. Generate backwards text, reversed words, mirror text, and upside-down reversed text. Copy and paste for social media, pranks, and puzzles.",
+        category: "text-tools",
+        metaTitle: "Backwards Text Generator (ɹoʇɐɹǝuǝꓨ) - Reverse & Mirror Text Online Free | DevPik",
+        metaDescription: "Free backwards text generator with 5 modes — reverse text, reverse words, reverse each word, mirror text, and upside-down reversed. Copy and paste backwards text for social media, Discord, pranks, and puzzles.",
+        howToUse: [
+            "Type or paste your text in the input area above. All 5 backwards text modes are generated instantly.",
+            "Browse the results to find the mode you want: Reverse Text, Reverse Words, Reverse Each Word, Mirror Text, or Upside Down + Reversed.",
+            "Click the Copy button next to any result to copy it, then paste it into Discord, social media, messages, or anywhere else.",
+            "Use Mirror Text for a true mirrored effect, or Upside Down + Reversed for text that reads correctly when you flip your screen."
+        ],
+        about: "The Backwards Text Generator reverses, mirrors, and flips your text in 5 different ways — all instantly in your browser. Reverse Text flips all characters so \"Hello World\" becomes \"dlroW olleH\". Reverse Words keeps each word intact but reverses their order, so \"Hello World\" becomes \"World Hello\". Reverse Each Word flips the characters within each word individually, so \"Hello World\" becomes \"olleH dlroW\". Mirror Text uses Unicode mirrored characters where available (like b→d, p→q, R→Я) to create a true left-to-right mirror effect. Upside Down + Reversed combines upside-down Unicode characters with character reversal to create text that reads correctly when your screen is rotated 180°. Backwards text is popular for social media pranks, Discord messages, creative writing, puzzles and riddles, secret messages between friends, artistic text effects, coding challenges, and just having fun. All processing happens 100% client-side in your browser — your text is never sent to any server. The tool supports all Latin characters and has best results with English text.",
+        faqs: [
+            { question: "How do I type backwards text?", answer: "Use our Backwards Text Generator — simply type or paste your text and all 5 reverse modes are generated instantly. Click Copy next to any result and paste it wherever you need backwards text. No manual character-by-character reversal needed." },
+            { question: "What is mirror text?", answer: "Mirror text replaces characters with their Unicode mirrored equivalents (like b→d, p→q, R→Я) and reverses the order, creating text that looks like it's reflected in a mirror. Not all characters have perfect mirror equivalents, so some stay as-is, but the effect is recognizable." },
+            { question: "Can I use backwards text on Discord?", answer: "Yes! All backwards text modes work perfectly on Discord — in messages, usernames, server names, and channel descriptions. Unicode mirrored and upside-down characters are real Unicode symbols that Discord renders correctly on all devices." },
+            { question: "What is the difference between reverse text and reverse words?", answer: "Reverse Text flips every character: 'Hello World' → 'dlroW olleH'. Reverse Words keeps each word readable but changes their order: 'Hello World' → 'World Hello'. Reverse Each Word flips letters within each word while keeping word order: 'Hello World' → 'olleH dlroW'." },
+            { question: "Does backwards text work on Instagram and TikTok?", answer: "Yes! All backwards text modes produce standard Unicode text that works on Instagram (bios, captions, comments), TikTok (bios, comments), and virtually every other social media platform. The text is real characters, not formatting, so it displays the same on all devices." },
+            { question: "What is upside down reversed text?", answer: "Upside Down + Reversed combines two effects: each character is replaced with its upside-down Unicode equivalent (like a→ɐ, e→ǝ, t→ʇ), then the entire text is reversed. The result is text that reads correctly if you physically rotate your screen 180 degrees — a popular effect for social media and pranks." },
+            { question: "Can backwards text be used for secret messages?", answer: "Backwards text can add a layer of fun obfuscation to messages, but it's not encryption — anyone can reverse the text to read it. For casual secret messages between friends, pranks, scavenger hunts, and puzzles, reversed text is a simple and entertaining encoding method." },
+            { question: "Is my text stored or tracked?", answer: "No. The Backwards Text Generator runs 100% client-side in your browser. Your text is never sent to any server, stored in any database, or tracked in any way. Complete privacy is guaranteed." }
+        ],
+        relatedSlugs: ["upside-down-text", "bold-text-generator", "cursed-text-generator", "italics-generator", "small-text-generator", "unicode-text-converter"]
     },
 ];
 

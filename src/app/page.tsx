@@ -6,12 +6,12 @@ import { CATEGORIES, getToolsByCategory, ToolCategory } from "@/lib/tools-data";
 export const metadata: Metadata = {
   title: "DevPik - Free Online Developer Tools, Text Utilities & Tech Blog",
   description:
-    "Free online tools for developers and creators. JSON formatter, regex tester, Base64 encoder, word counter, and 38+ more utilities. 100% client-side, no signup required.",
+    "Free online tools for developers and creators. JSON formatter, regex tester, Base64 encoder, word counter, and 40+ more utilities. 100% client-side, no signup required.",
   alternates: { canonical: "https://www.devpik.com" },
   openGraph: {
     title: "DevPik - Free Online Developer Tools, Text Utilities & Tech Blog",
     description:
-      "Free online tools for developers and creators. JSON formatter, regex tester, Base64 encoder, word counter, and 38+ more utilities. 100% client-side.",
+      "Free online tools for developers and creators. JSON formatter, regex tester, Base64 encoder, word counter, and 40+ more utilities. 100% client-side.",
     url: "https://www.devpik.com",
     type: "website",
   },
@@ -41,7 +41,7 @@ const CategoryIcon = ({ category }: { category: ToolCategory }) => {
 };
 
 const STATS = [
-  { value: "38+", label: "Free Tools", icon: Wrench },
+  { value: "40+", label: "Free Tools", icon: Wrench },
   { value: "100%", label: "Client-Side", icon: Shield },
   { value: "0", label: "Data Sent", icon: Globe },
   { value: "∞", label: "Usage Limit", icon: Zap },
@@ -125,7 +125,7 @@ export default function Home() {
               </h1>
 
               <p className="mt-4 max-w-xl text-base md:text-lg leading-relaxed text-muted-foreground opacity-0 animate-fade-in-up stagger-2">
-                Explore 38+ free online tools for text processing, code formatting, network testing,
+                Explore 40+ free online tools for text processing, code formatting, network testing,
                 and developer utilities — all running 100% in your browser.
               </p>
 
@@ -266,7 +266,7 @@ export default function Home() {
                     {/* Stats mini row */}
                     <div className="grid grid-cols-3 gap-2 pt-1">
                       <div className="rounded-lg bg-white/5 border border-white/10 p-2.5 text-center">
-                        <div className="text-lg font-bold text-cyan-400">38+</div>
+                        <div className="text-lg font-bold text-cyan-400">40+</div>
                         <div className="text-[9px] text-white/40 font-medium">Tools</div>
                       </div>
                       <div className="rounded-lg bg-white/5 border border-white/10 p-2.5 text-center">

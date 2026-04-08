@@ -45,6 +45,8 @@ const CursedTextGenerator = dynamic(() => import("@/components/tools/CursedTextG
 const BoldTextGenerator = dynamic(() => import("@/components/tools/BoldTextGenerator"), { loading: () => <Loader /> });
 const StrikethroughTextGenerator = dynamic(() => import("@/components/tools/StrikethroughTextGenerator"), { loading: () => <Loader /> });
 const SmallTextGenerator = dynamic(() => import("@/components/tools/SmallTextGenerator"), { loading: () => <Loader /> });
+const ItalicsGenerator = dynamic(() => import("@/components/tools/ItalicsGenerator"), { loading: () => <Loader /> });
+const BackwardsTextGenerator = dynamic(() => import("@/components/tools/BackwardsTextGenerator"), { loading: () => <Loader /> });
 
 // Backend-Powered Tools
 const CodeShare = dynamic(() => import("@/components/tools/CodeShare"), { loading: () => <Loader /> });
@@ -130,6 +132,10 @@ export function ToolRenderer({ slug }: { slug: string }) {
             return <StrikethroughTextGenerator />;
         case "small-text-generator":
             return <SmallTextGenerator />;
+        case "italics-generator":
+            return <ItalicsGenerator />;
+        case "backwards-text-generator":
+            return <BackwardsTextGenerator />;
         default:
             return <div>Tool implementation not found for slug: {slug}</div>;
     }

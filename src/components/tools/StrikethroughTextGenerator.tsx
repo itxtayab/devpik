@@ -183,6 +183,18 @@ export default function StrikethroughTextGenerator() {
                     >
                         More Text Styles
                     </Link>
+                    <Link
+                        href="/text-tools/italics-generator"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md border border-border bg-background hover:bg-accent transition-colors text-muted-foreground"
+                    >
+                        Try Italics Generator
+                    </Link>
+                    <Link
+                        href="/text-tools/backwards-text-generator"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md border border-border bg-background hover:bg-accent transition-colors text-muted-foreground"
+                    >
+                        Try Backwards Text
+                    </Link>
                 </div>
             )}
         </div>
