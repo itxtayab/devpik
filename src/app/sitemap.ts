@@ -47,9 +47,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.7,
     }));
 
-    // Dynamic blog routes from posts table + paste routes
+    // Dynamic blog routes from posts table
     let dynamicBlogRoutes: MetadataRoute.Sitemap = [];
-    let pasteRoutes: MetadataRoute.Sitemap = [];
 
     try {
         const supabase = await createClient();
@@ -72,20 +71,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
                 }));
         }
 
-        // Non-expired pastes
-        const { data: pastes } = await supabase
-            .from("pastes")
-            .select("short_code, created_at")
-            .or(`expires_at.is.null,expires_at.gt.${new Date().toISOString()}`);
-
-        if (pastes) {
-            pasteRoutes = pastes.map((p) => ({
-                url: `${baseUrl}/p/${p.short_code}`,
-                lastModified: new Date(p.created_at),
-                changeFrequency: "never" as const,
-                priority: 0.3,
-            }));
-        }
     } catch {
         // Silently fail
     }
@@ -97,6 +82,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         blogListingRoute,
         ...staticBlogRoutes,
         ...dynamicBlogRoutes,
-        ...pasteRoutes,
     ];
 }
