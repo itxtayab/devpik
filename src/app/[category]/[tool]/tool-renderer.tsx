@@ -48,6 +48,10 @@ const SmallTextGenerator = dynamic(() => import("@/components/tools/SmallTextGen
 const ItalicsGenerator = dynamic(() => import("@/components/tools/ItalicsGenerator"), { loading: () => <Loader /> });
 const BackwardsTextGenerator = dynamic(() => import("@/components/tools/BackwardsTextGenerator"), { loading: () => <Loader /> });
 
+// CSS Tools
+const PixelsToInches = dynamic(() => import("@/components/tools/PixelsToInches"), { loading: () => <Loader /> });
+const PxToRem = dynamic(() => import("@/components/tools/PxToRem"), { loading: () => <Loader /> });
+
 // Backend-Powered Tools
 const CodeShare = dynamic(() => import("@/components/tools/CodeShare"), { loading: () => <Loader /> });
 const UrlShortener = dynamic(() => import("@/components/tools/UrlShortener"), { loading: () => <Loader /> });
@@ -136,6 +140,10 @@ export function ToolRenderer({ slug }: { slug: string }) {
             return <ItalicsGenerator />;
         case "backwards-text-generator":
             return <BackwardsTextGenerator />;
+        case "pixels-to-inches":
+            return <PixelsToInches />;
+        case "px-to-rem":
+            return <PxToRem />;
         default:
             return <div>Tool implementation not found for slug: {slug}</div>;
     }

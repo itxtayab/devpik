@@ -30,6 +30,7 @@ import {
   Wrench,
   ArrowUpRight,
   Braces,
+  Paintbrush,
 } from "lucide-react";
 
 const CategoryIcon = ({ category }: { category: ToolCategory }) => {
@@ -37,6 +38,7 @@ const CategoryIcon = ({ category }: { category: ToolCategory }) => {
   if (category === "developer-tools") return <Code2 className="h-5 w-5" />;
   if (category === "network-tools") return <Wifi className="h-5 w-5" />;
   if (category === "json-tools") return <Braces className="h-5 w-5" />;
+  if (category === "css-tools") return <Paintbrush className="h-5 w-5" />;
   return <Wrench className="h-5 w-5" />;
 };
 

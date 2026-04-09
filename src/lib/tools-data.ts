@@ -1,6 +1,6 @@
 import { type Metadata } from "next";
 
-export type ToolCategory = "text-tools" | "developer-tools" | "network-tools" | "json-tools";
+export type ToolCategory = "text-tools" | "developer-tools" | "network-tools" | "json-tools" | "css-tools";
 
 export interface FAQ {
     question: string;
@@ -36,6 +36,10 @@ export const CATEGORIES: Record<ToolCategory, { name: string; description: strin
     "json-tools": {
         name: "JSON Tools",
         description: "Free online JSON formatting, escaping, and data transformation tools for developers.",
+    },
+    "css-tools": {
+        name: "CSS Tools",
+        description: "Free online CSS and design tools for developers and designers. Convert between px, rem, em, inches, and more — all running 100% in your browser.",
     },
 };
 
@@ -391,7 +395,7 @@ export const toolsData: ToolItem[] = [
             { question: "What data units are supported?", answer: "We support both binary (1 KB = 1024 bytes) and bit-based units: Byte, Kilobyte, Megabyte, Gigabyte, Terabyte, Petabyte, Bit, Kilobit, and Megabit. This covers all common use cases from file sizes to network speeds." },
             { question: "How does the tip calculator work?", answer: "Enter your bill amount, select a tip percentage (or use presets for 10%, 15%, 18%, 20%, 25%), and optionally split between multiple people. The calculator shows the tip amount, total, per-person cost, and per-person tip." }
         ],
-        relatedSlugs: ["color-converter", "uuid-generator", "json-formatter", "base64-encode-decode"]
+        relatedSlugs: ["pixels-to-inches", "px-to-rem", "color-converter", "uuid-generator"]
     },
     {
         slug: "color-converter",
@@ -898,6 +902,57 @@ export const toolsData: ToolItem[] = [
             { question: "Is my text stored or tracked?", answer: "No. The Backwards Text Generator runs 100% client-side in your browser. Your text is never sent to any server, stored in any database, or tracked in any way. Complete privacy is guaranteed." }
         ],
         relatedSlugs: ["upside-down-text", "bold-text-generator", "cursed-text-generator", "italics-generator", "small-text-generator", "unicode-text-converter"]
+    },
+    // ==================== CSS TOOLS ====================
+    {
+        slug: "pixels-to-inches",
+        name: "Pixels to Inches Converter",
+        description: "Convert pixels to inches, centimeters, millimeters, and points at any DPI. Includes inches to pixels conversion and a precomputed reference table.",
+        category: "css-tools",
+        metaTitle: "Pixels to Inches Converter - Convert Px to Inches Online Free | DevPik",
+        metaDescription: "Free pixels to inches converter. Convert px to inches, cm, mm, and points at 72, 96, 150, or 300 DPI. Also converts inches to pixels. Includes conversion chart for common values. 100% client-side.",
+        howToUse: [
+            "Enter a pixel value in the input field — the tool converts to inches, centimeters, millimeters, and points in real time.",
+            "Select a DPI preset (72, 96, 150, 300) or enter a custom DPI value to match your screen or print resolution.",
+            "Click the swap button to switch between pixels-to-inches and inches-to-pixels conversion modes.",
+            "Scroll down to the conversion reference table to see common pixel values converted at different DPI settings."
+        ],
+        about: "The Pixels to Inches Converter is a free online tool that accurately converts pixel dimensions to physical measurements — inches, centimeters, millimeters, and typographic points — based on your screen or print DPI (dots per inch). Understanding the relationship between pixels and physical units is essential for print design, web-to-print workflows, image sizing, and display specification work. A pixel has no fixed physical size — its real-world dimension depends entirely on the display's DPI. At 72 DPI (the classic Mac/web standard), 1 inch equals 72 pixels. At 96 DPI (Windows default), 1 inch equals 96 pixels. At 300 DPI (professional print quality), 1 inch equals 300 pixels. This tool handles all conversions using the formula: inches = pixels ÷ DPI. It also converts to centimeters (cm = inches × 2.54), millimeters (mm = inches × 25.4), and points (pt = pixels × 72 ÷ DPI). Everything runs 100% client-side in your browser — your data never leaves your device.",
+        faqs: [
+            { question: "How many pixels is 1 inch?", answer: "It depends on the DPI (dots per inch) of your display or print output. At 96 DPI (Windows default), 1 inch = 96 pixels. At 72 DPI (web/Mac standard), 1 inch = 72 pixels. At 300 DPI (high-quality print), 1 inch = 300 pixels. There is no universal pixel-to-inch ratio — it always depends on resolution." },
+            { question: "What size is 1920x1080 pixels in inches?", answer: "It depends on DPI. At 96 DPI: 20 × 11.25 inches. At 72 DPI: 26.67 × 15 inches. At 300 DPI (print): 6.4 × 3.6 inches. Use our converter with your specific DPI to get the exact dimensions for your display or print project." },
+            { question: "How do I convert pixels to inches?", answer: "Divide the pixel value by the DPI (dots per inch). The formula is: inches = pixels ÷ DPI. For example, 300 pixels at 96 DPI = 300 ÷ 96 = 3.125 inches. Our converter does this automatically and also shows centimeters, millimeters, and points." },
+            { question: "How many pixels is an 8.5 x 11 inch page?", answer: "At 300 DPI (print standard): 2550 × 3300 pixels. At 150 DPI (medium quality): 1275 × 1650 pixels. At 72 DPI (screen/web): 612 × 792 pixels. Higher DPI means more pixels and better print quality." },
+            { question: "What DPI should I use for printing?", answer: "For professional print: 300 DPI is the industry standard. For medium-quality prints or drafts: 150 DPI is acceptable. For web and screen display: 72 or 96 DPI is standard. Photo prints and magazines typically require 300 DPI for sharp results." },
+            { question: "What is the difference between DPI and PPI?", answer: "DPI (dots per inch) refers to printer output resolution — how many ink dots per inch. PPI (pixels per inch) refers to screen display resolution — how many pixels per inch. In practice, the terms are often used interchangeably for digital-to-print conversion calculations. Our converter works with both." },
+            { question: "Is my data stored or tracked?", answer: "No. The Pixels to Inches Converter runs 100% client-side in your browser. No data is ever sent to any server. Complete privacy is guaranteed." }
+        ],
+        relatedSlugs: ["px-to-rem", "unit-converter"]
+    },
+    {
+        slug: "px-to-rem",
+        name: "Px to Rem Converter",
+        description: "Convert between px, rem, and em CSS units with a configurable base font size. Includes a reference table for common conversions and one-click copy.",
+        category: "css-tools",
+        metaTitle: "Px to Rem Converter - Convert Px to Rem, Em to Px Online Free | DevPik",
+        metaDescription: "Free px to rem converter and em to px calculator. Convert between px, rem, and em CSS units with customizable root font size. Includes conversion table for 16px base. 100% client-side.",
+        howToUse: [
+            "Select a conversion mode: Px to Rem, Rem to Px, or Em ↔ Px using the tabs at the top.",
+            "Enter your value in the input field — the conversion happens in real time as you type.",
+            "Adjust the base font size (default 16px) using the dropdown or enter a custom value to match your project's root font size.",
+            "Click the copy button to copy the result. Scroll down for a full reference table of common px to rem conversions."
+        ],
+        about: "The Px to Rem Converter is a free online tool that converts between the three most commonly used CSS length units: pixels (px), root em (rem), and em. Understanding these units is critical for building responsive, accessible websites. Rem units are relative to the root element's font size (typically 16px) and are the recommended unit for font sizes because they respect user browser preferences — if a user increases their default font size for accessibility, rem-based designs scale properly. Em units are relative to the parent element's font size, making them useful for component-scoped scaling but prone to compounding in nested elements. Pixels are absolute units ideal for borders, shadows, and elements that shouldn't scale. The conversion formulas are simple: rem = px ÷ root font size, and em = px ÷ parent font size. This tool handles all three conversions with a configurable base size, provides a comprehensive reference table, and runs 100% client-side in your browser — no server calls, complete privacy.",
+        faqs: [
+            { question: "How do I convert px to rem?", answer: "Divide the pixel value by the root font size (default 16px). Formula: rem = px ÷ 16. Examples: 8px = 0.5rem, 12px = 0.75rem, 14px = 0.875rem, 16px = 1rem, 20px = 1.25rem, 24px = 1.5rem, 32px = 2rem. If your root font size is different, divide by that value instead." },
+            { question: "What is 1 rem in pixels?", answer: "By default, 1rem = 16px because browsers set the root font size to 16px. If you change the root font size in your CSS (e.g., html { font-size: 18px; }), then 1rem equals whatever you set. Our converter lets you adjust the base font size to match your project." },
+            { question: "What is the difference between rem and em in CSS?", answer: "Rem is always relative to the root (html) element's font size — it's consistent everywhere. Em is relative to the current element's parent font size, so it compounds when elements are nested (e.g., 1.2em inside 1.2em = 1.44× the grandparent's size). Use rem for predictable, global sizing; use em for component-relative sizing." },
+            { question: "Should I use px or rem for font sizes?", answer: "Use rem for font sizes — it respects user accessibility preferences. When a user increases their browser's default font size, rem-based text scales proportionally while px-based text stays fixed. Use px for borders, box-shadows, outlines, and micro-adjustments that shouldn't scale with font preferences." },
+            { question: "Why is 16px the default root font size?", answer: "All major browsers (Chrome, Firefox, Safari, Edge) set the default root font size to 16px. This has been the standard since the early days of CSS. Users can change this in their browser settings for accessibility. Using rem units ensures your design respects this preference." },
+            { question: "What is 14px in rem?", answer: "At the default 16px root font size: 14px = 0.875rem (14 ÷ 16 = 0.875). This is one of the most commonly searched conversions. Other popular ones: 10px = 0.625rem, 12px = 0.75rem, 18px = 1.125rem, 20px = 1.25rem." },
+            { question: "Is my data stored or tracked?", answer: "No. The Px to Rem Converter runs 100% client-side in your browser. No data is ever sent to any server. Complete privacy is guaranteed." }
+        ],
+        relatedSlugs: ["pixels-to-inches", "unit-converter"]
     },
 ];
 

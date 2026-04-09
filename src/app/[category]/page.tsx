@@ -2,11 +2,18 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Metadata } from "next";
 import { CATEGORIES, getToolsByCategory, ToolCategory } from "@/lib/tools-data";
-import { ArrowRight, Wrench, Sparkles, Code2, Type, Wifi, Braces } from "lucide-react";
+import { ArrowRight, Wrench, Sparkles, Code2, Type, Wifi, Braces, Paintbrush } from "lucide-react";
 
 interface Props {
     params: Promise<{ category: string }>;
 }
+
+const CATEGORY_META: Partial<Record<string, { title: string; description: string }>> = {
+    "css-tools": {
+        title: "CSS & Design Tools — Free Online Converters & Calculators | DevPik",
+        description: "Free online CSS and design tools for developers and designers. Convert between px, rem, em, inches, and more — all running 100% in your browser.",
+    },
+};
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
     const params = await props.params;
@@ -15,15 +22,19 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 
     if (!category) return {};
 
+    const custom = CATEGORY_META[categoryId];
+    const title = custom?.title ?? `${category.name} - Free Online Tools`;
+    const description = custom?.description ?? category.description;
+
     return {
-        title: `${category.name} - Free Online Tools`,
-        description: category.description,
+        title,
+        description,
         alternates: {
             canonical: `https://www.devpik.com/${categoryId}`,
         },
         openGraph: {
-            title: `${category.name} - Free Online Tools`,
-            description: category.description,
+            title,
+            description,
             url: `https://www.devpik.com/${categoryId}`,
             type: "website",
         },
@@ -43,6 +54,7 @@ const CategoryIcon = ({ category }: { category: ToolCategory }) => {
     if (category === "developer-tools") return <Code2 className="h-8 w-8 text-emerald-500" />;
     if (category === "network-tools") return <Wifi className="h-8 w-8 text-orange-500" />;
     if (category === "json-tools") return <Braces className="h-8 w-8 text-amber-500" />;
+    if (category === "css-tools") return <Paintbrush className="h-8 w-8 text-pink-500" />;
     return <Wrench className="h-8 w-8 text-primary" />;
 };
 
