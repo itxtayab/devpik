@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Metadata } from "next";
 import { CATEGORIES, getToolsByCategory, ToolCategory } from "@/lib/tools-data";
-import { ArrowRight, Wrench, Sparkles, Code2, Type, Wifi, Braces, Paintbrush } from "lucide-react";
+import { ArrowRight, Wrench, Sparkles, Code2, Type, Wifi, Braces, Paintbrush, Calculator } from "lucide-react";
 
 interface Props {
     params: Promise<{ category: string }>;
@@ -12,6 +12,10 @@ const CATEGORY_META: Partial<Record<string, { title: string; description: string
     "css-tools": {
         title: "CSS & Design Tools — Free Online Converters & Calculators | DevPik",
         description: "Free online CSS and design tools for developers and designers. Convert between px, rem, em, inches, and more — all running 100% in your browser.",
+    },
+    "math-tools": {
+        title: "Math & Calculator Tools — Free Online Calculators & Converters | DevPik",
+        description: "Free online math calculators and converters for business, science, and development. Calculate markup, convert scientific notation, and more — all running 100% in your browser.",
     },
 };
 
@@ -55,6 +59,7 @@ const CategoryIcon = ({ category }: { category: ToolCategory }) => {
     if (category === "network-tools") return <Wifi className="h-8 w-8 text-orange-500" />;
     if (category === "json-tools") return <Braces className="h-8 w-8 text-amber-500" />;
     if (category === "css-tools") return <Paintbrush className="h-8 w-8 text-pink-500" />;
+    if (category === "math-tools") return <Calculator className="h-8 w-8 text-violet-500" />;
     return <Wrench className="h-8 w-8 text-primary" />;
 };
 

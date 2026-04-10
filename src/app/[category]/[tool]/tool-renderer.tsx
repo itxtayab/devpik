@@ -52,6 +52,10 @@ const BackwardsTextGenerator = dynamic(() => import("@/components/tools/Backward
 const PixelsToInches = dynamic(() => import("@/components/tools/PixelsToInches"), { loading: () => <Loader /> });
 const PxToRem = dynamic(() => import("@/components/tools/PxToRem"), { loading: () => <Loader /> });
 
+// Math Tools
+const MarkupCalculator = dynamic(() => import("@/components/tools/MarkupCalculator"), { loading: () => <Loader /> });
+const ScientificNotationConverter = dynamic(() => import("@/components/tools/ScientificNotationConverter"), { loading: () => <Loader /> });
+
 // Backend-Powered Tools
 const CodeShare = dynamic(() => import("@/components/tools/CodeShare"), { loading: () => <Loader /> });
 const UrlShortener = dynamic(() => import("@/components/tools/UrlShortener"), { loading: () => <Loader /> });
@@ -144,6 +148,10 @@ export function ToolRenderer({ slug }: { slug: string }) {
             return <PixelsToInches />;
         case "px-to-rem":
             return <PxToRem />;
+        case "markup-calculator":
+            return <MarkupCalculator />;
+        case "scientific-notation-converter":
+            return <ScientificNotationConverter />;
         default:
             return <div>Tool implementation not found for slug: {slug}</div>;
     }

@@ -1,6 +1,6 @@
 import { type Metadata } from "next";
 
-export type ToolCategory = "text-tools" | "developer-tools" | "network-tools" | "json-tools" | "css-tools";
+export type ToolCategory = "text-tools" | "developer-tools" | "network-tools" | "json-tools" | "css-tools" | "math-tools";
 
 export interface FAQ {
     question: string;
@@ -40,6 +40,10 @@ export const CATEGORIES: Record<ToolCategory, { name: string; description: strin
     "css-tools": {
         name: "CSS Tools",
         description: "Free online CSS and design tools for developers and designers. Convert between px, rem, em, inches, and more — all running 100% in your browser.",
+    },
+    "math-tools": {
+        name: "Math Tools",
+        description: "Free online math calculators and converters for business, science, and development. Calculate markup, convert scientific notation, and more — all running 100% in your browser.",
     },
 };
 
@@ -395,7 +399,7 @@ export const toolsData: ToolItem[] = [
             { question: "What data units are supported?", answer: "We support both binary (1 KB = 1024 bytes) and bit-based units: Byte, Kilobyte, Megabyte, Gigabyte, Terabyte, Petabyte, Bit, Kilobit, and Megabit. This covers all common use cases from file sizes to network speeds." },
             { question: "How does the tip calculator work?", answer: "Enter your bill amount, select a tip percentage (or use presets for 10%, 15%, 18%, 20%, 25%), and optionally split between multiple people. The calculator shows the tip amount, total, per-person cost, and per-person tip." }
         ],
-        relatedSlugs: ["pixels-to-inches", "px-to-rem", "color-converter", "uuid-generator"]
+        relatedSlugs: ["pixels-to-inches", "px-to-rem", "color-converter", "markup-calculator", "scientific-notation-converter"]
     },
     {
         slug: "color-converter",
@@ -953,6 +957,60 @@ export const toolsData: ToolItem[] = [
             { question: "Is my data stored or tracked?", answer: "No. The Px to Rem Converter runs 100% client-side in your browser. No data is ever sent to any server. Complete privacy is guaranteed." }
         ],
         relatedSlugs: ["pixels-to-inches", "unit-converter"]
+    },
+    // ==================== MATH TOOLS ====================
+    {
+        slug: "markup-calculator",
+        name: "Markup Calculator",
+        description: "Calculate markup percentage, margin, selling price, and profit instantly. Free markup vs margin calculator with conversion table and formulas.",
+        category: "math-tools",
+        metaTitle: "Markup Calculator — Free Markup & Margin Calculator Online | DevPik",
+        metaDescription: "Free markup calculator and margin calculator. Calculate markup percentage, selling price, profit margin, and cost instantly. Includes markup to margin conversion table and formulas. 100% client-side.",
+        howToUse: [
+            "Select a mode: Markup Calculator, Margin Calculator, or Markup ↔ Margin Converter using the tabs.",
+            "Enter your cost price and markup percentage (or selling price) — the tool calculates all values instantly as you type.",
+            "Switch to Margin mode to calculate profit margin from cost and selling price, or enter margin percentage to find the cost.",
+            "Use the Markup to Margin converter to see equivalent percentages and browse the reference table of common markup/margin pairs.",
+            "Click the copy button next to any result to copy it to your clipboard."
+        ],
+        about: "The Markup Calculator is a free online tool that instantly calculates markup percentage, profit margin, selling price, and profit from your cost and pricing data. Whether you're a business owner setting prices, an accountant analyzing profitability, or a student learning business math, this calculator handles all the formulas for you. Markup and margin are two of the most commonly confused business concepts — markup is the percentage added to cost to determine selling price (Markup % = ((Selling Price - Cost) / Cost) × 100), while margin is the percentage of revenue that is profit (Margin % = ((Selling Price - Cost) / Selling Price) × 100). A 100% markup equals a 50% margin, and confusing the two can lead to significant pricing errors. This tool includes three modes: a markup calculator, a margin calculator, and a markup-to-margin converter with a precomputed reference table. Common industry markups include retail (50-100%), food service (100-300%), jewelry (100-300%), and electronics (25-50%). All calculations happen 100% client-side in your browser — your financial data is never sent to any server.",
+        faqs: [
+            { question: "How do you calculate markup?", answer: "Markup % = ((Selling Price - Cost) / Cost) × 100. For example, if a product costs $50 and you sell it for $75, the markup is (($75 - $50) / $50) × 100 = 50%. You can also calculate selling price from markup: Selling Price = Cost × (1 + Markup% / 100)." },
+            { question: "What is a 25% markup on $100?", answer: "A 25% markup on $100 means you add 25% of the cost ($25) to the price. Selling price = $100 × 1.25 = $125. The profit is $25. Note: a 25% markup gives you a 20% profit margin, not 25% — because margin is based on the selling price, not the cost." },
+            { question: "What is the difference between markup and margin?", answer: "Markup is based on cost: ((Selling Price - Cost) / Cost) × 100. Margin is based on selling price: ((Selling Price - Cost) / Selling Price) × 100. A $50 item sold for $100 has a 100% markup but only a 50% margin. Margin is always lower than markup for the same transaction." },
+            { question: "Is 20% margin the same as 25% markup?", answer: "Yes! A 20% profit margin equals a 25% markup. The conversion formula is: Markup = Margin / (1 - Margin). So 0.20 / (1 - 0.20) = 0.20 / 0.80 = 0.25 = 25%. Similarly, 30% margin = 42.9% markup, and 50% margin = 100% markup." },
+            { question: "How much margin is 40% markup?", answer: "A 40% markup equals approximately a 28.6% profit margin. Use the formula: Margin = Markup / (1 + Markup) = 0.40 / 1.40 = 0.2857 = 28.57%. This means if you mark up a product by 40% over cost, 28.57% of your selling price is profit." },
+            { question: "What is a 30% markup on $100?", answer: "A 30% markup on $100 means the selling price is $130 ($100 × 1.30). The profit is $30. The profit margin on this sale is 23.1% ($30 / $130 × 100), not 30% — this is a common mistake that costs businesses money." },
+            { question: "Should I use markup or margin?", answer: "Use markup to set prices (adding a percentage to your cost). Use margin to analyze profitability (what percentage of revenue is profit). Both metrics describe the same transaction from different angles. Most accountants and financial analysts prefer margin for reporting, while sales teams and procurement use markup for pricing." },
+            { question: "Is my financial data safe?", answer: "Yes. The Markup Calculator runs 100% client-side in your browser. Your cost, pricing, and profit data is never transmitted to any server, stored in any database, or tracked in any way. Complete privacy is guaranteed." }
+        ],
+        relatedSlugs: ["scientific-notation-converter", "unit-converter", "pixels-to-inches"]
+    },
+    {
+        slug: "scientific-notation-converter",
+        name: "Scientific Notation Converter",
+        description: "Convert numbers to and from scientific notation, E notation, and engineering notation. Includes a scientific notation calculator with step-by-step solutions.",
+        category: "math-tools",
+        metaTitle: "Scientific Notation Converter — Convert to Scientific Notation Online Free | DevPik",
+        metaDescription: "Free scientific notation converter and calculator. Convert numbers to scientific notation, E notation, and engineering notation. Also converts scientific notation to decimal. Includes step-by-step calculator. 100% client-side.",
+        howToUse: [
+            "Select a mode: Number to Scientific Notation, Scientific Notation to Number, or Scientific Notation Calculator using the tabs.",
+            "Enter any number (e.g., 123456789 or 0.000035) — the tool instantly converts to scientific notation, E notation, and engineering notation.",
+            "In reverse mode, enter scientific notation (e.g., 3.5e8 or 3.5 × 10^8) to get the standard decimal number.",
+            "Use the Calculator mode to add, subtract, multiply, or divide two numbers in scientific notation with step-by-step results.",
+            "Adjust decimal precision (1-10 places) and click copy to copy any result."
+        ],
+        about: "The Scientific Notation Converter is a free online tool that converts between standard decimal numbers and scientific notation, E notation, and engineering notation. Scientific notation expresses numbers as a coefficient between 1 and 10 multiplied by a power of 10 — for example, 299,792,458 becomes 2.99792458 × 10⁸. This format is essential in science (speed of light, Avogadro's number), engineering (component tolerances, signal frequencies), astronomy (distances between stars), chemistry (molecular masses, molar concentrations), and computing (floating-point representation). The converter supports both directions: enter a standard number to get scientific notation, or enter scientific notation (using either × 10ⁿ or e-notation format) to get the decimal number. The built-in calculator can add, subtract, multiply, and divide numbers in scientific notation with step-by-step solutions. Engineering notation uses exponents that are multiples of 3, aligning with SI prefixes like kilo (10³), mega (10⁶), and giga (10⁹). All calculations happen 100% client-side in your browser — nothing is sent to any server.",
+        faqs: [
+            { question: "How do you convert to scientific notation?", answer: "Move the decimal point so there is exactly one non-zero digit to the left. Count how many places you moved it — that becomes the exponent. Moving left gives a positive exponent; moving right gives a negative exponent. Example: 5,430,000 → 5.43 × 10⁶ (moved 6 places left). Example: 0.00072 → 7.2 × 10⁻⁴ (moved 4 places right)." },
+            { question: "What is 0.000000836 in scientific notation?", answer: "Move the decimal 7 places to the right to get 8.36. Since we moved right, the exponent is negative: 0.000000836 = 8.36 × 10⁻⁷. In E notation, this is written as 8.36e-7." },
+            { question: "What is the difference between scientific notation and E notation?", answer: "They represent the same value differently. Scientific notation uses × 10ⁿ format (e.g., 3.5 × 10⁸), while E notation uses the letter 'e' (e.g., 3.5e8). E notation is used in programming languages, calculators, and spreadsheets because it avoids superscript characters. Both mean the same thing." },
+            { question: "What is engineering notation?", answer: "Engineering notation is similar to scientific notation but restricts exponents to multiples of 3 (10³, 10⁶, 10⁹, etc.). This aligns with metric SI prefixes: kilo (10³), mega (10⁶), giga (10⁹), milli (10⁻³), micro (10⁻⁶), nano (10⁻⁹). For example, 0.0035 becomes 3.5 × 10⁻³ in both notations, but 45,000 becomes 45 × 10³ in engineering notation vs 4.5 × 10⁴ in scientific notation." },
+            { question: "What is scientific notation for dummies?", answer: "Scientific notation is a shorthand for writing very large or very small numbers. Instead of writing 300,000,000, you write 3 × 10⁸. The first part (3) is called the coefficient and must be between 1 and 10. The second part (10⁸) tells you how many times to multiply by 10. Negative exponents mean small numbers: 5 × 10⁻³ = 0.005." },
+            { question: "How do you multiply numbers in scientific notation?", answer: "Multiply the coefficients and add the exponents. Example: (3 × 10⁴) × (2 × 10³) = (3 × 2) × 10⁽⁴⁺³⁾ = 6 × 10⁷. If the resulting coefficient is not between 1 and 10, adjust it. Example: (5 × 10³) × (4 × 10²) = 20 × 10⁵ = 2.0 × 10⁶." },
+            { question: "Is my data stored or tracked?", answer: "No. The Scientific Notation Converter runs 100% client-side in your browser. No data is ever sent to any server. Complete privacy is guaranteed." }
+        ],
+        relatedSlugs: ["markup-calculator", "unit-converter"]
     },
 ];
 
