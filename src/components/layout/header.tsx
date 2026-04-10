@@ -9,9 +9,15 @@ import { CATEGORIES, getToolsByCategory, ToolCategory } from "@/lib/tools-data";
 
 const SearchDialog = dynamic(() => import("./SearchDialog").then(m => ({ default: m.SearchDialog })), { ssr: false });
 
+const MAX_VISIBLE_CATEGORIES = 4;
+
 export function Header() {
     const [mobileOpen, setMobileOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+
+    const allCategories = Object.entries(CATEGORIES);
+    const visibleCategories = allCategories.slice(0, MAX_VISIBLE_CATEGORIES);
+    const overflowCategories = allCategories.slice(MAX_VISIBLE_CATEGORIES);
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -50,7 +56,7 @@ export function Header() {
                             Home
                         </Link>
 
-                        {Object.entries(CATEGORIES).map(([category, { name }]) => {
+                        {visibleCategories.map(([category, { name }]) => {
                             const cat = category as ToolCategory;
                             const tools = getToolsByCategory(cat);
 
@@ -82,6 +88,48 @@ export function Header() {
                                 </div>
                             );
                         })}
+
+                        {overflowCategories.length > 0 && (
+                            <div className="group relative h-full flex items-center">
+                                <button
+                                    className="flex items-center gap-1 text-white/80 hover:text-white transition-colors cursor-pointer h-full px-3 py-1.5 rounded-full hover:bg-white/10"
+                                >
+                                    More
+                                    <ChevronDown className="h-3 w-3 transition-transform duration-200 group-hover:rotate-180" />
+                                </button>
+                                <div className="absolute right-0 top-full hidden w-[280px] group-hover:block transition-all pt-2">
+                                    <div className="rounded-2xl glass-card shadow-xl p-2 border border-border/40">
+                                        <div className="grid gap-0.5">
+                                            {overflowCategories.map(([category, { name }]) => {
+                                                const cat = category as ToolCategory;
+                                                const tools = getToolsByCategory(cat);
+                                                return (
+                                                    <div key={category}>
+                                                        <Link
+                                                            href={`/${category}`}
+                                                            className="block rounded-xl px-3 py-2 text-sm font-semibold text-foreground hover:bg-primary/5 transition-colors"
+                                                        >
+                                                            {name}
+                                                        </Link>
+                                                        <div className="ml-3 border-l-2 border-primary/10 pl-2 mb-1">
+                                                            {tools.map((tool) => (
+                                                                <Link
+                                                                    key={tool.slug}
+                                                                    href={`/${category}/${tool.slug}`}
+                                                                    className="block rounded-lg px-2.5 py-1.5 text-xs text-muted-foreground hover:text-primary hover:bg-primary/5 transition-all"
+                                                                >
+                                                                    {tool.name}
+                                                                </Link>
+                                                            ))}
+                                                        </div>
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
 
                         <Link href="/blog" className="text-white/80 hover:text-white transition-colors px-3 py-1.5 rounded-full hover:bg-white/10 flex items-center gap-1.5">
                             Blog
